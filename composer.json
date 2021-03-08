@@ -1,0 +1,21 @@
+{
+    "name": "richard/p5_blog_php",
+    "description": "1st_blog_project",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Richard Petit",
+            "email": "richard-petit@live.fr"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "twig/twig": "^3.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+            "Blog\\": "app/"
+        }
+    }
+}

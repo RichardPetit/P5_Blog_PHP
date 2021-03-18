@@ -1,1 +1,26 @@
-test
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Blog</title>
+{% endblock %}
+
+{% block content %}
+    <h1>Les derniers articles</h1>
+    <div class="row">
+        {% for article in articles %}
+            <div class="col-xs-4">
+                <div class="card">
+{#                    <img src="https://grafikart.fr/uploads/tutoriels/1/thumb_ {{ tutoriel.id }}" alt="" class="card-img-top">
+image a mettre avec l'id de l'article pour qu'il la récupère dans la bdd#}
+{# exemple ci-dessus pris du tuto grafikart pour donner une idée #}
+                    <div class="card-block">
+                        <h4 class="card-title">{{ article.title }}</h4>
+                        <p class="card-text">{{  article.content | nl2br }}</p>
+                        <a href=""> Voir l'article</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
+

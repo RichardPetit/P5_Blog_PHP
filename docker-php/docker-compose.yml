@@ -12,34 +12,9 @@ services:
             - mysql-datavolume:/var/lib/mysql
         networks:
             - db
-    php:
-        container_name: app-php
-        build: ./php
-        ports:
-            - "9000:9001"
-        volumes:
-            - ${WORK_DIR}:/var/www/app
-        depends_on:
-            - db
-        networks:
-            - db
-            - php
-    nginx:
-        container_name: app-web
-        build: ./nginx
-        ports:
-            - "80:80"
-        depends_on: 
-            - php
-        networks:
-            - php
-        volumes:
-            - ${WORK_DIR}:/var/www/app
-            - ./logs/nginx:/var/log/nginx
 
 networks:
     db:
-    php:
 
 volumes:
     mysql-datavolume:

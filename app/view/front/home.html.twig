@@ -1,6 +1,27 @@
 {% extends "layout.html.twig" %}
 
+{% block head %}
+    <title>Accueil</title>
+{% endblock %}
+
 {% block content %}
-    <h1>Ici c'est la homepage</h1>
+    <h1>Homepage</h1>
+    {% block article %}
+        {% for article in viewArticle %}
+            <h4 class="card-title">{{ article.title }}</h4>
+            <p>{{ article.summary }}</p>
+            <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
+            <a href="article.php?id=<?= $article->id ?>"> Lire l'article</a>
+            <p>Commentaires :</p>
+        {% endfor %}
+        {% block comment %}
+            {% for comment in viewComment %}
+                <h5>{{ comment.title }} </h5>
+                <p>{{ comment.content }} <br> {{ comment.date }}<br><br></p>
+            {% endfor %}
+        {% endblock comment %}
+    {% endblock  article %}
+
+
 
 {% endblock %}

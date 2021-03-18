@@ -1,6 +1,15 @@
 {% extends "layout.html.twig" %}
 
+
 {% block content %}
-    <h1>Ici c'est la listing-page</h1>
+    <h1>Listing-page</h1>
+    {% block article %}
+        {% for article in viewArticle %}
+            <h4 class="card-title">{{ article.title }}</h4>
+            <p>{{ article.summary }}</p>
+            <a href="article.php?id=<?= $article->id ?>"> Lire l'article</a>
+            <p>Commentaires :</p>
+        {% endfor %}
+    {% endblock  article %}
 
 {% endblock %}

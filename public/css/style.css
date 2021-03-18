@@ -5,6 +5,22 @@ body::-webkit-scrollbar {
 .main{
     margin-bottom: 50px;
 }
+header .container {
+    padding-top: 30px;
+    padding-bottom: 20px;
+}
+#content{
+margin-top: 2em;
+}
+header img{
+    margin: 125px auto 20px;
+}
+#footer{
+    height: 21rem;
+}
+footer .footer-above {
+    padding-top: 10px;
+}
 .card{
     width: 65%;
     height: 250px;

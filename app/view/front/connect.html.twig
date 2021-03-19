@@ -1,0 +1,53 @@
+{% extends"layout.html.twig" %}
+
+{% block head %}
+    <title>Me connecter</title>
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <h2>Connexion</h2>
+        <hr class="star-primary">
+        <br>
+        <form method="post" action="">
+            <input type="text" placeholder="Pseudo" id="pseudoConnect" name="pseudoConnect">
+            <input type="password" placeholder="Mot de passe" id="passwordConnect" name="passwordConnect">
+            <input type="submit" name="formConnect" value="Se connecter">
+        </form>
+    </div>
+    <br> <br> <br>
+{% endblock %}
+
+{# code php pour la connexion:
+<?php
+session_start();
+
+$bdd = new PDO('mysql:dbname=blog;host=localhost:3309', 'root', 'root');
+if(isset($_POST['formConnect']))
+{
+    $pseudoConnect = htmlspecialchars($_POST['pseudoConnect']);
+    $passwordConnect = sha1($_POST['passwordConnect']);
+    if (!empty($pseudoConnect) AND !empty($passwordConnect))
+    {
+        $reqUser = $bdd->prepare("SELECT * FROM users WHERE pseudo = ? AND password = ?");
+        $reqUser->execute(array($pseudoConnect, $passwordConnect));
+        $userExiste= $reqUser->rowCount();
+        if ($userExiste == 1)
+        {
+            $userInfo = $reqUser->fetch();
+            $_SESSION['id'] = $userInfo['id'];
+            $_SESSION['pseudo'] = $userInfo['pseudo'];
+            $_SESSION['email'] = $userInfo['email'];
+            header('Location: profil.php?id=' .$_SESSION['id']);
+
+        } else
+        {
+            $error = "Cet utilisateur n'existe pas";
+        }
+    } else
+        {
+        $error = "Tous les champs doivent être complétés.";
+        }
+}
+#}
+

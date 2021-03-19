@@ -22,6 +22,12 @@ if ( $page === 'home')
 }elseif ( $page ==='contact'){
     $controller = new FrontController();
     $controller->contactAction();
+}elseif ( $page === 'register'){
+    $controller = new FrontController();
+    $controller->registerAction();
+}elseif ( $page === 'connect'){
+    $controller = new FrontController();
+    $controller->connectAction();
 }
 
 

@@ -1,0 +1,124 @@
+{% extends"layout.html.twig" %}
+
+{% block head %}
+    <title>Inscription</title>
+{% endblock %}
+
+
+{% block content %}
+<div align="center">
+    <h2>Inscription</h2>
+    <br><hr class="star-primary"><br>
+    <form method="post" action="">
+        <table>
+            <tr>
+                <td align="right">
+                    <label for="pseudo">Pseudo :</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="Votre pseudo" id="pseudo" name="pseudo" {# ajouter value="<?php if(isset($pseudo)) { echo $pseudo; }" pour concerver ce qu'à tapé l'utilisateur #}>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="email">Email :</label>
+                </td>
+                <td>
+                    <input type="email" placeholder="Votre adresse email" id="email" name="email" {# ajouter value="<?php if(isset($email)) { echo $email; }" pour concerver ce qu'à tapé l'utilisateur #}>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="email2">Confirmation de l'email :</label>
+                </td>
+                <td>
+                    <input type="email" placeholder="Confirmez votre email" id="email2" name="email2" {# ajouter value="<?php if(isset($email2)) { echo $email2; }" pour concerver ce qu'à tapé l'utilisateur #}>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="password">Mot de passe :</label>
+                </td>
+                <td>
+                    <input type="password" placeholder="Votre mot de passe" id="password" name="password">
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="password2">Confirmation du mot de passe :</label>
+                </td>
+                <td>
+                    <input type="password" placeholder="Confirmez votre mdp" id="password2" name="password2">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <br>
+                    <input type="submit" name="formRegister" value="Je m'inscrit">
+                </td>
+            </tr>
+        </table>
+    </form>
+{#     if(isset($erreur))
+{
+    echo $erreur;
+}#}
+    <br>
+</div>
+
+{% endblock %}
+ {# conditon à faire en php:
+ $bdd = new PDO('mysql:dbname=blog;host=localhost:3309', 'root', 'root');
+if(isset($_POST['formRegister']))
+{
+    $pseudo = htmlspecialchars($_POST['pseudo']);
+    $email = htmlspecialchars($_POST['email']);
+    $email2 = htmlspecialchars($_POST['email2']);
+    $password = sha1($_POST['password']);
+    $password2 = sha1($_POST['password2']);
+
+    if(!empty($_POST['pseudo']) AND !empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['password'])
+        AND !empty($_POST['password2']))
+    {
+        $pseudolength = strlen($pseudo);
+        if ($pseudolength <= 45) {
+            $reqpseudo = $bdd->prepare("SELECT * FROM users WHERE pseudo = ?");
+            $reqpseudo->execute(array($pseudo));
+            $pseudoexist = $reqpseudol->rowCount();
+            if ($pseudoexist == 0){
+                if ($email == $email2) {
+                    if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $reqemail = $bdd->prepare("SELECT * FROM users WHERE email = ?");
+                        $reqemail->execute(array($email));
+                        $emailexist = $reqemail->rowCount();
+                        if ($emailexist == 0){
+                            if ($password == $password2) {
+                                 $insertNewUser = $bdd->prepare("INSERT INTO users(name, forname, email, password) VALUES (?, ?, ?)");
+                                 $insertNewUser->execute(array($name, $forname, $email, $password));
+                                 $error = "Votre compte à bien été créé.";
+                                 header('Location: index.php');
+                            } else {
+                                $error = "Vos mots de passes ne correspondent pas.";
+                            }
+                        } else {
+                            $error = "Cette adresse email est déjà utilisée.";
+                        }
+                    } else {
+                        $error = "Votre adresse email n'est pas valide.";
+                    }
+                } else {
+                    $error = "Vos adresses emails ne correspondent pas.";
+                }
+            } else{
+                $error = "Ce pseudo est déjà utilisé.";
+            }
+        } else {
+            $error = "Votre pseudo ne peut dépasser 45 caractères.";
+        }
+    } else {
+        $error = "Tous les champs doivent être complétés";
+
+    }
+
+}#}

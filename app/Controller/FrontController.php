@@ -22,8 +22,9 @@ class FrontController extends AbstractController
 
     public function listingAction()
     {
-        $this->render("front" , "listing.html.twig" , []);
-
+        $this->render("front" , "listing.html.twig" , [
+            'articles' => $this->getArticles()
+        ]);
     }
 
     public function contactAction()
@@ -31,6 +32,14 @@ class FrontController extends AbstractController
         $this->render("front" , "contact.html.twig" , []);
     }
 
+    public function registerAction()
+    {
+        $this->render("front", "register.html.twig", []);
+    }
+    public function connectAction()
+    {
+        $this->render("front", "connect.html.twig", []);
+    }
 
 
     private function getArticles()
@@ -50,4 +59,8 @@ class FrontController extends AbstractController
         $comments = $pdo->query('SELECT * FROM comments ORDER BY id');
         return $comments;
     }
+    private function register()
+    {
+        $pdo = new PDO('mysql:dbname=blog;host=localhost:3309', 'root', 'root');    }
+
 }

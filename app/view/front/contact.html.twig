@@ -13,8 +13,8 @@
 
     <form action="?p=contact" method="post">
         <div class="row">
-            {{ form.input('name', 'Votre nom') }}
-            {{ form.input('email', 'Votre email') }}
+            {{ form.input('name', 'Votre nom', {class: 'col-xs'}) }}
+            {{ form.input('email', 'Votre email', {class: 'col-xs'}) }}
         </div>
 
         {{ form.textarea('message', 'Votre message') }}

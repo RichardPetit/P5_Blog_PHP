@@ -60,16 +60,16 @@
             </tr>
         </table>
     </form>
-{#     if(isset($erreur))
+{#     if(isset($error))
 {
-    echo $erreur;
+    echo $error;
 }#}
     <br>
 </div>
 
 {% endblock %}
  {# conditon à faire en php:
- $bdd = new PDO('mysql:dbname=blog;host=localhost:3309', 'root', 'root');
+$pdo = Db::getDb();
 if(isset($_POST['formRegister']))
 {
     $pseudo = htmlspecialchars($_POST['pseudo']);
@@ -83,7 +83,7 @@ if(isset($_POST['formRegister']))
     {
         $pseudolength = strlen($pseudo);
         if ($pseudolength <= 45) {
-            $reqpseudo = $bdd->prepare("SELECT * FROM users WHERE pseudo = ?");
+            $reqpseudo = $pdo->prepare("SELECT * FROM users WHERE pseudo = ?");
             $reqpseudo->execute(array($pseudo));
             $pseudoexist = $reqpseudol->rowCount();
             if ($pseudoexist == 0){

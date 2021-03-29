@@ -15,4 +15,5 @@ class AbstractController
 
         echo $twig->render($viewName, $content);
     }
+
 }

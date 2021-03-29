@@ -1,0 +1,24 @@
+{% extends"layout.html.twig" %}
+
+{% block head %}
+    <title>Mon profil</title>
+{% endblock %}
+
+{% block content %}
+    <div align="center">
+        <h2>Profil de {# <?php echo $userInfo['pseudo']; ?> #}</h2>
+        <hr class="star-primary">
+        <br>
+       <p>Pseudo = {# <?php echo $userInfo['pseudo']; ?> #}</p  >
+        <br>
+        <p>Mail = {# <?php echo $userInfo['email']; ?> #}</p>
+       {# if ($userInfo['id'] == $_SESSION['id'])
+{
+    ?>
+    <a href="#">Éditer mon profil </a>
+    <a href="#">Me déconnecter </a>
+}
+       #}
+    </div>
+    <br> <br> <br>
+{% endblock %}

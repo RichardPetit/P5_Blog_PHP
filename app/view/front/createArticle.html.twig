@@ -1,0 +1,57 @@
+{% extends 'layout.html.twig' %}
+
+
+{% block head %}
+    <title>Nouvel article</title>.
+{% endblock %}
+
+
+{% block content %}
+
+    <div align="center">
+    <h2>Nouvel Article</h2>
+    <br>
+    <hr class="star-primary">
+    <br>
+    <form method="post" action="">
+        <table>
+            <tr>
+                <td align="right">
+                    <label for="title">Titre :</label>
+                </td>
+                <td>
+                    <input type="text" placeholder="Titre de l'article" id="title" name="title" class="col-sm-12">
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="content">Contenu :</label>
+                </td>
+                <td>
+                    <p> <textarea placeholder="Contenu de l'article" id="content"
+                                  name="content" rows=5 cols=40 {# ajouter value="<?php if(isset($content))
+                                   { echo $content; }" pour concerver ce qu'à tapé l'utilisateur #}></textarea>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">
+                    <label for="summary">Résumé :</label>
+                </td>
+                <td>
+                    <p><textarea placeholder="Résumé de l'article" id="summary" name="summary" rows=3
+                                 cols=40></textarea>
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td align="right">
+                    <input type="submit" name="formArticle" value="Créer l'article">
+                </td>
+            </tr>
+        </table>
+        <br>
+    </form>
+
+{% endblock %}

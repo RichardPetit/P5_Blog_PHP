@@ -12,22 +12,27 @@
     <hr class="star-primary">
     <br>
     <div class="newArticleForm">
-    <form method="post" action="/?p=list">
-        <p><label for="title">Titre</label><br>
-            <input type="text" name="title" id="title" value="{{ articleTitle }}" class="form-control"></p>
-        <p><label for="content">Contenu de l'article</label><br>
-            <textarea name="content" id="content" cols="30"
-                      rows="8" class="form-control">{{ articleContent }}</textarea></p>
-        <input type="hidden" name="add" value="1">
-
-        <p><label for="summary">Résumé de l'article</label><br>
-            <textarea name="summary" id="summary" cols="12"
-                      rows="8" class="form-control">{{ articleSummary }}</textarea></p>
-        <input type="hidden" name="add" value="1">
-        <br>
-        {% if articleSubmitted == false %}
-            <button type="submit" class="btn btn-success"> Créer l'article</button>
-        {% endif %}
-    </form>
+        <form method="post" action="/?p=addArticle">
+            <input type="hidden" name="add" value="1">
+            <p>
+                <label for="title">Titre</label><br>
+                <input type="text" name="title" id="title" value="{{ articleTitle }}" class="form-control">
+            </p>
+            <p>
+                <label for="content">Contenu de l'article</label><br>
+                <textarea name="content" id="content" cols="30" rows="8"
+                          class="form-control">{{ articleContent }}</textarea>
+            </p>
+            <p>
+                <label for="summary">Résumé de l'article</label><br>
+                <textarea name="summary" id="summary" cols="12"
+                          rows="8" class="form-control">{{ articleSummary }}</textarea>
+            </p>
+            {% if articleSubmitted == false %}
+                <p>
+                    <button type="submit" class="btn btn-success"> Créer l'article</button>
+                </p>
+            {% endif %}
+        </form>
     </div>
 {% endblock %}

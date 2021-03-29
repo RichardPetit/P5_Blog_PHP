@@ -12,9 +12,9 @@ class FrontController extends AbstractController
 {
     public function homeAction()
     {
-        $article = Articles::getArticles();
+        $articles = Articles::getArticles();
         $this->render("front" , "home.html.twig" , [
-            'viewArticle' => $article,
+            'viewArticle' => $articles,
         ]);
     }
 
@@ -62,29 +62,6 @@ class FrontController extends AbstractController
     {
         $this->render("front", "connect.html.twig", []);
     }
-    public  function addArticleAction()
-    {
-        $articleTitle= $_POST['title'] ?? '';
-        $articleContent= $_POST['content'] ?? '';
-        $articleSummary= $_POST['summary'] ?? '';
-        $articleSubmitted = false;
-        $article = Articles::getArticles();
-
-        if (isset($_POST['add'])){
-            Articles::addArticle($articleTitle, $articleContent, $articleSummary);
-            $articleSubmitted = true;
-        }
-
-        $this->render("front", "createArticle.html.twig", [
-           'newArticle' => Articles::addArticle($articleTitle, $articleContent, $articleSummary),
-            'titleArticle' => $articleTitle,
-            'contentArticle' => $articleContent,
-            'summaryArticle' => $articleSummary,
-            'article' => $article
-        ]);
-    }
-
-
 
     private function register()
     {

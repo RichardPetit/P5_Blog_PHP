@@ -31,7 +31,7 @@ class Articles extends Db
     }
 
 
-//Fonction qui récupère les articles en BDD
+    //Fonction qui récupère les articles en BDD
     public static function getArticles()
     {
         $pdo = Db::getDb();
@@ -65,29 +65,11 @@ class Articles extends Db
     //Fonction qui ajoute un article en BDD
     public static function addArticle($title, $content, $summary)
     {
-        if (isset($message)){
-            echo $message;
-        }
+        //Puisqu'on s'occupe de la validation des donnees dans le controlleur (ou dans l'entité, on verra),
+        //pas besoin de tester les paramètres ici, on se contente d'executer la requête et de récupérer le résultat de l'insert
         $pdo = Db::getDb();
-        if(isset($_POST['formArticle'])) {
-            $title = htmlspecialchars($_POST['title']);
-            $content = htmlspecialchars($_POST['content']);
-            $summary = htmlspecialchars($_POST['summary']);
-
-            if (!empty($_POST['title']) AND !empty($_POST['content']) AND !empty($_POST['summary'])) {
-                $titleLength = strlen($title);
-                if ($titleLength <= 100) {
-                    $insertNewArticle = $pdo->prepare("INSERT INTO articles(title, content, summary, date ) VALUES (?, ?, ?, NOW)");
-                    $insertNewArticle->execute(array($title, $content, $summary));
-                    $message = "L'article à bien été créé.";
-                    header('Location: index.php');
-                }else{
-                    $message = "Le titre est trop long";
-                }
-            }else {
-                $message = "Tous les champs doivent être complétés";
-            }
-        }
+        $insertNewArticle = $pdo->prepare("INSERT INTO articles(title, content, summary, date ) VALUES (?, ?, ?, NOW)");
+        return $insertNewArticle->execute([$title, $content, $summary]);
     }
 
 

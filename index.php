@@ -31,10 +31,13 @@ if ( $page === 'home')
 }elseif ( $page === 'connect'){
     $controller = new FrontController();
     $controller->connectAction();
-}elseif ( $page ==='newArticle'){
+}elseif ( $page ==='addArticle'){
     $controller = new FrontController();
-    $controller->newArticleAction();
-}else {
+    $controller->addArticleAction();
+}elseif ($page === 'detailsArticle') {
+    $controller = new FrontController();
+    $controller->detailsAction();
+} else {
     header('Location: home');
 }
 

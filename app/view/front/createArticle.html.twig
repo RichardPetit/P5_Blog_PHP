@@ -7,51 +7,27 @@
 
 
 {% block content %}
-
-    <div align="center">
     <h2>Nouvel Article</h2>
     <br>
     <hr class="star-primary">
     <br>
-    <form method="post" action="">
-        <table>
-            <tr>
-                <td align="right">
-                    <label for="title">Titre :</label>
-                </td>
-                <td>
-                    <input type="text" placeholder="Titre de l'article" id="title" name="title" class="col-sm-12">
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    <label for="content">Contenu :</label>
-                </td>
-                <td>
-                    <p> <textarea placeholder="Contenu de l'article" id="content"
-                                  name="content" rows=5 cols=40 {# ajouter value="<?php if(isset($content))
-                                   { echo $content; }" pour concerver ce qu'à tapé l'utilisateur #}></textarea>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">
-                    <label for="summary">Résumé :</label>
-                </td>
-                <td>
-                    <p><textarea placeholder="Résumé de l'article" id="summary" name="summary" rows=3
-                                 cols=40></textarea>
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td align="right">
-                    <input type="submit" name="formArticle" value="Créer l'article">
-                </td>
-            </tr>
-        </table>
-        <br>
-    </form>
+    <div class="newArticleForm">
+    <form method="post" action="/?p=list">
+        <p><label for="title">Titre</label><br>
+            <input type="text" name="title" id="title" value="{{ articleTitle }}" class="form-control"></p>
+        <p><label for="content">Contenu de l'article</label><br>
+            <textarea name="content" id="content" cols="30"
+                      rows="8" class="form-control">{{ articleContent }}</textarea></p>
+        <input type="hidden" name="add" value="1">
 
+        <p><label for="summary">Résumé de l'article</label><br>
+            <textarea name="summary" id="summary" cols="12"
+                      rows="8" class="form-control">{{ articleSummary }}</textarea></p>
+        <input type="hidden" name="add" value="1">
+        <br>
+        {% if articleSubmitted == false %}
+            <button type="submit" class="btn btn-success"> Créer l'article</button>
+        {% endif %}
+    </form>
+    </div>
 {% endblock %}

@@ -118,3 +118,10 @@ a:link{
     margin-top: -15px;
     padding-left: 10px;
 }
+
+.newArticleForm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 8% 2% 8% ;
+}

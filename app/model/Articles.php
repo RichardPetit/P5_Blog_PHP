@@ -31,7 +31,7 @@ class Articles extends Db
     }
 
 
-
+//Fonction qui récupère les articles en BDD
     public static function getArticles()
     {
         $pdo = Db::getDb();
@@ -46,25 +46,24 @@ class Articles extends Db
         return $articles;
     }
 
+    //Fonction qui récupère un article en BDD
     public function getArticle($id)
     {
         return $this->getOne('articles', 'Article', $id);
     }
 
-    protected function getOne($table, $obj, $id)
+    public static function getOne($id)
     {
         $pdo = Db::getDb();
-        $var = [];
-        $req = self::$pdo->prepare("SELECT id, title, content, summary, DATE_FORMAT(date, '%d/%m/%Y à %Hh%imin%ss') 
-        AS date FROM " .$table. " WHERE id = ?");
+        $req = $pdo->prepare("SELECT id, title, content, summary, DATE_FORMAT(date, '%d/%m/%Y à %Hh%imin%ss') 
+        AS date FROM articles WHERE id = ?");
         $req->execute(array($id));
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC)){
-            $var[] = new $obj($data);
-        }
-        return $var;
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
+        return $data;
     }
 
-    public function createArticle($title, $content, $date)
+    //Fonction qui ajoute un article en BDD
+    public static function addArticle($title, $content, $summary)
     {
         if (isset($message)){
             echo $message;
@@ -73,13 +72,14 @@ class Articles extends Db
         if(isset($_POST['formArticle'])) {
             $title = htmlspecialchars($_POST['title']);
             $content = htmlspecialchars($_POST['content']);
+            $summary = htmlspecialchars($_POST['summary']);
 
-            if (!empty($_POST['title']) and !empty($_POST['content'])) {
+            if (!empty($_POST['title']) AND !empty($_POST['content']) AND !empty($_POST['summary'])) {
                 $titleLength = strlen($title);
                 if ($titleLength <= 100) {
-                    $insertNewArticle = $pdo->prepare("INSERT INTO users(name, forname, email, password) VALUES (?, ?, ?)");
-                    $insertNewArticle->execute(array($title, $content));
-                    $message = "Votre compte à bien été créé.";
+                    $insertNewArticle = $pdo->prepare("INSERT INTO articles(title, content, summary, date ) VALUES (?, ?, ?, NOW)");
+                    $insertNewArticle->execute(array($title, $content, $summary));
+                    $message = "L'article à bien été créé.";
                     header('Location: index.php');
                 }else{
                     $message = "Le titre est trop long";

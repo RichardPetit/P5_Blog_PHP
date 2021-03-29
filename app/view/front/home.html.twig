@@ -11,16 +11,13 @@
             <h4 class="card-title">{{ article.title }}</h4>
             <p>{{ article.summary }}</p>
             <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
-            <a href="article.php?id=<?= $article->id ?>"> Lire l'article</a>
-            <p>Commentaires :</p>
+            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>
         {% endfor %}
-        {% block comment %}
-            {% for comment in viewComment %}
-                <h5>{{ comment.title }} </h5>
-                <p>{{ comment.content }} <br> {{ comment.date }}<br><br></p>
-            {% endfor %}
-        {% endblock comment %}
     {% endblock  article %}
+    <div class="newArticleBtn">
+        <a href="?p=addArticle" class="btn btn-success"> Créer un article</a>
+    </div>
+
 
 
 

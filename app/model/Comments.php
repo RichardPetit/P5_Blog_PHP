@@ -11,20 +11,20 @@ class Comments
     private $_content;
     private $_date;
 
-    //Fonction qui ajouter un commentaire en BDD
-    function addComment($articleId, $title, $comment)
+    //Fonction qui ajoute un commentaire en BDD
+    public  static function addComment($articleId, $title, $comment)
     {
         $pdo = Db::getDb();
-        $insertNewComment = $pdo->prepare('INSERT INTO comments (articlesid, title, comment, date) VALUES (?, ?, ?, NOW())');
+        $insertNewComment = $pdo->prepare('INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, 1, NOW())');
         $insertNewComment->execute(array($articleId, $title, $comment));
         $insertNewComment->closeCursor();
     }
 //Fonction qui récupère les commentaires d'un article
-    function getComments($id)
+    public static function getComments($id)
     {
         $pdo = Db::getDb();
         try {
-            $comments = $pdo->prepare('SELECT * FROM comments WHERE  articlesid = ?');
+            $comments = $pdo->prepare('SELECT * FROM comments WHERE  articles_id = ?');
 
         }
         catch (\Exception $e) {
@@ -32,9 +32,8 @@ class Comments
         }
 
         $comments->execute(array($id));
-        $data = $comments->fetchAll(PDO::FETCH_OBJ);
+        $data = $comments->fetchAll();
         return $data;
-        $req->closeCursor();
     }
 
     /**

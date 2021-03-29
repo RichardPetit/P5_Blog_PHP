@@ -1,0 +1,50 @@
+{% extends "layout.html.twig" %}
+
+{% block head %}
+    <title>Détails</title>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ article.title }}</h1>
+    {% block article %}
+        <h4 class="card-title">{{ article.title }}</h4>
+        <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
+
+
+        {% block comment %}
+            <p>Commentaires :</p>
+             {% for comment in comments%}
+                 <h4>{{ comment.title }}</h4>
+                 <p>{{ comment.content }}</p>
+                 <p>Auteur : {{ comment.users_id }} <br>Publié le {{ comment.date }}</p>
+                 <br>
+            {% endfor %}
+
+            {% if commentSubmitted %}
+                <div class="alert alert-success">Votre commentaire à bien été soumis pour validation.</div>
+            {% endif %}
+
+            <form action="/?p=detailsArticle&id={{ article.id }}" method="post">
+                    <p><label for="author">Pseudo</label><br>
+                        <input type="text" name="author" id="author" value="{{ authorName }}"
+                               class="form-control"></p>
+                <p><label for="title">Titre</label><br>
+                    <input type="text" name="title" id="title" value="{{ commentTitle }}"
+                           class="form-control"></p>
+                    <p><label for="comment">Commentaire</label><br>
+                        <textarea name="comment" id="comment" cols="30"
+                                  rows="8" class="form-control">{{ commentContent }}</textarea></p>
+                <input type="hidden" name="add" value="1">
+                {% if commentSubmitted == false %}
+
+                    <button type="submit" class="btn btn-success"> Envoyer</button>
+                {% endif %}
+            </form>
+
+
+        {% endblock comment %}
+    {% endblock  article %}
+
+
+
+{% endblock %}

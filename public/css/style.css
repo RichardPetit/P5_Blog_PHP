@@ -125,3 +125,9 @@ a:link{
     justify-content: center;
     margin: 0 8% 2% 8% ;
 }
+.formRegister{
+    margin: 0 20% 2% 20%;
+}
+.formConnect{
+    margin: 0 25% 2% 25%;
+}

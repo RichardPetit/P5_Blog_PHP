@@ -10,7 +10,7 @@
         {% for article in articles %}
             <h4 class="card-title">{{ article.title }}</h4>
             <p>{{ article.summary }}</p>
-            <a href="article.php?id=<?= $article->id ?>"> Lire l'article</a>
+            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>
         {% endfor %}
     {% endblock  article %}
 

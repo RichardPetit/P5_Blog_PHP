@@ -68,7 +68,7 @@ class Articles extends Db
         //Puisqu'on s'occupe de la validation des donnees dans le controlleur (ou dans l'entité, on verra),
         //pas besoin de tester les paramètres ici, on se contente d'executer la requête et de récupérer le résultat de l'insert
         $pdo = Db::getDb();
-        $insertNewArticle = $pdo->prepare("INSERT INTO articles(title, content, summary, date ) VALUES (?, ?, ?, NOW)");
+        $insertNewArticle = $pdo->prepare("INSERT INTO articles(title, content, summary,users_id, date ) VALUES (?, ?, ?, 1, NOW())");
         return $insertNewArticle->execute([$title, $content, $summary]);
     }
 

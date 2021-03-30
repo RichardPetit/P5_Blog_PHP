@@ -5,14 +5,24 @@
 {% endblock %}
 
 {% block content %}
-    <div align="center">
+    <div class="formConnect" align="center">
         <h2>Connexion</h2>
         <hr class="star-primary">
         <br>
+
         <form method="post" action="">
-            <input type="text" placeholder="Pseudo" id="pseudoConnect" name="pseudoConnect">
-            <input type="password" placeholder="Mot de passe" id="passwordConnect" name="passwordConnect">
-            <input type="submit" name="formConnect" value="Se connecter">
+            <p>
+                <label for="pseudo">Pseudo :</label><br>
+                <input type="text" placeholder="Pseudo" id="pseudoConnect" name="pseudoConnect" class="form-control">
+            </p>
+            <p>
+                <label for="password">Mot de passe :</label><br>
+                <input type="password" placeholder="Mot de passe" id="passwordConnect" name="passwordConnect"
+                       class="form-control">
+            </p>
+            <p>
+                <button type="submit" name="formConnect" class="btn btn-success"> Me connecter</button>
+            </p>
         </form>
     </div>
     <br> <br> <br>

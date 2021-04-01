@@ -7,6 +7,7 @@ namespace Blog\Controller;
 use Blog\model\Articles;
 use Blog\model\Comments;
 use Blog\model\Db;
+use Blog\model\Users;
 
 class FrontController extends AbstractController
 {
@@ -66,6 +67,23 @@ class FrontController extends AbstractController
     private function register()
     {
         $pdo = Db::getDb();
+    }
+
+    public function usersListAction()
+    {
+        $users = Users::getUsers();
+        $this->render("front" , "usersList.html.twig" , [
+            'viewUsers' => $users,
+        ]);
+    }
+
+    public function profilAction()
+    {
+        $id = $_GET['id'];
+        $this->render("front", "profil.html.twig", [
+            'user' => Users::getProfil($id),
+        ]);
+
     }
 
 }

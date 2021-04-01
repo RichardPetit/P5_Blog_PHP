@@ -32,6 +32,7 @@
 
 use Blog\Controller\FrontController;
 use Blog\Controller\AdminController;
+use Blog\model\Db;
 
 require_once "vendor/autoload.php";
 
@@ -67,10 +68,17 @@ if ($page === 'home') {
 } elseif ($page === 'detailsArticle') {
     $controller = new FrontController();
     $controller->detailsAction();
-}  else {
+} elseif ($page === 'usersList'){
+    $controller = new FrontController();
+    $controller->usersListAction();
+} elseif ($page === 'profil'){
+    $controller = new FrontController();
+    $controller->profilAction();
+}else {
         header('Location: home');
     }
 
+$pdo = Db::getDb();
 
-
+$users = $pdo->query('SELECT pseudo, email, is_admin FROM users');
 

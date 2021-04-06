@@ -77,10 +77,10 @@ class FrontController extends AbstractController
         ]);
     }
 
-    public function profilAction()
+    public function profileAction()
     {
         $id = $_GET['id'];
-        $this->render("front", "profil.html.twig", [
+        $this->render("front", "profile.html.twig", [
             'user' => Users::getProfil($id),
         ]);
 

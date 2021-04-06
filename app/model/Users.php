@@ -4,6 +4,8 @@
 namespace Blog\model;
 
 
+use Blog\Entity\User;
+
 class Users extends Db
 {
     private $_id;
@@ -30,18 +32,29 @@ class Users extends Db
     }
 
     //Fonction qui récupère un utilisateur en BDD
-    public function userProfil($id)
-    {
-        return $this->getProfil('users', 'User',$id);
-    }
+//    public function userProfil($id)
+//    {
+//        return $this->getProfile('users', 'User',$id);
+//    }
 
-    public static function getProfil($id)
+    public static function getProfile($id)
     {
         $pdo = Db::getDb();
         $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
         $req->execute(array($id));
         $data = $req->fetch(\PDO::FETCH_ASSOC);
         return $data;
+    }
+
+    public static function getEntity($userFromDb)
+    {
+        $userEntity = new User();
+        $userEntity->setAvatar($userFromDb['avatar']);
+        $userEntity->setPseudo($userFromDb['pseudo']);
+        $userEntity->setEmail($userFromDb['email']);
+        $userEntity->setIsAdmin($userFromDb['is_admin']);
+        $userEntity->setIsActive($userFromDb['is_active']);
+        return $userEntity;
     }
 
 

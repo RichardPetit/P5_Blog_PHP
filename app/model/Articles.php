@@ -4,6 +4,8 @@
 namespace Blog\model;
 
 
+use Blog\Entity\Article;
+use Blog\Entity\User;
 use mysql_xdevapi\Exception;
 
 class Articles extends Db
@@ -43,7 +45,12 @@ class Articles extends Db
             var_dump($e->getMessage());
             exit();
         }
-        return $articles;
+        $articleEntities = [];
+        foreach($articles as $article) {
+            $articleEntities[] = self::getEntity($article);
+        }
+
+        return $articleEntities;
     }
 
     //Fonction qui récupère un article en BDD
@@ -136,6 +143,21 @@ class Articles extends Db
     public function getDate()
     {
         return $this->_date;
+    }
+
+
+    private static function getEntity($articleFromDb) : Article
+    {
+        $articleEntity = new Article();
+        $articleEntity->setId($articleFromDb['id']);
+        $articleEntity->setTitle($articleFromDb['title']);
+        $articleEntity->setContent($articleFromDb['content']);
+        $articleEntity->setSummary($articleFromDb['summary']);
+        $articleEntity->setCreatedAd($articleFromDb['date']);
+        $author = Users::getProfile($articleFromDb['user_id']);
+        $authorEntity = Users::getEntity($author);
+        $articleEntity->setAuthor($authorEntity);
+        return $articleEntity;
     }
 
 

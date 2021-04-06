@@ -4,100 +4,100 @@
     <title>Accueil</title>
 {% endblock %}
 
-{% block content %}
-    <h1>Homepage</h1>
-    {% block article %}
-        {% for article in viewArticle %}
-            <h4 class="card-title">{{ article.title }}</h4>
-            <p>{{ article.summary }}</p>
-            <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
-            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>
-        {% endfor %}
-    {% endblock  article %}
-    <div class="newArticleBtn">
-        <a href="?p=addArticle" class="btn btn-success"> Créer un article</a>
-    </div>
-    <br>
-    <a href="?p=usersList" class="btn btn-success"> Voir les membres</a>
+{#{% block content %}#}
+{#    <h1>Homepage</h1>#}
+{#    {% block article %}#}
+{#        {% for article in viewArticle %}#}
+{#            <h4 class="card-title">{{ article.title }}</h4>#}
+{#            <p>{{ article.summary }}</p>#}
+{#            <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>#}
+{#            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>#}
+{#        {% endfor %}#}
+{#    {% endblock  article %}#}
+{#    <div class="newArticleBtn">#}
+{#        <a href="?p=addArticle" class="btn btn-success"> Créer un article</a>#}
+{#    </div>#}
+{#    <br>#}
+{#    <a href="?p=usersList" class="btn btn-success"> Voir les membres</a>#}
 
 
 
 
 
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cabin.png" class="img-responsive" alt="">
-                    </a>
+{#    <section id="portfolio">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-lg-12 text-center">#}
+{#                    <h2>Portfolio</h2>#}
+{#                    <hr class="star-primary">#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="row">#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cabin.png" class="img-responsive" alt="">#}
+{#                    </a>#}
 
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cake.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/circus.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+{#                </div>#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cake.png" class="img-responsive" alt="">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/circus.png" class="img-responsive" alt="">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/game.png" class="img-responsive" alt="">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/safe.png" class="img-responsive" alt="">#}
+{#                    </a>#}
+{#                </div>#}
+{#                <div class="col-sm-4 portfolio-item">#}
+{#                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">#}
+{#                        <div class="caption">#}
+{#                            <div class="caption-content">#}
+{#                                <i class="fa fa-search-plus fa-3x"></i>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/submarine.png" class="img-responsive" alt="">#}
+{#                    </a>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
 
 
 
-{% endblock %}
+{#{% endblock %}#}

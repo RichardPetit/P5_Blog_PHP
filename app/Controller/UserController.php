@@ -12,11 +12,13 @@ class UserController extends AbstractController
 
     public function users()
     {
-        $this->users = new Users();
-        $users = $this->users->getUsers();
-        $this->render("front", "usersList.html.twig",[
-            'viewUsers' => $users
-        ]);
+//        if (isset($_GET['id'])){
+            $this->users = new Users();
+            $users = $this->users->getUsers();
+            $this->render("front", "usersList.html.twig",[
+                'viewUsers' => $users
+            ]);
+//        }
     }
 }
 

@@ -72,7 +72,7 @@ class Users extends Db
                                     if ($passwordRegister == $password2Register) {
                                         $insertNewUser = $pdo->prepare("INSERT INTO users(pseudo, email, password, 
                                         is_admin, is_active, avatar) VALUES (?, ?, ? , 0, 0, '')");
-                                        $insertNewUser->execute(array($pseudoRegister, $emailRegister, $passwordRegister));
+                                        $insertNewUser->execute([$pseudoRegister, $emailRegister, $passwordRegister]);
                                         $message = "Votre compte à bien été créé.";
                                         header('Location: index.php');
                                     } else {

@@ -4,11 +4,10 @@
 namespace Blog\Entity;
 
 /**
- * Class Article
+ * Class Comment
  */
-class Article
+class Comment
 {
-
     /**
      * @var int|null
      */
@@ -25,9 +24,9 @@ class Article
     public string $content;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
-    public string $summary;
+    public \DateTimeInterface $createdAt;
 
     /**
      * @var User
@@ -35,14 +34,9 @@ class Article
     public User $author;
 
     /**
-     * @var \DateTimeInterface
+     * @var Article
      */
-    public \DateTimeInterface $createdAt;
-
-    /**
-     * @var string
-     */
-    public string $picture;
+    public Article $article;
 
     /**
      * @return int|null
@@ -58,6 +52,14 @@ class Article
     public function getTitle(): string
     {
         return $this->title;
+    }
+
+    /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
     }
 
     /**
@@ -85,22 +87,6 @@ class Article
     }
 
     /**
-     * @return string
-     */
-    public function getSummary(): string
-    {
-        return $this->summary;
-    }
-
-    /**
-     * @param string $summary
-     */
-    public function setSummary(string $summary): void
-    {
-        $this->summary = $summary;
-    }
-
-    /**
      * @return User
      */
     public function getAuthor(): User
@@ -117,11 +103,19 @@ class Article
     }
 
     /**
-     * @param int|null $id
+     * @return Article
      */
-    public function setId(?int $id): void
+    public function getArticle(): Article
     {
-        $this->id = $id;
+        return $this->article;
+    }
+
+    /**
+     * @param Article $article
+     */
+    public function setArticle(Article $article): void
+    {
+        $this->article = $article;
     }
 
     /**
@@ -139,6 +133,4 @@ class Article
     {
         $this->createdAt = $createdAt;
     }
-
-
 }

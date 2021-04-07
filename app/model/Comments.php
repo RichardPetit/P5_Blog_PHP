@@ -4,6 +4,9 @@
 namespace Blog\model;
 
 
+use Blog\Entity\Comment;
+use Blog\Entity\Article;
+
 class Comments
 {
     private $_id;
@@ -30,11 +33,30 @@ class Comments
         catch (\Exception $e) {
             echo "Erreur de connexion à la base de données pour les commentaires. Exception reçue : " . $e->getMessage();
         }
-
+//        $commentEntities = [];
+//        foreach ($comments as $comment) {
+//            $commentEntities[] = self::getEntity($comment);
+//        }
         $comments->execute(array($id));
         $data = $comments->fetchAll();
         return $data;
     }
+
+    private static function getEntity($commentFromDb) : Comment
+    {
+        $commentEntity = new Comment();
+        $commentEntity->setId($commentFromDb->id);
+        $commentEntity->setTitle($commentFromDb->title);
+        $commentEntity->setContent($commentFromDb->content);
+        $commentEntity->setCreatedAt($commentFromDb->date);
+        $author = Users::getProfile($commentFromDb->users_id);
+        $authorEntity = Users::getEntity($author);
+        $commentEntity->setAuthor($authorEntity);
+        $article = Articles::getOne($commentFromDb->articles_id);
+        $articleEntity = Articles::getEntity($article);
+        return $commentEntity;
+    }
+
 
     /**
      * @param mixed $id

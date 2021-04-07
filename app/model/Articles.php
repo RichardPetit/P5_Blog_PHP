@@ -146,15 +146,15 @@ class Articles extends Db
     }
 
 
-    private static function getEntity($articleFromDb) : Article
+    public static function getEntity($articleFromDb) : Article
     {
         $articleEntity = new Article();
-        $articleEntity->setId($articleFromDb['id']);
-        $articleEntity->setTitle($articleFromDb['title']);
-        $articleEntity->setContent($articleFromDb['content']);
-        $articleEntity->setSummary($articleFromDb['summary']);
-        $articleEntity->setCreatedAd($articleFromDb['date']);
-        $author = Users::getProfile($articleFromDb['user_id']);
+        $articleEntity->setId($articleFromDb->id);
+        $articleEntity->setTitle($articleFromDb->title);
+        $articleEntity->setContent($articleFromDb->content);
+        $articleEntity->setSummary($articleFromDb->summary);
+        $articleEntity->setCreatedAt(new \DateTime($articleFromDb->date));
+        $author = Users::getProfile($articleFromDb->users_id);
         $authorEntity = Users::getEntity($author);
         $articleEntity->setAuthor($authorEntity);
         return $articleEntity;

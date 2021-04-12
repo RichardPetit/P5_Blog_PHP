@@ -1,21 +1,20 @@
 <?php
 
 
-namespace Blog\model;
+namespace Blog\Model\Connector;
 
-
-class Db
+class PDO
 {
     const DATABASE_HOST_DEFAULT= "localhost:3306";
     const DATABASE_NAME_DEFAULT= "blog";
     const DATABASE_USER_DEFAULT= "root";
     const DATABASE_PWD_DEFAULT= "root:";
 
-    protected static $db = null;
+    protected static $instance = null;
 
-    public static function getDb()
+    public static function getInstance()
     {
-        if (is_null(self::$db)) {
+        if (is_null(self::$instance)) {
             $host= $_ENV['DATABASE_HOST'] ?? self::DATABASE_HOST_DEFAULT;
             $dbName=$_ENV['DATABASE_NAME'] ?? self::DATABASE_NAME_DEFAULT;
             $dbUser=$_ENV['DATABASE_USER'] ?? self::DATABASE_USER_DEFAULT;
@@ -23,20 +22,9 @@ class Db
             $pdo= new \PDO("mysql:dbname=$dbName;host=$host", $dbUser, $dbPwd);
             $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION); // permet d'indiquer qu'on veut des exceptions en cas d'erreur
             $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ); //demande  que ça renvoi sous forme d'objet et non d'un tableau
-            self:: $db = $pdo;
+            self::$instance = $pdo;
         }
-        return self::$db;
-    }
-
-    protected function getAll($table, $obj)
-    {
-        $this->getDb();
-        $var = [];
-        $req = self::$db->prepare('SELECT * FROM ' .$table .' ORDER BY id DESC');
-        $req->execute();
-        while ($data = $req->fetch(\PDO::FETCH_ASSOC)){
-            $var[] = new $obj($data);
-        }
+        return self::$instance;
     }
 
 }

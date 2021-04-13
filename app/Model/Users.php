@@ -11,22 +11,29 @@ class Users
 {
     public static function getUser($id) : User
     {
+        //On récupère l'instance de PDO
         $pdo = PDO::getInstance();
+        //On récupère grâce à PDO l'enregistrement MySQL de l'user id = $id
         $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
-        $req->execute(array($id));
-        $userPDO = $req->fetch(\PDO::FETCH_ASSOC);
+        $req->execute([$id]);
+        //On fetch ici le résultat pour avoir l'enregistrement retourné par la requête
+        $userPDO = $req->fetch();
+        //On retourne ensuite l'Entité User hydraté depuis l'enregistrement PDO
         return self::hydrateEntity($userPDO);
     }
 
     public static function hydrateEntity($userFromDb)
     {
+        //$userFromDB correspond à l'enregistrement PDO
+        //On instantie l'entité User et on hydrate ses paramètres depuis le PDO
         $userEntity = new User();
-        $userEntity->setId($userFromDb['id']);
-        $userEntity->setPseudo($userFromDb['pseudo']);
-        $userEntity->setEmail($userFromDb['email']);
-        $userEntity->setIsAdmin($userFromDb['is_admin']);
-        $userEntity->setIsActive($userFromDb['is_active']);
-        $userEntity->setAvatar($userFromDb['avatar']);
+        $userEntity->setId($userFromDb->id);
+        $userEntity->setPseudo($userFromDb->pseudo);
+        $userEntity->setEmail($userFromDb->email);
+        $userEntity->setIsAdmin($userFromDb->is_admin == 1);
+        $userEntity->setIsActive($userFromDb->is_active == 1);
+        $userEntity->setAvatar($userFromDb->avatar);
+        //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
 }

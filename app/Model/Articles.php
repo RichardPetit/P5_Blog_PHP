@@ -5,6 +5,7 @@ namespace Blog\Model;
 
 use Blog\Entity\Article;
 use Blog\Model\Connector\PDO;
+use function var_dump;
 
 class Articles
 {
@@ -26,6 +27,24 @@ class Articles
         return $articleEntities;
     }
 
+    public static function add(Article $article)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $userId = $article->getAuthor()->getId();
+            $content = $article->getContent();
+            $summary = $article->getSummary();
+            $title = $article->getTitle();
+            $sql = "INSERT INTO articles (title, content, summary, user_id) VALUES (?, ?, ?, ?) ";
+            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            exit();
+        }
+        $article->setId($pdo->lastInsertId());
+        return $article;
+    }
+
 
     public static function hydrateEntity($articleFromDb): Article
     {
@@ -34,8 +53,8 @@ class Articles
         $articleEntity->setTitle($articleFromDb->title);
         $articleEntity->setContent($articleFromDb->content);
         $articleEntity->setSummary($articleFromDb->summary);
-        $articleEntity->setCreatedAt(new \DateTime($articleFromDb->date));
-        $author = Users::getUser($articleFromDb->users_id);
+        $articleEntity->setCreatedAt(new \DateTime($articleFromDb->created_at));
+        $author = Users::getUser($articleFromDb->user_id);
         $authorEntity = Users::hydrateEntity($author);
         $articleEntity->setAuthor($authorEntity);
 

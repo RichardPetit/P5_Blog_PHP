@@ -53,6 +53,14 @@ class Article
     }
 
     /**
+     * @param int|null $id
+     */
+    public function setId(?int $id): void
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return string
      */
     public function getTitle(): string
@@ -117,14 +125,6 @@ class Article
     }
 
     /**
-     * @param int|null $id
-     */
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return \DateTimeInterface
      */
     public function getCreatedAt(): \DateTimeInterface
@@ -138,6 +138,30 @@ class Article
     public function setCreatedAt(\DateTimeInterface $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @param string $title
+     * @param string $content
+     * @param string $summary
+     * @param User $author
+     * @return static
+     */
+    public static function create(
+        string $title,
+        string $content,
+        string $summary,
+        User $author
+    ): self {
+        //On instantie l'Entité Article et on set les paramètres nécessaires
+        $article = new self();
+        $article->setTitle($title);
+        $article->setContent($content);
+        $article->setSummary($summary);
+        $article->setAuthor($author);
+        $article->setCreatedAt(new \DateTime());
+        //On a donc ici une Entité Article correctement configurée, ce qu'on retourne
+        return $article;
     }
 
 

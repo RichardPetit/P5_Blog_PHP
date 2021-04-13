@@ -42,7 +42,7 @@ class User
     /**
      * @var string
      */
-    public string $avatar;
+    public ?string $avatar;
 
     /**
      * @return int|null
@@ -151,7 +151,7 @@ class User
     /**
      * @param string $avatar
      */
-    public function setAvatar(string $avatar): void
+    public function setAvatar(?string $avatar): void
     {
         $this->avatar = $avatar;
     }

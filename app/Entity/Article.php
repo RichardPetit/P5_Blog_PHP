@@ -4,8 +4,6 @@
 namespace Blog\Entity;
 
 use Exception;
-use http\Exception\InvalidArgumentException;
-use function var_dump;
 
 /**
  * Class Article

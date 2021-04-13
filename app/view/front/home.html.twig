@@ -8,7 +8,7 @@
     <h1>Homepage</h1>
     {% block article %}
         {% for article in viewArticle %}
-            <h4 class="card-title">{{ article.title }}</h4>
+            <h4 class="card-title">{{ article.title }} - {{ article.author.pseudo }}</h4>
             <p>{{ article.summary }}</p>
             <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
             <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>

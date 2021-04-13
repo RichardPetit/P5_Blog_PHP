@@ -4,7 +4,10 @@
 namespace Blog\Controller;
 
 use Blog\Entity\Article;
+use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
+use Blog\Model\Connector\PDO;
+use function var_dump;
 
 class FrontController extends AbstractController
 {
@@ -20,6 +23,29 @@ class FrontController extends AbstractController
     {
         $this->render("front", "listing.html.twig", [
             'articles' => Articles::getArticles(),
+        ]);
+    }
+
+    public function detailArticleAction()
+    {
+        //Récuperer l'ID de l'article à afficher
+        $id = $_GET['id'] ?? null;
+
+        if(!$id || $id === null) {
+            $this->redirectTo('?p=home');
+        }
+
+        //Faire appel au modèle Articles avec une méthode getArticle($id)
+        //Le modèle doit nous renvoyer l'Entité Article configurée depuis l'enregistrement DB
+        try {
+            $article = Articles::getArticle((int)$id);
+        }catch (ArticleNotFoundException $e) {
+            $this->redirectTo('?p=home');
+        }
+
+        //Renvoyer l'entité Article à la vue pour afficher le détail
+        $this->render("front", "article.html.twig", [
+            'detailArticle' => $article
         ]);
     }
 

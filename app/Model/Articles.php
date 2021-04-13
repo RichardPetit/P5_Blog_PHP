@@ -4,6 +4,7 @@
 namespace Blog\Model;
 
 use Blog\Entity\Article;
+use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Connector\PDO;
 use function var_dump;
 
@@ -14,17 +15,36 @@ class Articles
     {
         $pdo = PDO::getInstance();
         try {
-            $articles = $pdo->query('SELECT * FROM articles ORDER BY id DESC limit 10');
+            $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC limit 10');
         } catch (\Exception $e) {
             var_dump($e->getMessage());
             exit();
         }
         $articleEntities = [];
-        foreach ($articles as $article) {
-            $articleEntities[] = self::hydrateEntity($article);
+        foreach ($articlesPDO as $articlePDO) {
+            $articleEntities[] = self::hydrateEntity($articlePDO);
         }
 
         return $articleEntities;
+    }
+
+    public static function getArticle(int $id)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $req = $pdo->prepare("SELECT * FROM articles WHERE id = ? ");
+            $req->execute([$id]);
+            $showArticle = $req->fetch();
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            exit();
+        }
+
+        if(!$showArticle) {
+            throw new ArticleNotFoundException('Article not found');
+        }
+
+        return self::hydrateEntity($showArticle);
     }
 
     public static function add(Article $article)
@@ -46,6 +66,8 @@ class Articles
     }
 
 
+
+
     public static function hydrateEntity($articleFromDb): Article
     {
         $articleEntity = new Article();
@@ -55,11 +77,12 @@ class Articles
         $articleEntity->setSummary($articleFromDb->summary);
         $articleEntity->setCreatedAt(new \DateTime($articleFromDb->created_at));
         $author = Users::getUser($articleFromDb->user_id);
-        $authorEntity = Users::hydrateEntity($author);
-        $articleEntity->setAuthor($authorEntity);
+        $articleEntity->setAuthor($author);
 
         return $articleEntity;
     }
+
+
 
 
 }

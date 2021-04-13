@@ -5,7 +5,6 @@ namespace Blog\Controller;
 
 use Blog\Entity\Article;
 use Blog\Model\Articles;
-use function var_dump;
 
 class AdminController extends AbstractController
 {
@@ -23,9 +22,9 @@ class AdminController extends AbstractController
             $author = $this->getUser();
 
             //On récupère également le titre,content et summary depuis le $_POST
-            $title = $_POST['title'] ?? 'Titre de test';
-            $content = $_POST['content'] ?? 'Contenu de test';
-            $summary = $_POST['summary'] ?? 'Summary de test';
+            $title = $_POST['title'] ?? '';
+            $content = $_POST['content'] ?? '';
+            $summary = $_POST['summary'] ?? '';
 
             //2) Je crée l'entité Article avec les paramètres récupérés
             try {

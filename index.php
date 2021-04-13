@@ -9,7 +9,7 @@ $dotenv->load();
 //Pour anticiper le routing, on simplifie la gestion des routes (à améliorer plus tard)
 $routing = [
     'home' => ['controller' => 'FrontController', 'action' => 'homeAction'],
-    'list' => ['controller' => 'FrontController', 'action' => 'listingAction'],
+    'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction'],
 ];
 
 //Routing

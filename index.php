@@ -10,6 +10,7 @@ $dotenv->load();
 $routing = [
     'home' => ['controller' => 'FrontController', 'action' => 'homeAction'],
     'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction'],
+    'createArticle' => ['controller' => 'FrontController', 'action' => 'createArticleAction'],
 ];
 
 //Routing

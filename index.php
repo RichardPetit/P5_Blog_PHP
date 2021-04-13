@@ -3,6 +3,12 @@ session_start();
 
 require_once "vendor/autoload.php";
 
+
+if (isset($_POST['pseudo']) AND !empty($_POST['pseudo']))
+{
+    $_SESSION['pseudo'] = $_POST['pseudo'];
+}
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 

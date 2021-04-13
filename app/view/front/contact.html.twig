@@ -11,16 +11,32 @@
     <h1>Me contacter</h1>
     <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
 
-    <form action="?p=contact" method="post">
-        <div class="row">
-            {{ form.input('name', 'Votre nom', {class: 'col-xs'}) }}
-            {{ form.input('email', 'Votre email', {class: 'col-xs'}) }}
-        </div>
-
-        {{ form.textarea('message', 'Votre message') }}
-        <div class="form-group">
-            <button class="btn btn-primary"> Envoyer</button>
-        </div>
-    </form>
+    <div class="centerForm">
+        <form method="post" action="">
+            <p>
+                <label for="pseudoContact">Pseudo</label><br>
+                <input type="text" placeholder="Votre pseudo" id="pseudoContact"
+                       name="pseudoContact" value="{{ pseudoContact }}" class="form-control">
+            </p>
+            <p>
+                <label for="emailContact">Email</label>
+                <input type="email" placeholder="Votre adresse email" id="emailContact"
+                       name="emailContact" value="{{ emailContact }}" class="form-control">
+            </p>
+            <p>
+                <label for="messageTitle">Titre</label><br>
+                <input type="text" name="messageTitle" id="messageTitle" value="{{ messageTitle }}" class="form-control">
+            </p>
+            <p>
+                <label for="messageContent">Votre message</label><br>
+                <textarea name="messageContent" id="messageContent" cols="30" rows="8"
+                          class="form-control">{{ messageContent }}</textarea>
+            </p>
+            <br>
+            <p>
+                <button type="submit" class="btn btn-success">Envoyer</button>
+            </p>
+        </form>
+    </div>
 
 {% endblock %}

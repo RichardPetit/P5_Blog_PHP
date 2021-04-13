@@ -60,8 +60,8 @@ class Users extends Db
     {
         $pdo = Db::getDb();
         $req = $pdo->prepare("SELECT id, password FROM users WHERE pseudo = ? ");
-        $req->execute(['
-        pseudo' => $pseudo
+        $req->execute([
+            'pseudo' => $pseudo
         ]);
         $result = $req->fetch();
 

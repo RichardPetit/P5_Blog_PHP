@@ -22,7 +22,7 @@ class Users
         return self::hydrateEntity($userPDO);
     }
 
-    public static function hydrateEntity($userFromDb)
+    public static function hydrateEntity($userFromDb) : User
     {
         //$userFromDB correspond à l'enregistrement PDO
         //On instantie l'entité User et on hydrate ses paramètres depuis le PDO

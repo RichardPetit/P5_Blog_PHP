@@ -3,6 +3,10 @@
 
 namespace Blog\Entity;
 
+use Exception;
+use http\Exception\InvalidArgumentException;
+use function var_dump;
+
 /**
  * Class Article
  */
@@ -146,6 +150,7 @@ class Article
      * @param string $summary
      * @param User $author
      * @return static
+     * @throws Exception
      */
     public static function create(
         string $title,
@@ -160,7 +165,15 @@ class Article
         $article->setSummary($summary);
         $article->setAuthor($author);
         $article->setCreatedAt(new \DateTime());
-        //On a donc ici une Entité Article correctement configurée, ce qu'on retourne
+        return self::validate($article);
+    }
+
+    public static function validate(self $article)
+    {
+        if(strlen($article->getTitle()) < 5) {
+            throw new Exception('Le titre doit contenir au moins 5 caractères');
+        }
+        //Logique de validation a ajouter
         return $article;
     }
 

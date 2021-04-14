@@ -30,7 +30,12 @@ class Users
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
             $password = $user->getPassword();
-            $sql = "INSERT INTO users(pseudo, email, password, is_admin, is_active, avatar) VALUES (?, ?, ? 0, 0, '')";
+            //Ici, d'après moi c'est ta DB qui doit mettre des valeurs par défaut pour is_active et is_admin
+            //Quand on crée un user, par défaut il est actif et il n'est pas admin
+            //Et pour avatar, au final tu ajoutes ton avatar depuis le profil mais pas à la création je pense
+            //Donc en DB => is_active default 1 et is_admin default 0
+            //Mais sinon c'est top ! Bravo !
+            $sql = "INSERT INTO users(pseudo, email, password) VALUES (?, ?, ?)";
             $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
         } catch (\Exception $e){
             var_dump($e->getMessage());

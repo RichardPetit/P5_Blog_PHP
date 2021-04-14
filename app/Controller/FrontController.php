@@ -33,7 +33,7 @@ class FrontController extends AbstractController
         //Récuperer l'ID de l'article à afficher
         $id = $_GET['id'] ?? null;
 
-        if(!$id || $id === null) {
+        if (!$id || $id === null) {
             $this->redirectTo('?p=home');
         }
 
@@ -41,13 +41,13 @@ class FrontController extends AbstractController
         //Le modèle doit nous renvoyer l'Entité Article configurée depuis l'enregistrement DB
         try {
             $article = Articles::getArticle((int)$id);
-        }catch (ArticleNotFoundException $e) {
+        } catch (ArticleNotFoundException $e) {
             $this->redirectTo('?p=home');
         }
 
         //Renvoyer l'entité Article à la vue pour afficher le détail
         $this->render("front", "article.html.twig", [
-            'detailArticle' => $article
+            'detailArticle' => $article,
         ]);
     }
 
@@ -72,17 +72,40 @@ class FrontController extends AbstractController
         }
 
     }
+
     public function createUserAction()
     {
-        $addUser = true;
+        /**
+         * Ici, ce qu'il faut comprendre c'est que cette action a 2 raisons d'être :
+         *
+         * Si on poste le paramètre add depuis le formulaire => on soumet donc le formulaire et on récupère les params
+         * Sinon on affiche le formulaire.
+         *
+         * Donc on teste juste en dessous : $addUser = isset($_POST['add']);
+         * Le isset renverra false si jamais le formulaire n'est pas posté et il renverra true si le form est posté
+         *
+         */
+
+        $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
         if ($addUser) {
+            //Donc là c'est le cas où le form est posté
+            //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
+            //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
+            //Je te laisse faire la modif ;)
             $pseudo = $_POST['pseudo'] ?? 'Test création pseudo';
             $email = $_POST['email'] ?? 'Test création email';
             $password = $_POST['password'] ?? 'Test création mdp';
             $user = User::create($pseudo, $email, $password);
-            if (Users::add($user)){
+            if (Users::add($user)) {
                 $this->redirectTo('/');
             }
         }
+
+        //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
+        //Donc là on affiche le form
+
+        $this->render('front', 'register.html.twig', []);
+
+
     }
 }

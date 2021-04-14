@@ -181,6 +181,7 @@ class User
         $user->setPassword($password);
         return self::validate($user);
     }
+
     public static function validate(self $user)
     {
         if (strlen($user->getPseudo()) > 45){

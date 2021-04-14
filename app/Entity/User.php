@@ -164,6 +164,29 @@ class User
         return $this->initials;
     }
 
-
+    /**
+     * @param string $pseudo
+     * @param string $email
+     * @param string $password
+     * @return static
+     */
+    public static function create(
+        string $pseudo,
+        string $email,
+        string $password
+    ): self {
+        $user = new self();
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        return self::validate($user);
+    }
+    public static function validate(self $user)
+    {
+        if (strlen($user->getPseudo()) > 45){
+            throw new Exception('Le pseudo choisi est trop,long. 45 caractères maximum?');
+        }
+        return $user;
+    }
 
 }

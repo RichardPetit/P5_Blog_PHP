@@ -12,6 +12,7 @@ $routing = [
     'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction'],
     'createArticle' => ['controller' => 'AdminController', 'action' => 'createArticleAction'],
     'detailArticle' => ['controller' => 'FrontController', 'action' => 'detailArticleAction'],
+    'ceateUser' => ['controller' => 'FrontController', 'action' => 'createUserAction'],
 ];
 
 //Routing

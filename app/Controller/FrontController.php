@@ -4,9 +4,11 @@
 namespace Blog\Controller;
 
 use Blog\Entity\Article;
+use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
 use Blog\Model\Connector\PDO;
+use Blog\Model\Users;
 use function var_dump;
 
 class FrontController extends AbstractController
@@ -69,7 +71,18 @@ class FrontController extends AbstractController
             }
         }
 
-
-
+    }
+    public function createUserAction()
+    {
+        $addUser = true;
+        if ($addUser) {
+            $pseudo = $_POST['pseudo'] ?? 'Test création pseudo';
+            $email = $_POST['email'] ?? 'Test création email';
+            $password = $_POST['password'] ?? 'Test création mdp';
+            $user = User::create($pseudo, $email, $password);
+            if (Users::add($user)){
+                $this->redirectTo('/');
+            }
+        }
     }
 }

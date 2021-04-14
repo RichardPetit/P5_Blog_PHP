@@ -75,8 +75,8 @@ class Articles
         $articleEntity->setTitle($articleFromDb->title);
         $articleEntity->setContent($articleFromDb->content);
         $articleEntity->setSummary($articleFromDb->summary);
-        $articleEntity->setCreatedAt(new \DateTime($articleFromDb->created_at));
-        $author = Users::getUser($articleFromDb->user_id);
+        $articleEntity->setCreatedAt(new \DateTime($articleFromDb->date));
+        $author = Users::getUser($articleFromDb->users_id);
         $articleEntity->setAuthor($author);
 
         return $articleEntity;

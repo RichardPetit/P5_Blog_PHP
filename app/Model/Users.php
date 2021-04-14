@@ -6,6 +6,7 @@ namespace Blog\Model;
 
 use Blog\Entity\User;
 use Blog\Model\Connector\PDO;
+use function var_dump;
 
 class Users
 {
@@ -22,6 +23,22 @@ class Users
         return self::hydrateEntity($userPDO);
     }
 
+    public static function add(User $user)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $pseudo = $user->getPseudo();
+            $email = $user->getEmail();
+            $password = $user->getPassword();
+            $sql = "INSERT INTO users(pseudo, email, password, is_admin, is_active, avatar) VALUES (?, ?, ? 0, 0, '')";
+            $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
+        } catch (\Exception $e){
+            var_dump($e->getMessage());
+            exit;
+        }
+        return $user;
+    }
+
     public static function hydrateEntity($userFromDb) : User
     {
         //$userFromDB correspond à l'enregistrement PDO
@@ -36,4 +53,6 @@ class Users
         //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
+
+
 }

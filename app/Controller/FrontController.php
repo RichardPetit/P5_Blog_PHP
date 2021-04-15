@@ -4,6 +4,7 @@
 namespace Blog\Controller;
 
 use Blog\Entity\Article;
+use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
@@ -92,9 +93,9 @@ class FrontController extends AbstractController
             //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
             //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
             //Je te laisse faire la modif ;)
-            $pseudo = $_POST['pseudo'] ?? 'Test création pseudo';
-            $email = $_POST['email'] ?? 'Test création email';
-            $password = $_POST['password'] ?? 'Test création mdp';
+            $pseudo = $_POST['pseudoRegister'] ?? 'Test création pseudo';
+            $email = $_POST['emailRegister'] ?? 'Test création email';
+            $password = $_POST['passwordRegister'] ?? 'Test création mdp';
             $user = User::create($pseudo, $email, $password);
             if (Users::add($user)) {
                 $this->redirectTo('/');
@@ -104,8 +105,24 @@ class FrontController extends AbstractController
         //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
         //Donc là on affiche le form
 
-        $this->render('front', 'register.html.twig', []);
+        $this->render('front', 'register.html.twig', [
+//            'pseudoRegister' => $pseudo,
+//            'emailRegister' => $email,
+        ]);
 
 
+    }
+
+    public function contactAction()
+    {
+        $contactMessage = isset($_POST['add']);
+        if ($contactMessage){
+            $email = $_POST['emailContact'] ?? 'Test de message de contact';
+            $subject = $_POST['subjectContact'] ?? 'Test sujet de contact';
+            $contentMesssage = $_POST['contentContact'] ?? 'Contenu test de contact';
+            $contact = Contact::contact($email, $subject, $contentMesssage);
+
+
+        }
     }
 }

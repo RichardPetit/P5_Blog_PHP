@@ -3,16 +3,13 @@
 
 namespace Blog\Controller;
 
-use Assert\Assert;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
-use Blog\Model\Connector\PDO;
 use Blog\Model\Users;
-use function var_dump;
 
 class FrontController extends AbstractController
 {
@@ -97,19 +94,20 @@ class FrontController extends AbstractController
             //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
             //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
             //Je te laisse faire la modif ;)
-            $pseudo = $_POST['pseudo'] ?? '';
-            $email = $_POST['email'] ?? '';
-            $password = $_POST['password'] ?? '';
-            $email2 = $_POST['email'] ?? '';
-            Assertion::eq($email, $email2);
-            try {
-                $user = User::create($pseudo, $email, $password);
-            } catch (AssertionFailedException $e) {
-                $error = true;
-                $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
-            }
-            if (!$error && Users::add($user)) {
-                $msgSuccess = "Votre compte à bien été créé.";
+            $msgError = $this->checkFormForCreateUserAction();
+            if($msgError === '') {
+                $pseudo = $_POST['pseudo'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = $_POST['password'] ?? '';
+                try {
+                    $user = User::create($pseudo, $email, $password);
+                } catch (AssertionFailedException $e) {
+                    $error = true;
+                    $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
+                }
+                if (!$error && Users::add($user)) {
+                    $msgSuccess = "Votre compte à bien été créé.";
+                }
             }
         }
         //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
@@ -121,5 +119,25 @@ class FrontController extends AbstractController
         ]);
 
 
+    }
+
+    /**
+     * @return string
+     */
+    private function checkFormForCreateUserAction(): string
+    {
+        $email = $_POST['email'] ?? '';
+        $email2 = $_POST['email2'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $password2 = $_POST['password2'] ?? '';
+        $error = '';
+        try {
+            Assertion::eq($email, $email2, 'Les 2 emails doivent être identiques');
+            Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
+        } catch (AssertionFailedException $e) {
+            $error = $e->getMessage();
+        }
+
+        return $error;
     }
 }

@@ -3,6 +3,9 @@
 
 namespace Blog\Controller;
 
+use Assert\Assert;
+use Assert\Assertion;
+use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
@@ -85,26 +88,37 @@ class FrontController extends AbstractController
          * Le isset renverra false si jamais le formulaire n'est pas posté et il renverra true si le form est posté
          *
          */
-
+        $error = false;
+        $msgError = "";
+        $msgSuccess = "";
         $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
         if ($addUser) {
             //Donc là c'est le cas où le form est posté
             //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
             //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
             //Je te laisse faire la modif ;)
-            $pseudo = $_POST['pseudo'] ?? 'Test création pseudo';
-            $email = $_POST['email'] ?? 'Test création email';
-            $password = $_POST['password'] ?? 'Test création mdp';
-            $user = User::create($pseudo, $email, $password);
-            if (Users::add($user)) {
-                $this->redirectTo('/');
+            $pseudo = $_POST['pseudo'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $password = $_POST['password'] ?? '';
+            $email2 = $_POST['email'] ?? '';
+            Assertion::eq($email, $email2);
+            try {
+                $user = User::create($pseudo, $email, $password);
+            } catch (AssertionFailedException $e) {
+                $error = true;
+                $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
+            }
+            if (!$error && Users::add($user)) {
+                $msgSuccess = "Votre compte à bien été créé.";
             }
         }
-
         //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
         //Donc là on affiche le form
 
-        $this->render('front', 'register.html.twig', []);
+        $this->render('front', 'register.html.twig', [
+            'msgError' => $msgError,
+            'msgSucces' => $msgSuccess,
+        ]);
 
 
     }

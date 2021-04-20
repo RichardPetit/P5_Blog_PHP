@@ -11,7 +11,8 @@
     "minimum-stability": "stable",
     "require": {
         "twig/twig": "^3.0",
-        "vlucas/phpdotenv": "^5.3"
+        "vlucas/phpdotenv": "^5.3",
+        "beberlei/assert": "^3.3"
     },
 
     "autoload": {

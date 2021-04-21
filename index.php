@@ -13,6 +13,7 @@ $routing = [
     'createArticle' => ['controller' => 'AdminController', 'action' => 'createArticleAction'],
     'detailArticle' => ['controller' => 'FrontController', 'action' => 'detailArticleAction'],
     'createUser' => ['controller' => 'FrontController', 'action' => 'createUserAction'], //Good pour la route, c'est nickel
+    'contact' => ['controller' => 'FrontController', 'action' => 'contactAction'],
 ];
 
 //Routing

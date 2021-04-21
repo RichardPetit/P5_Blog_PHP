@@ -126,14 +126,22 @@ class FrontController extends AbstractController
      */
     private function checkFormForCreateUserAction(): string
     {
+        $pseudo = $_POST['pseudo'] ?? '';
         $email = $_POST['email'] ?? '';
         $email2 = $_POST['email2'] ?? '';
         $password = $_POST['password'] ?? '';
         $password2 = $_POST['password2'] ?? '';
         $error = '';
         try {
+            Assertion::notEmpty($pseudo, 'Le champs Pseudo ne peut pas être vide.');
+            Assertion::notEmpty($email, 'Le champs email doit être rempli.');
+            Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
             Assertion::eq($email, $email2, 'Les 2 emails doivent être identiques');
+            Assertion::notEmpty($password, 'Le champs password doit être rempli.');
             Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
+            Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
+           
+
         } catch (AssertionFailedException $e) {
             $error = $e->getMessage();
         }

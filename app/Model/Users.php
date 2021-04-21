@@ -27,17 +27,32 @@ class Users
     {
         $pdo = PDO::getInstance();
         try {
+            $message = "Votre compte a bien été créé.";
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
             $password = $user->getPassword();
-            //Ici, d'après moi c'est ta DB qui doit mettre des valeurs par défaut pour is_active et is_admin
-            //Quand on crée un user, par défaut il est actif et il n'est pas admin
-            //Et pour avatar, au final tu ajoutes ton avatar depuis le profil mais pas à la création je pense
-            //Donc en DB => is_active default 1 et is_admin default 0
-            //Mais sinon c'est top ! Bravo !
-            $sql = "INSERT INTO users(pseudo, email, password) VALUES (?, ?, ?)";
-            $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
-        } catch (\Exception $e){
+            $reqPseudo = $pdo->prepare("SELECT * FROM users WHERE pseudo = ?");
+            $reqPseudo->execute(array($pseudo));
+            $pseudoExist = $reqPseudo->rowCount();
+            $reqEmail = $pdo->prepare("SELECT * FROM users WHERE email = ?");
+            $reqEmail->execute(array($email));
+            $emailExist = $reqEmail->rowCount();
+            if ($pseudoExist == 0 ){
+                if ($emailExist == 0){
+                    $sql = "INSERT INTO users(pseudo, email, password) VALUES (?, ?, ?)";
+                    $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
+                    return $message;
+                } else{
+                    $message = "Cette adresse email est déjà utilisée.";
+                    return $message;
+                }
+            }else {
+                $message = "Ce pseudo est déjà utilisé.";
+                return $message;
+            }
+            var_dump($message);
+            exit;
+            } catch (\Exception $e){
             var_dump($e->getMessage());
             exit;
         }

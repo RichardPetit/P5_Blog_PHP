@@ -30,7 +30,7 @@ class Users
             $message = "Votre compte a bien été créé.";
             $pseudo = $user->getPseudo();
             $email = $user->getEmail();
-            $password = $user->getPassword();
+            $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
             $reqPseudo = $pdo->prepare("SELECT * FROM users WHERE pseudo = ?");
             $reqPseudo->execute(array($pseudo));
             $pseudoExist = $reqPseudo->rowCount();

@@ -115,7 +115,7 @@ class FrontController extends AbstractController
 
         $this->render('front', 'register.html.twig', [
             'msgError' => $msgError,
-            'msgSucces' => $msgSuccess,
+            'msgSuccess' => $msgSuccess,
         ]);
 
 
@@ -140,7 +140,7 @@ class FrontController extends AbstractController
             Assertion::notEmpty($password, 'Le champs password doit être rempli.');
             Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
             Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
-           
+
 
         } catch (AssertionFailedException $e) {
             $error = $e->getMessage();

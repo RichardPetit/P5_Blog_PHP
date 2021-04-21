@@ -21,37 +21,26 @@
             <hr class="star-primary"/>
             <br>
 
-            <form method="post" action="/?p=createUser">
+            <form method="post" action="/?p=contact">
                 <input type="hidden" name="add" value="1"/>
                 <p>
-                    <label for="pseudo">Pseudo :</label><br>
-                    <input type="text" placeholder="Votre pseudo" id="pseudo"
-                           name="pseudo" value="{{ pseudoRegister }}" class="form-control">
+                    <label for="emailContact">Email :</label>
+                    <input type="emailContact" placeholder="Votre adresse email" id="emailContact"
+                           name="emailContact" value="{{ emailContact }}" class="form-control">
                 </p>
                 <p>
-                    <label for="email">Email :</label>
-                    <input type="email" placeholder="Votre adresse email" id="email"
-                           name="email" value="{{ emailRegister }}" class="form-control">
+                    <label for="subjectContact">Sujet du message :</label><br>
+                    <input type="text" placeholder="Sujet" id="subjectContact"
+                           name="subjectContact" value="{{ subjectContact }}" class="form-control">
                 </p>
                 <p>
-                    <label for="email2">Confirmation de l'email :</label>
-
-                    <input type="email" placeholder="Confirmez votre email" id="email2"
-                           name="email2" value="{{ email2Register }}" class="form-control">
-                </p>
-                <p>
-                    <label for="password">Mot de passe :</label>
-                    <input type="password" placeholder="Votre mot de passe" id="password" name="password"
-                           class="form-control">
-                </p>
-                <p>
-                    <label for="password2">Confirmation du mot de passe :</label>
-                    <input type="password" placeholder="Confirmez votre mdp" id="password2" name="password2"
-                           class="form-control">
+                    <label for="contentContact">Message :</label>
+                    <input type="text" placeholder="Votre message :" id="contentContact" name="contentContact"
+                           value="{{ messageContact }}" class="form-control">
                 </p>
                 <br>
                 <p>
-                    <button type="submit" class="btn btn-success"> Je m'inscrit</button>
+                    <button type="submit" class="btn btn-success"> Valider</button>
                 </p>
             </form>
             <br/>

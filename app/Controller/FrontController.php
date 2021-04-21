@@ -6,6 +6,7 @@ namespace Blog\Controller;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
+use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
@@ -103,7 +104,7 @@ class FrontController extends AbstractController
                     $user = User::create($pseudo, $email, $password);
                 } catch (AssertionFailedException $e) {
                     $error = true;
-                    $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
+                    $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if (!$error && Users::add($user)) {
                     $msgSuccess = "Votre compte à bien été créé.";
@@ -146,6 +147,56 @@ class FrontController extends AbstractController
             $error = $e->getMessage();
         }
 
+        return $error;
+    }
+
+    public function contactAction()
+    {
+        $error = false;
+        $msgError = "";
+        $msgSuccess = "";
+        $contactMessage = isset($_POST['add']);
+        if ($contactMessage){
+            $msgError = $this->checkFormForContactAction();
+            if ($msgError === ''){
+                $email = $_POST['emailContact'] ?? '';
+                $subject = $_POST['subjectContact'] ?? '';
+                $contentMesssage = $_POST['contentContact'] ?? '';
+                try {
+                    $contact = Contact::contact($email, $subject, $contentMesssage);
+                } catch (AssertionFailedException $e) {
+                    $error = true;
+                    $msgError = "L'erreur suivante c'est produite : " . $e->getMessage();
+                }
+                // ajouter l'envoie d'email après la création du service après le !$error
+                if (!$error) {
+                    $msgSuccess = "Votre message a été envoyé. Vous receverez la réponse par email dans les plus brefs délais.";
+                }
+
+            }
+
+        }
+        $this->render('front', 'contact.html.twig', [
+            'msgError' => $msgError,
+            'msgSuccess' => $msgSuccess,
+        ]);
+    }
+
+    private function checkFormForContactAction()
+    {
+        $email = $_POST['emailContact'] ?? '';
+        $subject = htmlspecialchars($_POST['subjectContact']) ?? '';
+        $contentMesssage = htmlspecialchars($_POST['contentContact']) ?? '';
+        $error = "";
+        try {
+            Assertion::notEmpty($email, 'Le champs email doit être rempli.');
+            Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
+            Assertion::notEmpty($subject, 'Le champs sujet doit être rempli.');
+            Assertion::minLength($subject, 4, "Le sujet doit faire au minimum 10 caractères");
+            Assertion::notEmpty($contentMesssage, 'Le champs message doit être rempli.');
+        } catch (AssertionFailedException $e){
+            $error = $e->getMessage();
+        }
         return $error;
     }
 }

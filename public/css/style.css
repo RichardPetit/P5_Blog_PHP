@@ -135,3 +135,12 @@ a:link{
     width: 300px;
     height: 300px;
 }
+
+/* Contact */
+
+.formContact{
+    margin: 0 20% 2% 20%;
+}
+#contentContact{
+    height: 15rem;
+}

@@ -3,14 +3,13 @@
 
 namespace Blog\Controller;
 
+use Assert\Assertion;
+use Assert\AssertionFailedException;
 use Blog\Entity\Article;
-use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
-use Blog\Model\Connector\PDO;
 use Blog\Model\Users;
-use function var_dump;
 
 class FrontController extends AbstractController
 {
@@ -86,43 +85,67 @@ class FrontController extends AbstractController
          * Le isset renverra false si jamais le formulaire n'est pas posté et il renverra true si le form est posté
          *
          */
-
+        $error = false;
+        $msgError = "";
+        $msgSuccess = "";
         $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
         if ($addUser) {
             //Donc là c'est le cas où le form est posté
             //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
             //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
             //Je te laisse faire la modif ;)
-            $pseudo = $_POST['pseudoRegister'] ?? 'Test création pseudo';
-            $email = $_POST['emailRegister'] ?? 'Test création email';
-            $password = $_POST['passwordRegister'] ?? 'Test création mdp';
-            $user = User::create($pseudo, $email, $password);
-            if (Users::add($user)) {
-                $this->redirectTo('/');
+            $msgError = $this->checkFormForCreateUserAction();
+            if($msgError === '') {
+                $pseudo = $_POST['pseudo'] ?? '';
+                $email = $_POST['email'] ?? '';
+                $password = $_POST['password'] ?? '';
+                try {
+                    $user = User::create($pseudo, $email, $password);
+                } catch (AssertionFailedException $e) {
+                    $error = true;
+                    $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
+                }
+                if (!$error && Users::add($user)) {
+                    $msgSuccess = "Votre compte à bien été créé.";
+                }
             }
         }
-
         //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
         //Donc là on affiche le form
 
         $this->render('front', 'register.html.twig', [
-//            'pseudoRegister' => $pseudo,
-//            'emailRegister' => $email,
+            'msgError' => $msgError,
+            'msgSuccess' => $msgSuccess,
         ]);
 
 
     }
 
-    public function contactAction()
+    /**
+     * @return string
+     */
+    private function checkFormForCreateUserAction(): string
     {
-        $contactMessage = isset($_POST['add']);
-        if ($contactMessage){
-            $email = $_POST['emailContact'] ?? 'Test de message de contact';
-            $subject = $_POST['subjectContact'] ?? 'Test sujet de contact';
-            $contentMesssage = $_POST['contentContact'] ?? 'Contenu test de contact';
-            $contact = Contact::contact($email, $subject, $contentMesssage);
+        $pseudo = $_POST['pseudo'] ?? '';
+        $email = $_POST['email'] ?? '';
+        $email2 = $_POST['email2'] ?? '';
+        $password = $_POST['password'] ?? '';
+        $password2 = $_POST['password2'] ?? '';
+        $error = '';
+        try {
+            Assertion::notEmpty($pseudo, 'Le champs Pseudo ne peut pas être vide.');
+            Assertion::notEmpty($email, 'Le champs email doit être rempli.');
+            Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
+            Assertion::eq($email, $email2, 'Les 2 emails doivent être identiques');
+            Assertion::notEmpty($password, 'Le champs password doit être rempli.');
+            Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
+            Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
 
 
+        } catch (AssertionFailedException $e) {
+            $error = $e->getMessage();
         }
+
+        return $error;
     }
 }

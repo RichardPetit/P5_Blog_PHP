@@ -6,48 +6,55 @@
 
 
 {% block content %}
-    <div class="formRegister" align="center">
-        <h2>Inscription</h2>
-        <hr class="star-primary">
-        <br>
 
-        <form method="post" action="">
-            <input type="hidden" name="add" value="1">
-            <p>
-                <label for="pseudo">Pseudo :</label><br>
-                <input type="text" placeholder="Votre pseudo" id="pseudoRegister"
-                       name="pseudoRegister" value="{{ pseudoRegister }}" class="form-control">
-            </p>
-            <p>
-                <label for="email">Email :</label>
-                <input type="email" placeholder="Votre adresse email" id="emailRegister"
-                       name="emailRegister" value="{{ emailRegister }}" class="form-control">
-            </p>
-            <p>
-                <label for="email2">Confirmation de l'email :</label>
+    {% if( msgError != "") %}
+        <div class="alert alert-danger"> {{ msgError }}</div>
+    {% endif %}
+    {% if( msgSuccess != "") %}
+        <div class="alert alert-success"> {{ msgSuccess }}</div>
+    {% endif %}
+    {% if( msgSuccess == "") %}
 
-                <input type="email" placeholder="Confirmez votre email" id="email2Register"
-                       name="email2Register" value="{{ email2Register }}" class="form-control">
-            </p>
-            <p>
-                <label for="password">Mot de passe :</label>
-                <input type="password" placeholder="Votre mot de passe" id="passwordRegister" name="passwordRegister"
-                       class="form-control">
-            </p>
-            <p>
-                <label for="password2">Confirmation du mot de passe :</label>
-                <input type="password" placeholder="Confirmez votre mdp" id="password2Register" name="password2Register"
-                       class="form-control">
-            </p>
+
+        <div class="formRegister" align="center">
+            <h2>Inscription</h2>
+            <hr class="star-primary"/>
             <br>
-            <p>
-                <button type="submit" class="btn btn-success"> Je m'inscrit</button>
-            </p>
-        </form>
-        <br>
-    </div>
 
+            <form method="post" action="/?p=createUser">
+                <input type="hidden" name="add" value="1"/>
+                <p>
+                    <label for="pseudo">Pseudo :</label><br>
+                    <input type="text" placeholder="Votre pseudo" id="pseudo"
+                           name="pseudo" value="{{ pseudoRegister }}" class="form-control">
+                </p>
+                <p>
+                    <label for="email">Email :</label>
+                    <input type="email" placeholder="Votre adresse email" id="email"
+                           name="email" value="{{ emailRegister }}" class="form-control">
+                </p>
+                <p>
+                    <label for="email2">Confirmation de l'email :</label>
+
+                    <input type="email" placeholder="Confirmez votre email" id="email2"
+                           name="email2" value="{{ email2Register }}" class="form-control">
+                </p>
+                <p>
+                    <label for="password">Mot de passe :</label>
+                    <input type="password" placeholder="Votre mot de passe" id="password" name="password"
+                           class="form-control">
+                </p>
+                <p>
+                    <label for="password2">Confirmation du mot de passe :</label>
+                    <input type="password" placeholder="Confirmez votre mdp" id="password2" name="password2"
+                           class="form-control">
+                </p>
+                <br>
+                <p>
+                    <button type="submit" class="btn btn-success"> Je m'inscrit</button>
+                </p>
+            </form>
+            <br/>
+        </div>
+    {% endif %}
 {% endblock %}
-
-
-

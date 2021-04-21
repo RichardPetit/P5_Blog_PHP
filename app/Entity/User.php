@@ -3,6 +3,8 @@
 
 namespace Blog\Entity;
 
+use Assert\Assertion;
+
 /**
  * Class User
  */
@@ -184,9 +186,10 @@ class User
 
     public static function validate(self $user)
     {
-        if (strlen($user->getPseudo()) > 45){
-            throw new Exception('Le pseudo choisi est trop,long. 45 caractères maximum?');
-        }
+        Assertion::notEmpty($user->getPseudo(), 'Le champs Pseudo ne peut pas être vide.');
+        Assertion::maxLength($user->getPseudo(), 45, 'Le pseudo ne doit pas dépasser 45 caractères.');
+        Assertion::notEmpty($user->getEmail(), 'Le champs email ne peut pas être vide.');
+
         return $user;
     }
 

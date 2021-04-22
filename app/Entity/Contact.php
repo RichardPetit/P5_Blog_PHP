@@ -3,6 +3,7 @@
 
 namespace Blog\Entity;
 
+use Blog\Controller\FrontController;
 use Exception;
 
 /**

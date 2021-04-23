@@ -154,7 +154,7 @@ class Article
         string $title,
         string $content,
         string $summary,
-        User $author
+            User $author
     ): self {
         //On instantie l'Entité Article et on set les paramètres nécessaires
         $article = new self();

@@ -120,9 +120,9 @@ a:link{
 }
 
 .newArticleForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
     margin: 0 8% 2% 8% ;
 }
 .formRegister{

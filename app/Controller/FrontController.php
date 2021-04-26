@@ -55,32 +55,11 @@ class FrontController extends AbstractController
         }
 
         //Renvoyer l'entité Article à la vue pour afficher le détail
-        $this->render("front", "article.html.twig", [
+        $this->render("front", "detailArticle.html.twig", [
             'detailArticle' => $article,
         ]);
     }
 
-//    public function createArticleAction()
-//    {
-//        //Pour le moment on force l'ajout, par la suite bien sûr on ajoutera que lorsqu'on soumet un formulaire
-//        $addArticle = true;
-//        if ($addArticle) {
-//            //On récupère ici l'Entité User depuis la méthode getUser();
-//            $author = $this->getUser();
-//            //On récupère également le titre,content et summary depuis le $_POST
-//            $title = $_POST['title'] ?? '';
-//            $content = $_POST['content'] ?? '';
-//            $summary = $_POST['summary'] ?? '';
-//            //On crée ici l'Entité Article avec les paramètres récupérés
-//            $article = Article::create($title, $content, $summary, $author);
-//            //On passe l'entité $article crée au Model Articles afin d'ajouter l'article en DB
-//            if (Articles::add($article)) {
-//                //Si ça a fonctionné on redirige vers la home (à voir si nécessaire)
-//                $this->redirectTo('/');
-//            }
-//        }
-//
-//    }
 
     public function createUserAction()
     {
@@ -102,7 +81,6 @@ class FrontController extends AbstractController
             //Donc là c'est le cas où le form est posté
             //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
             //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
-            //Je te laisse faire la modif ;)
             $msgError = $this->checkFormForCreateUserAction();
             if($msgError === '') {
                 $pseudo = $_POST['pseudo'] ?? '';

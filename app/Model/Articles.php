@@ -55,7 +55,7 @@ class Articles
             $content = $article->getContent();
             $summary = $article->getSummary();
             $title = $article->getTitle();
-            $sql = "INSERT INTO articles (title, content, summary, user_id) VALUES (?, ?, ?, ?) ";
+            $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) ";
             $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());

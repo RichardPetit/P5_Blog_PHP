@@ -32,7 +32,7 @@ class AdminController extends AbstractController
                 $summary = $_POST['summary'] ?? '';
                 //2) Je crée l'entité Article avec les paramètres récupérés
                 try {
-                    $article = Article::create($this, $content, $summary,$author);
+                    $article = Article::create($title, $content, $summary,$author);
                 } catch (AssertionFailedException $e){
                     $error = true;
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
@@ -40,6 +40,7 @@ class AdminController extends AbstractController
                 if(!$error && Articles::add($article)) {
                     $msgSuccess = "Votre article à bien été créé.";
                 }
+//                    $this->redirectTo('?p=home');
 
             }
         }

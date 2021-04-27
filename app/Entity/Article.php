@@ -11,6 +11,9 @@ use Exception;
 class Article
 {
 
+    public const SHORT_FORMAT_DATE = 'd/m/Y';
+    public const FULL_FORMAT_DATE = 'd/m/Y';
+
     /**
      * @var int|null
      */
@@ -132,6 +135,24 @@ class Article
     public function getCreatedAt(): \DateTimeInterface
     {
         return $this->createdAt;
+    }
+
+    /**
+     * @return string
+     */
+    public function getShortFormattedDate(): string
+    {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt->format(self::SHORT_FORMAT_DATE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullFormattedDate(): string
+    {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt->format(self::FULL_FORMAT_DATE);
     }
 
     /**

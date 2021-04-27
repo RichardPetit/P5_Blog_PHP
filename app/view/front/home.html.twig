@@ -10,7 +10,7 @@
         {% for article in viewArticle %}
             <h4 class="card-title">{{ article.title }} - {{ article.author.pseudo }}</h4>
             <p>{{ article.summary }}</p>
-            <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
+            <p>{{ article.content }} <br>Publié le : {{ article.getFullFormattedDate() }}</p>
             <a href="/?p=detailArticle&id={{ article.id }}"> Lire l'article</a>
         {% endfor %}
     {% endblock  article %}

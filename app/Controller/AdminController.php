@@ -13,6 +13,10 @@ class AdminController extends AbstractController
 
     public function createArticleAction()
     {
+        $this->throwExceptionIfNotAdmin();
+
+        //@TODO : refactoriser comme sur la branche feature/createuser pour enlever la validation depuis l'entité
+
         $error = false;
         $msgError = "";
         $msgSuccess = "";

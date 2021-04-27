@@ -6,6 +6,7 @@ namespace Blog\Controller;
 
 use Blog\Entity\User;
 use Blog\Model\Users;
+use Exception;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -47,6 +48,34 @@ class AbstractController
     {
         header('Location: '.$path);
         exit;
+    }
+
+    protected function isLoggedIn() : bool
+    {
+        return true;
+    }
+
+    protected function isAdmin(): bool
+    {
+        if(!$this->isLoggedIn()) {
+            return false;
+        }
+        //return $this->getUser()->isAdmin();
+        return true;
+    }
+
+    protected function throwExceptionIfNotLoggedIn()
+    {
+        if (!$this->isLoggedIn()) {
+            throw new Exception();
+        }
+    }
+
+    protected function throwExceptionIfNotAdmin()
+    {
+        if (!$this->isAdmin()) {
+            throw new Exception();
+        }
     }
 
 }

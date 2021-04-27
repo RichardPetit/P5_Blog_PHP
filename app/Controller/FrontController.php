@@ -11,13 +11,8 @@ use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
 use Blog\Model\Users;
+use Blog\Service\EmailService;
 use PHPMailer\PHPMailer\Exception;
-use PHPMailer\PHPMailer\PHPMailer;
-
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
 
 
 class FrontController extends AbstractController
@@ -149,32 +144,14 @@ class FrontController extends AbstractController
                 $subject = $_POST['subjectContact'] ?? '';
                 $contentMesssage = $_POST['contentContact'] ?? '';
                 try {
-                    $contact = Contact::contact($email, $subject, $contentMesssage);
-                    $sendEmail = new PHPMailer(true);
+                    $contact = Contact::create($email, $subject, $contentMesssage);
                     try {
-                        $sendEmail->SMTPDebug = 0;
-                        $sendEmail->isSMTP();
-                        $sendEmail->Host       = 'smtp.mailtrap.io';
-                        $sendEmail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                        $sendEmail->Username   = '84a7fd0b1e99dd';                     //SMTP username
-                        $sendEmail->Password   = '843a9dd5383b44';                               //SMTP password
-                        $sendEmail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
-                        $sendEmail->Port       = 465;
-
-                        //Recipients
-                        $sendEmail->setFrom('richard-petit@live.fr', 'Richard Petit');
-                        $sendEmail->addAddress($email);
-
-                        //Content
-                        $sendEmail->isHTML(true);                                  //Set email format to HTML
-                        $sendEmail->Subject = $subject;
-                        $sendEmail->Body    = $contentMesssage;
-
-                        $sendEmail->send();
+                        $emailService = new EmailService();
+                        $emailService->sendEmail($contact);
                         echo 'Le message a été envoyé';
 
                     } catch (Exception $e){
-                        echo "Le message n'a pas été envoyé. Mailer Error: {$sendEmail->ErrorInfo}";
+                        echo "Le message n'a pas été envoyé";
                     }
 
                 } catch (AssertionFailedException $e) {

@@ -96,7 +96,7 @@ class Contact
     }
 
 
-    public static function contact(
+    public static function create(
         string $email,
         string $subject,
         string $message

@@ -205,7 +205,7 @@ class FrontController extends AbstractController
             Assertion::notEmpty($email, 'Le champs email doit être rempli.');
             Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
             Assertion::notEmpty($subject, 'Le champs sujet doit être rempli.');
-            Assertion::minLength($subject, 4, "Le sujet doit faire au minimum 10 caractères");
+            Assertion::minLength($subject, 4, "Le sujet doit faire au minimum 4 caractères");
             Assertion::notEmpty($contentMesssage, 'Le champs message doit être rempli.');
         } catch (AssertionFailedException $e){
             $error = $e->getMessage();

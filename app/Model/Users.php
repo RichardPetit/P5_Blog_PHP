@@ -5,6 +5,8 @@ namespace Blog\Model;
 
 
 use Blog\Entity\User;
+use Blog\Exception\EmailExistsException;
+use Blog\Exception\PseudoExistsException;
 use Blog\Model\Connector\PDO;
 use function var_dump;
 
@@ -23,39 +25,52 @@ class Users
         return self::hydrateEntity($userPDO);
     }
 
-    public static function add(User $user)
+    public static function isPseudoAlreadyExists(string $pseudo): bool
     {
         $pdo = PDO::getInstance();
-        try {
-            $message = "Votre compte a bien été créé.";
-            $pseudo = $user->getPseudo();
-            $email = $user->getEmail();
-            $password = password_hash($user->getPassword(), PASSWORD_DEFAULT);
-            $reqPseudo = $pdo->prepare("SELECT * FROM users WHERE pseudo = ?");
-            $reqPseudo->execute(array($pseudo));
-            $pseudoExist = $reqPseudo->rowCount();
-            $reqEmail = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-            $reqEmail->execute(array($email));
-            $emailExist = $reqEmail->rowCount();
-            if ($pseudoExist == 0 ){
-                if ($emailExist == 0){
-                    $sql = "INSERT INTO users(pseudo, email, password) VALUES (?, ?, ?)";
-                    $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
-                    return $message;
-                } else{
-                    $message = "Cette adresse email est déjà utilisée.";
-                    return $message;
-                }
-            }else {
-                $message = "Ce pseudo est déjà utilisé.";
-                return $message;
-            }
-            var_dump($message);
-            exit;
-            } catch (\Exception $e){
-            var_dump($e->getMessage());
-            exit;
+        $reqPseudo = $pdo->prepare("SELECT COUNT(*) AS nb FROM users WHERE pseudo = ?");
+        $reqPseudo->execute([$pseudo]);
+        $pseudo = $reqPseudo->fetch();
+        return $pseudo->nb === 1;
+    }
+
+    public static function isEmailAlreadyExists(string $email): bool
+    {
+        $pdo = PDO::getInstance();
+        $reqEmail = $pdo->prepare("SELECT COUNT(*) AS nb FROM users WHERE email = ?");
+        $reqEmail->execute([$email]);
+        $email = $reqEmail->fetch();
+        return $email->nb === 1;
+    }
+
+    public static function encodePassword(string $password): string
+    {
+        return password_hash($password, PASSWORD_DEFAULT);
+    }
+
+    /**
+     * @param User $user
+     * @return User
+     * @throws EmailExistsException
+     * @throws PseudoExistsException
+     */
+    public static function add(User $user): User
+    {
+        $pdo = PDO::getInstance();
+        $pseudo = $user->getPseudo();
+        $email = $user->getEmail();
+        $password = self::encodePassword($user->getPassword());
+        $pseudoExists = self::isPseudoAlreadyExists($pseudo);
+        $emailExists = self::isEmailAlreadyExists($pseudo);
+        if ($pseudoExists) {
+            throw new PseudoExistsException();
         }
+        if($emailExists) {
+            throw new EmailExistsException();
+        }
+
+        $sql = "INSERT INTO users(pseudo, email, password) VALUES (?, ?, ?)";
+        $pdo->prepare($sql)->execute([$pseudo, $email, $password]);
         return $user;
     }
 
@@ -73,6 +88,8 @@ class Users
         //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
+
+
 
 
 }

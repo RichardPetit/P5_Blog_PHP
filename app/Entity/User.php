@@ -181,15 +181,6 @@ class User
         $user->setPseudo($pseudo);
         $user->setEmail($email);
         $user->setPassword($password);
-        return self::validate($user);
-    }
-
-    public static function validate(self $user)
-    {
-        Assertion::notEmpty($user->getPseudo(), 'Le champs Pseudo ne peut pas être vide.');
-        Assertion::maxLength($user->getPseudo(), 45, 'Le pseudo ne doit pas dépasser 45 caractères.');
-        Assertion::notEmpty($user->getEmail(), 'Le champs email ne peut pas être vide.');
-
         return $user;
     }
 

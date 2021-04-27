@@ -8,6 +8,8 @@ use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
+use Blog\Exception\EmailExistsException;
+use Blog\Exception\PseudoExistsException;
 use Blog\Model\Articles;
 use Blog\Model\Users;
 
@@ -75,50 +77,31 @@ class FrontController extends AbstractController
 
     public function createUserAction()
     {
-        /**
-         * Ici, ce qu'il faut comprendre c'est que cette action a 2 raisons d'être :
-         *
-         * Si on poste le paramètre add depuis le formulaire => on soumet donc le formulaire et on récupère les params
-         * Sinon on affiche le formulaire.
-         *
-         * Donc on teste juste en dessous : $addUser = isset($_POST['add']);
-         * Le isset renverra false si jamais le formulaire n'est pas posté et il renverra true si le form est posté
-         *
-         */
-        $error = false;
         $msgError = "";
         $msgSuccess = "";
-        $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
+        $addUser = isset($_POST['add']);
         if ($addUser) {
-            //Donc là c'est le cas où le form est posté
-            //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
-            //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
-            //Je te laisse faire la modif ;)
             $msgError = $this->checkFormForCreateUserAction();
             if($msgError === '') {
                 $pseudo = $_POST['pseudo'] ?? '';
                 $email = $_POST['email'] ?? '';
                 $password = $_POST['password'] ?? '';
+                $user = User::create($pseudo, $email, $password);
                 try {
-                    $user = User::create($pseudo, $email, $password);
-                } catch (AssertionFailedException $e) {
-                    $error = true;
-                    $msgError = "L'erreur suivante s'est produite: " . $e->getMessage();
-                }
-                if (!$error && Users::add($user)) {
+                    Users::add($user);
                     $msgSuccess = "Votre compte à bien été créé.";
+                } catch (EmailExistsException $e) {
+                    $msgError = "L'adresse email est déjà utilisée. Merci d'en choisir une autre";
+                } catch (PseudoExistsException $e) {
+                    $msgError = "Le pseudo choisi est déjà utilisé. Merci d'en choisir un autre";
                 }
             }
         }
-        //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
-        //Donc là on affiche le form
 
         $this->render('front', 'register.html.twig', [
             'msgError' => $msgError,
             'msgSuccess' => $msgSuccess,
         ]);
-
-
     }
 
     /**
@@ -140,8 +123,6 @@ class FrontController extends AbstractController
             Assertion::notEmpty($password, 'Le champs password doit être rempli.');
             Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
             Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
-
-
         } catch (AssertionFailedException $e) {
             $error = $e->getMessage();
         }

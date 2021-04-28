@@ -184,17 +184,9 @@ class Article
         $article->setSummary($summary);
         $article->setAuthor($author);
         $article->setCreatedAt(new \DateTime());
-        return self::validate($article);
-    }
-
-    public static function validate(self $article)
-    {
-        if(strlen($article->getTitle()) < 5) {
-            throw new Exception('Le titre doit contenir au moins 5 caractères');
-        }
-        //Logique de validation a ajouter
         return $article;
     }
+
 
 
 }

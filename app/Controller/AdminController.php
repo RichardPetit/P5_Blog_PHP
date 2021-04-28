@@ -27,14 +27,10 @@ class AdminController extends AbstractController
         if ($addArticle) {
             $msgError = $this->checkFormCreateArticleAction();
             if ($msgError === ''){
-                //1) Je récupère les paramètres
-                //On récupère ici l'Entité User depuis la méthode getUser();
                 $author = $this->getUser();
-                //On récupère également le titre,content et summary depuis le $_POST
                 $title = $_POST['title'] ?? '';
                 $content = $_POST['content'] ?? '';
                 $summary = $_POST['summary'] ?? '';
-                //2) Je crée l'entité Article avec les paramètres récupérés
                 try {
                     $article = Article::create($title, $content, $summary,$author);
                 } catch (AssertionFailedException $e){
@@ -44,8 +40,6 @@ class AdminController extends AbstractController
                 if(!$error && Articles::add($article)) {
                     $msgSuccess = "Votre article à bien été créé.";
                 }
-//                    $this->redirectTo('?p=home');
-
             }
         }
         $this->render('front', 'createArticle.html.twig', [
@@ -57,8 +51,8 @@ class AdminController extends AbstractController
     private function checkFormCreateArticleAction()
     {
         $title = $_POST['title'] ?? '';
-        $content = $_POST['title'] ?? '';
-        $summary = $_POST['title'] ?? '';
+        $content = $_POST['content'] ?? '';
+        $summary = $_POST['summary'] ?? '';
         $error = "";
 
         try {

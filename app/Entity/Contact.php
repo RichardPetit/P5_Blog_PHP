@@ -106,14 +106,6 @@ class Contact
         $contactMessage->setSubject($subject);
         $contactMessage->setMessage($message);
         $contactMessage->setSendedAt(new \DateTime());
-        return self::validate($contactMessage);
-    }
-
-    public static function validate(self $contactMessage)
-    {
-        if(isset($contactMessage) AND strlen($contactMessage->getSubject()) < 5) {
-            throw new Exception('Le sujet doit contenir au moins 5 caractères');
-        }
         return $contactMessage;
     }
 

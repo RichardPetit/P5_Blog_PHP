@@ -73,9 +73,6 @@ class FrontController extends AbstractController
         $msgSuccess = "";
         $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
         if ($addUser) {
-            //Donc là c'est le cas où le form est posté
-            //Fais bien attention à ce que tes input (leur name précisément) corresponde bien aux $_POST ci-dessous
-            //Donc si ton front a pour input name="pseudoRegister" alors il faudra récupérer $_POST['pseudoRegister']
             $msgError = $this->checkFormForCreateUserAction();
             if($msgError === '') {
                 $pseudo = $_POST['pseudo'] ?? '';
@@ -149,11 +146,9 @@ class FrontController extends AbstractController
                         $emailService = new EmailService();
                         $emailService->sendEmail($contact);
                         echo 'Le message a été envoyé';
-
                     } catch (Exception $e){
                         echo "Le message n'a pas été envoyé";
                     }
-
                 } catch (AssertionFailedException $e) {
                     $error = true;
                     $msgError = "L'erreur suivante c'est produite : " . $e->getMessage();

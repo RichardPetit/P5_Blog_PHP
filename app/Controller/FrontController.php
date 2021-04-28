@@ -6,10 +6,12 @@ namespace Blog\Controller;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
+use Blog\Entity\Comment;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
+use Blog\Model\Comments;
 use Blog\Model\Users;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -207,6 +209,55 @@ class FrontController extends AbstractController
             Assertion::notEmpty($subject, 'Le champs sujet doit être rempli.');
             Assertion::minLength($subject, 4, "Le sujet doit faire au minimum 4 caractères");
             Assertion::notEmpty($contentMesssage, 'Le champs message doit être rempli.');
+        } catch (AssertionFailedException $e){
+            $error = $e->getMessage();
+        }
+        return $error;
+    }
+
+    public function createCommentAction()
+    {
+        $error = false;
+        $msgError = "";
+        $msgSuccess = "";
+
+        $addComment = isset($_POST['add']);
+
+        if ($addComment){
+            $msgError = $this->checkFormCreateCommentAction();
+            if ($msgError === ''){
+                $author = $this->getUser();
+                $title = $_POST['title'] ?? '';
+                $content = $_POST['comment'] ?? '';
+                try {
+                    $comment = Comment::create($author, $title, $content);
+                }catch (AssertionFailedException $e){
+                    $error = true;
+                    $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
+                }
+                if (!$error && Comments::add($comment)){
+                    $msgSuccess = "Votre commentaire a bien été créé.";
+                }
+            }
+        }
+        $this->render("front", "detailArticle.html.twig", [
+            'msgError' => $msgError,
+            'msgSuccess' => $msgSuccess,
+        ]);
+    }
+
+    private function checkFormCreateCommentAction()
+    {
+        $author = $_POST['author'] ?? '';
+        $title = $_POST['title'] ?? '';
+        $content = $_POST['content'] ?? '';
+        $error = "";
+
+        try {
+            Assertion::notEmpty($author, "Le champs pseudo doit être rempli.");
+            Assertion::notEmpty($title, "Le champs titre doit être rempli.");
+            Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
+            Assertion::notEmpty($content, "Le champs du contenu doit être rempli.");
         } catch (AssertionFailedException $e){
             $error = $e->getMessage();
         }

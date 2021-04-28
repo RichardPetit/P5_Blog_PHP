@@ -53,8 +53,8 @@ class AdminController extends AbstractController
     private function checkFormCreateArticleAction()
     {
         $title = $_POST['title'] ?? '';
-        $content = $_POST['title'] ?? '';
-        $summary = $_POST['title'] ?? '';
+        $content = $_POST['content'] ?? '';
+        $summary = $_POST['summary'] ?? '';
         $error = "";
 
         try {

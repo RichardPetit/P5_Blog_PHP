@@ -6,7 +6,6 @@ namespace Blog\Model;
 use Blog\Entity\Article;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Connector\PDO;
-use function var_dump;
 
 class Articles
 {
@@ -17,8 +16,7 @@ class Articles
         try {
             $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC limit 10');
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
-            exit();
+            echo "Une erreur c'est produite." . $e->getMessage();
         }
         $articleEntities = [];
         foreach ($articlesPDO as $articlePDO) {
@@ -36,8 +34,7 @@ class Articles
             $req->execute([$id]);
             $showArticle = $req->fetch();
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
-            exit();
+            echo "Une erreur c'est produite. L'article n'a pas été trouvé ou n'existe pas." . $e->getMessage();
         }
 
         if(!$showArticle) {
@@ -58,8 +55,7 @@ class Articles
             $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) ";
             $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
-            exit();
+           echo "Une erreur c'est produite, l'article n'a pas pu être ajouté." . $e->getMessage();
         }
         $article->setId($pdo->lastInsertId());
         return $article;

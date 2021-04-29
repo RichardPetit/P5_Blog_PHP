@@ -6,7 +6,6 @@ namespace Blog\Model;
 
 use Blog\Entity\User;
 use Blog\Model\Connector\PDO;
-use function var_dump;
 
 class Users
 {
@@ -50,11 +49,9 @@ class Users
                 $message = "Ce pseudo est déjà utilisé.";
                 return $message;
             }
-            var_dump($message);
-            exit;
             } catch (\Exception $e){
-            var_dump($e->getMessage());
-            exit;
+            echo "Une erreur c'est produite" . $e->getMessage();
+
         }
         return $user;
     }

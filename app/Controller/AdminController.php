@@ -56,9 +56,9 @@ class AdminController extends AbstractController
         $error = "";
 
         try {
-            Assertion::notEmpty($title, "Le champs titre doit être rempli.");
+            Assertion::notEmpty($title, "Le champ titre doit être rempli.");
             Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
-            Assertion::notEmpty($content, "Le champs du contenu doit être rempli.");
+            Assertion::notEmpty($content, "Le champ du contenu doit être rempli.");
             Assertion::maxLength($summary, 250, "Le résumé doit faire au maximum 250 caractères.");
 
         } catch (AssertionFailedException $e){

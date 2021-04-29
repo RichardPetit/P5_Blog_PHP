@@ -1,0 +1,45 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Connexion</title>
+{% endblock %}
+
+
+{% block content %}
+
+    {% if( msgError != "") %}
+        <div class="alert alert-danger"> {{ msgError }}</div>
+    {% endif %}
+    {% if( msgSuccess != "") %}
+        <div class="alert alert-success"> {{ msgSuccess }}</div>
+    {% endif %}
+    {% if( msgSuccess == "") %}
+
+
+        <div class="formConnection" align="center">
+            <h2>Me connecter</h2>
+            <hr class="star-primary"/>
+            <br>
+            <form method="post" action="/?p=connection">
+                <p>
+                    <label for="pseudoConnect">Pseudo :</label><br>
+                    <input type="text" placeholder="Pseudo" id="pseudoConnect" name="pseudoConnect"
+                           class="form-control">
+                </p>
+                <p>
+                    <label for="password">Mot de passe :</label><br>
+                    <input type="password" placeholder="Mot de passe" id="passwordConnect" name="passwordConnect"
+                           class="form-control">
+                </p>
+                <p>
+                    <button type="submit" name="formConnect" class="btn btn-success"> Me connecter</button>
+                    <br><a id="passwordForget" href="#">Mot de passe oublié?</a>
+                </p>
+                <div></div>
+
+            </form>
+
+            <br/>
+        </div>
+    {% endif %}
+{% endblock %}

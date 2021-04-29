@@ -128,9 +128,14 @@ a:link{
 .formRegister{
     margin: 0 20% 2% 20%;
 }
-.formConnect{
+/* Connection */
+.formConnection{
     margin: 0 25% 2% 25%;
 }
+#passwordForget{
+    font-size: small;
+}
+
 .profilPic{
     width: 300px;
     height: 300px;

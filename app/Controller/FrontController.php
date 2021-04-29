@@ -112,11 +112,11 @@ class FrontController extends AbstractController
         $password2 = $_POST['password2'] ?? '';
         $error = '';
         try {
-            Assertion::notEmpty($pseudo, 'Le champs Pseudo ne peut pas être vide.');
-            Assertion::notEmpty($email, 'Le champs email doit être rempli.');
+            Assertion::notEmpty($pseudo, 'Le champ Pseudo ne peut pas être vide.');
+            Assertion::notEmpty($email, 'Le champ email doit être rempli.');
             Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
             Assertion::eq($email, $email2, 'Les 2 emails doivent être identiques');
-            Assertion::notEmpty($password, 'Le champs password doit être rempli.');
+            Assertion::notEmpty($password, 'Le champ password doit être rempli.');
             Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
             Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
 
@@ -174,15 +174,21 @@ class FrontController extends AbstractController
         $contentMesssage = htmlspecialchars($_POST['contentContact']) ?? '';
         $error = "";
         try {
-            Assertion::notEmpty($email, 'Le champs email doit être rempli.');
+            Assertion::notEmpty($email, 'Le champ email doit être rempli.');
             Assertion::email($email, 'Le format de l\'adresse email n\'est pas valide');
-            Assertion::notEmpty($subject, 'Le champs sujet doit être rempli.');
+            Assertion::notEmpty($subject, 'Le champ sujet doit être rempli.');
             Assertion::minLength($subject, 4, "Le sujet doit faire au minimum 10 caractères");
-            Assertion::notEmpty($contentMesssage, 'Le champs message doit être rempli.');
+            Assertion::notEmpty($contentMesssage, 'Le champ message doit être rempli.');
         } catch (AssertionFailedException $e){
             $error = $e->getMessage();
         }
         return $error;
     }
+
+    public function connectionAction()
+    {
+        $this->render("front", "connection.html.twig", []);
+    }
+
 
 }

@@ -13,6 +13,7 @@ use Blog\Model\Articles;
 use Blog\Model\Users;
 use Blog\Service\EmailService;
 use PHPMailer\PHPMailer\Exception;
+use Blog\Model\Connector\PDO;
 
 
 class FrontController extends AbstractController
@@ -187,8 +188,52 @@ class FrontController extends AbstractController
 
     public function connectionAction()
     {
-        $this->render("front", "connection.html.twig", []);
+        $error = false;
+        $msgError = "";
+        $msgSuccess = "";
+        $userConnection = isset($_POST['add']);
+        if ( $userConnection){
+            $msgError = $this->checkFormConnectAction();
+            if ($msgError === ''){
+                $pdo = PDO::getInstance();
+                $pseudo = $_POST['pseudoConnect'] ?? '';
+                $password = $_POST['passwordConnect'] ?? '';
+                try {
+                    $usersPDO = $pdo->prepare('SELECT * FROM users WHERE pseudo = ? AND password = ?');
+                    $usersPDO->execute([$pseudo, $password]);
+                    $userExist = $usersPDO->rowCount();
+                    if ($userExist == 1){
+                        $userInfo = $usersPDO->fetch();
+                        $_SESSION['id'] = $userInfo['id'];
+                        $_SESSION['pseudo'] = $userInfo['pseudo'];
+                        $_SESSION['email'] = $userInfo['email'];
+                        $this->redirectTo('?p=home');
+                    } else {
+                        $error = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
+                    }
+                } catch (\Exception $e) {
+                    echo "Une erreur c'est produite." . $e->getMessage();
+                }
+            }
+        }
+        $this->render("front", "connection.html.twig", [
+            'msgError' => $msgError,
+            'msgSuccess' => $msgSuccess,
+        ]);
     }
 
+    private function checkFormConnectAction()
+    {
+        $pseudo = htmlspecialchars($_POST['pseudoConnect']);
+        $password = password_hash($_POST['passwordConnect'], PASSWORD_DEFAULT);
+        $error = '';
+        try {
+            Assertion::notEmpty($pseudo, "Le champ Pseudo doit être rempli.");
+            Assertion::notEmpty($password, "Le champ mot de passe doit être rempli.");
+        } catch (AssertionFailedException $e){
+            $error = $e->getMessage();
+        }
+        return $error;
+    }
 
 }

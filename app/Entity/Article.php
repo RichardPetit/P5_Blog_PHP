@@ -186,7 +186,4 @@ class Article
         $article->setCreatedAt(new \DateTime());
         return $article;
     }
-
-
-
 }

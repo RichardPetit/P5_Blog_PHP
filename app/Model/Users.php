@@ -51,7 +51,6 @@ class Users
             }
             } catch (\Exception $e){
             echo "Une erreur c'est produite" . $e->getMessage();
-
         }
         return $user;
     }

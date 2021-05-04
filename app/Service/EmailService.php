@@ -32,7 +32,12 @@ class EmailService
         $phpMailer->addAddress($contact->getEmail());
         $phpMailer->Subject = $contact->getSubject();
         $phpMailer->Body = $contact->getMessage();
-        $phpMailer->send();
+        try {
+            $phpMailer->send();
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            exit;
+        }
     }
 
 }

@@ -21,7 +21,8 @@ class FrontController extends AbstractController
 {
     public function homeAction()
     {
-        $articles = Articles::getArticles();
+        //$articles = Articles::getArticles();
+        $articles = [];
         $this->render("front", "home.html.twig", [
             'viewArticle' => $articles,
         ]);
@@ -36,11 +37,12 @@ class FrontController extends AbstractController
 
     public function detailArticleAction()
     {
-        $id = $_GET['id'] ?? null;
-        if (!$id || $id === null) {
-            $this->redirectTo('?p=home');
-        }
+//        $id = $_GET['id'] ?? null;
+//        if (!$id || $id === null) {
+//            $this->redirectTo('?p=home');
+//        }
         try {
+            $id = 1;
             $article = Articles::getArticle((int)$id);
         } catch (ArticleNotFoundException $e) {
             $this->redirectTo('?p=home');
@@ -177,7 +179,7 @@ class FrontController extends AbstractController
                     $_SESSION['id'] = $user->getId();
                     $_SESSION['pseudo'] = $user->getPseudo();
                     $_SESSION['email'] = $user->getEmail();
-                    $this->redirectTo('?p=home');
+                    $this->redirectTo('home');
                 } catch (UserNotFoundException $e) {
                     $msgError = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
                 }
@@ -207,7 +209,7 @@ class FrontController extends AbstractController
     {
         $_SESSION = [];
         session_destroy();
-        $this->redirectTo('?p=home');
+        $this->redirectTo('home');
     }
 
 }

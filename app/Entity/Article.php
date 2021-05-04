@@ -11,6 +11,9 @@ use Exception;
 class Article
 {
 
+    public const SHORT_FORMAT_DATE = 'd/m/Y';
+    public const FULL_FORMAT_DATE = 'd/m/Y';
+
     /**
      * @var int|null
      */
@@ -135,6 +138,24 @@ class Article
     }
 
     /**
+     * @return string
+     */
+    public function getShortFormattedDate(): string
+    {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt->format(self::SHORT_FORMAT_DATE);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullFormattedDate(): string
+    {
+        $createdAt = $this->getCreatedAt();
+        return $createdAt->format(self::FULL_FORMAT_DATE);
+    }
+
+    /**
      * @param \DateTimeInterface $createdAt
      */
     public function setCreatedAt(\DateTimeInterface $createdAt): void
@@ -154,7 +175,7 @@ class Article
         string $title,
         string $content,
         string $summary,
-        User $author
+            User $author
     ): self {
         //On instantie l'Entité Article et on set les paramètres nécessaires
         $article = new self();
@@ -163,17 +184,6 @@ class Article
         $article->setSummary($summary);
         $article->setAuthor($author);
         $article->setCreatedAt(new \DateTime());
-        return self::validate($article);
-    }
-
-    public static function validate(self $article)
-    {
-        if(strlen($article->getTitle()) < 5) {
-            throw new Exception('Le titre doit contenir au moins 5 caractères');
-        }
-        //Logique de validation a ajouter
         return $article;
     }
-
-
 }

@@ -10,12 +10,12 @@
         {% for article in viewArticle %}
             <h4 class="card-title">{{ article.title }} - {{ article.author.pseudo }}</h4>
             <p>{{ article.summary }}</p>
-            <p>{{ article.content }} <br>Publié le : {{ article.date }}</p>
-            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>
+            <p>{{ article.content }} <br>Publié le : {{ article.getFullFormattedDate() }}</p>
+            <a href="/?p=detailArticle&id={{ article.id }}"> Lire l'article</a>
         {% endfor %}
     {% endblock  article %}
     <div class="newArticleBtn">
-        <a href="?p=addArticle" class="btn btn-success"> Créer un article</a>
+        <a href="?p=createArticle" class="btn btn-success"> Créer un article</a>
     </div>
     <br>
     <a href="?p=usersList" class="btn btn-success"> Voir les membres</a>

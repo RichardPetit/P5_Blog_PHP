@@ -37,19 +37,22 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
-                            <a href="?p=home">Accueil</a>
+                            <a href="{{ router.getUrlFromRouteName('home') }}">Accueil</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="?p=list">Les Articles</a>
+                            <a href="{{ router.getUrlFromRouteName('articlesListing') }}">Les Articles</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="?p=contact">Contact</a>
+                            <a href="{{ router.getUrlFromRouteName('contact') }}">Contact</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="?p=register">S'inscrire</a>
+                            <a href="{{ router.getUrlFromRouteName('register') }}">S'inscrire</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="?p=connect">Se connecter</a>
+                            <a href="{{ router.getUrlFromRouteName('login') }}">Se connecter</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ router.getUrlFromRouteName('logout') }}">Se déconnecter</a>
                         </li>
                     </ul>
                 </div>

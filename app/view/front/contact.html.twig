@@ -1,0 +1,49 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Contact</title>
+{% endblock %}
+
+
+{% block content %}
+
+    {% if( msgError != "") %}
+        <div class="alert alert-danger"> {{ msgError }}</div>
+    {% endif %}
+    {% if( msgSuccess != "") %}
+        <div class="alert alert-success"> {{ msgSuccess }}</div>
+    {% endif %}
+    {% if( msgSuccess == "") %}
+
+
+        <div class="formContact" align="center">
+            <h2>Contact</h2>
+            <hr class="star-primary"/>
+            <br>
+
+            <form method="post" action="/?p=contact">
+                <input type="hidden" name="add" value="1"/>
+                <p>
+                    <label for="emailContact">Email :</label>
+                    <input type="emailContact" placeholder="Votre adresse email" id="emailContact"
+                           name="emailContact" value="{{ emailContact }}" class="form-control">
+                </p>
+                <p>
+                    <label for="subjectContact">Sujet du message :</label><br>
+                    <input type="text" placeholder="Sujet" id="subjectContact"
+                           name="subjectContact" value="{{ subjectContact }}" class="form-control">
+                </p>
+                <p>
+                    <label for="contentContact">Message :</label>
+                    <textarea class="form-control" name="contentContact" id="contentContact" placeholder="Votre message :"
+                              value="{{ messageContact }}" cols="12" rows="8"></textarea>
+                </p>
+                <br>
+                <p>
+                    <button type="submit" class="btn btn-success"> Envoyer</button>
+                </p>
+            </form>
+            <br/>
+        </div>
+    {% endif %}
+{% endblock %}

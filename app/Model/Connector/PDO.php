@@ -5,10 +5,10 @@ namespace Blog\Model\Connector;
 
 class PDO
 {
-    const DATABASE_HOST_DEFAULT= "localhost:3306";
+    const DATABASE_HOST_DEFAULT= "localhost:3309";
     const DATABASE_NAME_DEFAULT= "blog";
     const DATABASE_USER_DEFAULT= "root";
-    const DATABASE_PWD_DEFAULT= "root:";
+    const DATABASE_PWD_DEFAULT= "root";
 
     protected static $instance = null;
 

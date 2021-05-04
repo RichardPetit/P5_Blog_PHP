@@ -3,6 +3,9 @@
 
 namespace Blog\Entity;
 
+use Assert\Assertion;
+use Blog\Exception\UserNotFoundException;
+
 /**
  * Class User
  */
@@ -164,6 +167,35 @@ class User
         return $this->initials;
     }
 
+    /**
+     * @param string $password
+     * @throws UserNotFoundException
+     */
+    public function verifyPassword(string $password):void
+    {
+
+        if (!password_verify($password, $this->getPassword())) {
+            throw new UserNotFoundException();
+        }
+    }
+
+    /**
+     * @param string $pseudo
+     * @param string $email
+     * @param string $password
+     * @return static
+     */
+    public static function create(
+        string $pseudo,
+        string $email,
+        string $password
+    ): self {
+        $user = new self();
+        $user->setPseudo($pseudo);
+        $user->setEmail($email);
+        $user->setPassword($password);
+        return $user;
+    }
 
 
 }

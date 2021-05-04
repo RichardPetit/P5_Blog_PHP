@@ -120,18 +120,32 @@ a:link{
 }
 
 .newArticleForm{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    /*display: flex;*/
+    /*flex-direction: column;*/
+    /*justify-content: center;*/
     margin: 0 8% 2% 8% ;
 }
 .formRegister{
     margin: 0 20% 2% 20%;
 }
-.formConnect{
+/* Connection */
+.formConnection{
     margin: 0 25% 2% 25%;
 }
+#passwordForget{
+    font-size: small;
+}
+
 .profilPic{
     width: 300px;
     height: 300px;
+}
+
+/* Contact */
+
+.formContact{
+    margin: 0 20% 2% 20%;
+}
+#contentContact{
+    height: 15rem;
 }

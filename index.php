@@ -16,8 +16,8 @@ $routing = [
     'detailArticle' => ['controller' => 'FrontController', 'action' => 'detailArticleAction'],
     'createUser' => ['controller' => 'FrontController', 'action' => 'createUserAction'],
     'contact' => ['controller' => 'FrontController', 'action' => 'contactAction'],
-    'connection' => ['controller' => 'FrontController', 'action' => 'connectionAction'],
-    'logOut' => ['controller' => 'FrontController', 'action' => 'logOutAction'],
+    'login' => ['controller' => 'FrontController', 'action' => 'loginAction'],
+    'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction'],
 
 ];
 

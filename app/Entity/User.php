@@ -4,6 +4,7 @@
 namespace Blog\Entity;
 
 use Assert\Assertion;
+use Blog\Exception\UserNotFoundException;
 
 /**
  * Class User
@@ -164,6 +165,18 @@ class User
     public function getInitials(): string
     {
         return $this->initials;
+    }
+
+    /**
+     * @param string $password
+     * @throws UserNotFoundException
+     */
+    public function verifyPassword(string $password):void
+    {
+
+        if (!password_verify($password, $this->getPassword())) {
+            throw new UserNotFoundException();
+        }
     }
 
     /**

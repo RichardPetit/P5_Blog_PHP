@@ -10,21 +10,16 @@
     {% if( msgError != "") %}
         <div class="alert alert-danger"> {{ msgError }}</div>
     {% endif %}
-    {% if( msgSuccess != "") %}
-        <div class="alert alert-success"> {{ msgSuccess }}</div>
-    {% endif %}
-    {% if( msgSuccess == "") %}
-
 
         <div class="formConnection" align="center">
             <h2>Me connecter</h2>
             <hr class="star-primary"/>
             <br>
-            <form method="post" action="/?p=connection">
-                <input type="hidden" name="add" value="1"/>
+            <form method="post" action="/?p=login">
+                <input type="hidden" name="submit" value="1"/>
                 <p>
-                    <label for="pseudoConnect">Pseudo :</label><br>
-                    <input type="text" placeholder="Pseudo" id="pseudoConnect" name="pseudoConnect"
+                    <label for="emailConnect">Email :</label><br>
+                    <input type="text" placeholder="email" id="emailConnect" name="emailConnect"
                            class="form-control">
                 </p>
                 <p>
@@ -42,5 +37,4 @@
 
             <br/>
         </div>
-    {% endif %}
 {% endblock %}

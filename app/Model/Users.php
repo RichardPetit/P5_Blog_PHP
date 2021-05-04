@@ -5,6 +5,7 @@ namespace Blog\Model;
 
 
 use Blog\Entity\User;
+use Blog\Exception\UserNotFoundException;
 use Blog\Model\Connector\PDO;
 
 class Users
@@ -14,13 +15,32 @@ class Users
         //On récupère l'instance de PDO
         $pdo = PDO::getInstance();
         //On récupère grâce à PDO l'enregistrement MySQL de l'user id = $id
-        $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
+        $req = $pdo->prepare("SELECT * FROM users WHERE id = ? ");
         $req->execute([$id]);
         //On fetch ici le résultat pour avoir l'enregistrement retourné par la requête
         $userPDO = $req->fetch();
         //On retourne ensuite l'Entité User hydraté depuis l'enregistrement PDO
+        if (!$userPDO){
+            throw new UserNotFoundException();
+        }
+        return self::hydrateEntity($userPDO);
+
+    }
+
+    public static function getUserByEmail($email) : User
+    {
+        $pdo = PDO::getInstance();
+
+        $req = $pdo->prepare("SELECT * FROM users WHERE email = ? ");
+        $req->execute([$email]);
+        $userPDO = $req->fetch();
+        if (!$userPDO){
+            throw new UserNotFoundException();
+        }
         return self::hydrateEntity($userPDO);
     }
+
+
 
     public static function add(User $user)
     {
@@ -66,9 +86,11 @@ class Users
         $userEntity->setIsAdmin($userFromDb->is_admin == 1);
         $userEntity->setIsActive($userFromDb->is_active == 1);
         $userEntity->setAvatar($userFromDb->avatar);
+        $userEntity->setPassword($userFromDb->password);
         //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
+
 
 
 }

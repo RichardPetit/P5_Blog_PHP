@@ -35,40 +35,22 @@ class FrontController extends AbstractController
 
     public function detailArticleAction()
     {
-        //Récuperer l'ID de l'article à afficher
         $id = $_GET['id'] ?? null;
-
         if (!$id || $id === null) {
             $this->redirectTo('?p=home');
         }
-
-        //Faire appel au modèle Articles avec une méthode getArticle($id)
-        //Le modèle doit nous renvoyer l'Entité Article configurée depuis l'enregistrement DB
         try {
             $article = Articles::getArticle((int)$id);
         } catch (ArticleNotFoundException $e) {
             $this->redirectTo('?p=home');
         }
-
-        //Renvoyer l'entité Article à la vue pour afficher le détail
         $this->render("front", "detailArticle.html.twig", [
             'detailArticle' => $article,
         ]);
     }
 
-
     public function createUserAction()
     {
-        /**
-         * Ici, ce qu'il faut comprendre c'est que cette action a 2 raisons d'être :
-         *
-         * Si on poste le paramètre add depuis le formulaire => on soumet donc le formulaire et on récupère les params
-         * Sinon on affiche le formulaire.
-         *
-         * Donc on teste juste en dessous : $addUser = isset($_POST['add']);
-         * Le isset renverra false si jamais le formulaire n'est pas posté et il renverra true si le form est posté
-         *
-         */
         $error = false;
         $msgError = "";
         $msgSuccess = "";
@@ -97,8 +79,6 @@ class FrontController extends AbstractController
             'msgError' => $msgError,
             'msgSuccess' => $msgSuccess,
         ]);
-
-
     }
 
     /**
@@ -120,12 +100,9 @@ class FrontController extends AbstractController
             Assertion::notEmpty($password, 'Le champ password doit être rempli.');
             Assertion::eq($password, $password2, 'Les 2 mots de passes doivent être identiques');
             Assertion::minLength($password, 6, 'Le mot de passe doit faire au moins 6 caractères.');
-
-
         } catch (AssertionFailedException $e) {
             $error = $e->getMessage();
         }
-
         return $error;
     }
 
@@ -158,9 +135,7 @@ class FrontController extends AbstractController
                 if (!$error) {
                     $msgSuccess = "Votre message a été envoyé. Vous receverez la réponse par email dans les plus brefs délais.";
                 }
-
             }
-
         }
         $this->render('front', 'contact.html.twig', [
             'msgError' => $msgError,
@@ -234,6 +209,16 @@ class FrontController extends AbstractController
             $error = $e->getMessage();
         }
         return $error;
+    }
+
+    public function logOutAction()
+    {
+        session_start();
+        $_SESSION = [];
+        session_destroy();
+        header('Location: home');
+        $this->render("front", "logOut.html.twig", [
+        ]);
     }
 
 }

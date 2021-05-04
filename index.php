@@ -3,6 +3,8 @@ session_start();
 
 require_once "vendor/autoload.php";
 
+
+
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
@@ -15,6 +17,8 @@ $routing = [
     'createUser' => ['controller' => 'FrontController', 'action' => 'createUserAction'],
     'contact' => ['controller' => 'FrontController', 'action' => 'contactAction'],
     'connection' => ['controller' => 'FrontController', 'action' => 'connectionAction'],
+    'logOut' => ['controller' => 'FrontController', 'action' => 'logOutAction'],
+
 ];
 
 //Routing
@@ -29,5 +33,6 @@ if(isset($routing[$page])) {
 }else {
     header('Location: home');
 }
+
 
 

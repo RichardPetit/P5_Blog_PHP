@@ -186,4 +186,13 @@ class Article
         $article->setCreatedAt(new \DateTime());
         return $article;
     }
+
+    public static function edit(
+        string $title,
+        string $content,
+        string $summary,
+        User $author
+    ): self {
+
+    }
 }

@@ -1,0 +1,38 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Tableau de bord</title>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Administration des articles :</h2>
+    {% block article %}
+        <table class="table">
+            <thead>
+            <th class="card-title">Titre</th>
+            <th class="card-title">Actions</th>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+
+                <tr>
+                    <td>
+                        <a href="detailArticle&id={{ article.id }}">{{ article.title }}</a>
+                    </td>
+                    <td>
+                        <a href="detailArticle&id={{ article.id }}" class="btn btn-primary">Modifier</a>
+                        <a href="detailArticle&id={{ article.id }}" class="btn btn-danger">Supprimer</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock  article %}
+
+    <hr/>
+
+
+
+{% endblock %}

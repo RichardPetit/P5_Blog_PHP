@@ -62,6 +62,23 @@ class Articles
     }
 
 
+    public static function edit(Article $article)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $articleId = $article->getId();
+            $userId = $article->getAuthor()->getId();
+            $content = $article->getContent();
+            $summary = $article->getSummary();
+            $title = $article->getTitle();
+            $sql = "UPDATE articles SET (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) WHERE id = ? ";
+            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite, l'article n'a pas pu être modifié." . $e->getMessage();
+        }
+        $article->setId($pdo->lastInsertId());
+        return $article;
+    }
 
 
     public static function hydrateEntity($articleFromDb): Article
@@ -77,7 +94,6 @@ class Articles
 
         return $articleEntity;
     }
-
 
 
 

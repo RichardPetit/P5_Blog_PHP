@@ -11,7 +11,7 @@ class Router
         'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction', 'url' => '/listing'],
         'createArticle' => ['controller' => 'AdminController', 'action' => 'createArticleAction', 'url' => '/articles/add'],
         'detailArticle' => ['controller' => 'FrontController', 'action' => 'detailArticleAction', 'url' => '/articles/show'],
-        'createUser' => ['controller' => 'FrontController', 'action' => 'createUserAction', 'url' => '/register'],
+        'register' => ['controller' => 'FrontController', 'action' => 'createUserAction', 'url' => '/register'],
         'contact' => ['controller' => 'FrontController', 'action' => 'contactAction', 'url' => '/contact'],
         'login' => ['controller' => 'FrontController', 'action' => 'loginAction', 'url' => '/login'],
         'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction', 'url' => '/logout'],

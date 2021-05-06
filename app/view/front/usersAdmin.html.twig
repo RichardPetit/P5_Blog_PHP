@@ -1,0 +1,36 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Liste des membres</title>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Gestion des membres :</h2>
+    {% block user %}
+        <table class="table">
+            <thead>
+            <th class="card-title">ID</th>
+            <th class="card-title">Pseudo</th>
+            <th class="card-title">Actions</th>
+            </thead>
+            <tbody>
+            {% for user in users %}
+
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>
+                        <p>{{ user.pseudo }}<p>
+                    </td>
+                    <td>
+                        <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>
+                        <a href="/admin_users" class="btn btn-danger">Supprimer le membre</a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock  user %}
+
+{% endblock %}

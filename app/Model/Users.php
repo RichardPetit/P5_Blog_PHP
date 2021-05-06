@@ -27,6 +27,17 @@ class Users
 
     }
 
+    public static function  getAllUsers()
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $allUsers = $pdo->query('SELECT id, pseudo, email, is_admin FROM users');
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite." . $e->getMessage();
+        }
+        return $allUsers;
+    }
+
     public static function getUserByEmail($email) : User
     {
         $pdo = PDO::getInstance();

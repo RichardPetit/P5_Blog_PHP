@@ -15,7 +15,8 @@ class Router
         'contact' => ['controller' => 'FrontController', 'action' => 'contactAction', 'url' => '/contact'],
         'login' => ['controller' => 'FrontController', 'action' => 'loginAction', 'url' => '/login'],
         'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction', 'url' => '/logout'],
-        'dashbord' => ['controller' => 'AdminController', 'action' => 'dashbordAction', 'url' => '/dashbord'],
+        'dashbord' => ['controller' => 'AdminController', 'action' => 'dashbordAction', 'url' => '/admin'],
+        'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
 
     ];
 

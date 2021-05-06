@@ -7,6 +7,7 @@ use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Model\Articles;
+use Blog\Model\Users;
 
 class AdminController extends AbstractController
 {
@@ -66,7 +67,7 @@ class AdminController extends AbstractController
     }
 
 
-    public function updateArticleAction()
+    public function editArticleAction()
     {
         $this->throwExceptionIfNotAdmin();
 
@@ -85,12 +86,12 @@ class AdminController extends AbstractController
                 $content = $_POST['content'] ?? '';
                 $summary = $_POST['summary'] ?? '';
                 try {
-                    $article = Article::create($title, $content, $summary,$author);
+                    $article = Article::edit($title, $content, $summary,$author);
                 } catch (AssertionFailedException $e){
                     $error = true;
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
-                if(!$error && Articles::add($article)) {
+                if(!$error && Articles::edit($article)) {
                     $msgSuccess = "Votre article à bien été créé.";
                 }
             }
@@ -121,10 +122,18 @@ class AdminController extends AbstractController
 
     public function dashbordAction()
     {
-        $this->throwExceptionIfNotAdmin();
+//        $this->throwExceptionIfNotAdmin();
 
+        $this->render('front', 'dashbordAdmin.html.twig', [
+            'articles' => Articles::getArticles(),
+        ]);
+    }
 
-        $this->render('front', 'dashbordAdmin.html.twig', []);
+    public function usersAdminAction()
+    {
+        $this->render('front', 'usersAdmin.html.twig', [
+            'users' => Users::getAllUsers(),
+        ]);
     }
 
 

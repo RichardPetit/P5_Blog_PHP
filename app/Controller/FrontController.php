@@ -75,9 +75,6 @@ class FrontController extends AbstractController
                 }
             }
         }
-        //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
-        //Donc là on affiche le form
-
         $this->render('front', 'register.html.twig', [
             'msgError' => $msgError,
             'msgSuccess' => $msgSuccess,
@@ -211,5 +208,4 @@ class FrontController extends AbstractController
         session_destroy();
         $this->redirectTo('home');
     }
-
 }

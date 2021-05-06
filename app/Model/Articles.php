@@ -76,8 +76,24 @@ class Articles
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, l'article n'a pas pu être modifié." . $e->getMessage();
         }
-        $article->setId($pdo->lastInsertId());
         return $article;
+    }
+
+    public static function delete(Article $article)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $articleId = $article->getId();
+            $userId = $article->getAuthor()->getId();
+            $content = $article->getContent();
+            $summary = $article->getSummary();
+            $title = $article->getTitle();
+            $sql = "DELETE FROM articles WHERE id = ? ";
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite, l'article n'a pas pu être ajouté." . $e->getMessage();
+        }
+        header("Location: /admin");
+        exit;
     }
 
 

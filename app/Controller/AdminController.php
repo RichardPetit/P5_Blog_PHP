@@ -119,6 +119,31 @@ class AdminController extends AbstractController
         return $error;
     }
 
+    public function deleteArticleAction()
+    {
+        $this->throwExceptionIfNotAdmin();
+
+        $deleteArticle = isset($_POST['delete']);
+
+
+        if ($deleteArticle) {
+            try {
+                $article = Article::create($title, $content, $summary, $author);
+            } catch (AssertionFailedException $e) {
+                $error = true;
+                $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
+            }
+            if (!$error && Articles::add($article)) {
+                $msgSuccess = "Votre article à bien été créé.";
+            }
+        }
+        $this->render('front', 'createArticle.html.twig', [
+            'msgError' => $msgError,
+            'msgSuccess' => $msgSuccess,
+        ]);
+    }
+
+
 
     public function dashbordAction()
     {

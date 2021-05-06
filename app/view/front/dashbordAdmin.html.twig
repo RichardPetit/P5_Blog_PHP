@@ -22,7 +22,11 @@
                     </td>
                     <td>
                         <a href="detailArticle&id={{ article.id }}" class="btn btn-primary">Modifier</a>
-                        <a href="detailArticle&id={{ article.id }}" class="btn btn-danger">Supprimer</a>
+                        <form method="post" action="/admin">
+                            <input type="hidden" name="delete">
+                        <button name="delete" class="btn btn-danger">Supprimer</button>
+                        </form>
+
                     </td>
                 </tr>
 

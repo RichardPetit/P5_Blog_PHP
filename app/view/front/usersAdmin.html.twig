@@ -12,15 +12,21 @@
             <thead>
             <th class="card-title">ID</th>
             <th class="card-title">Pseudo</th>
+            <th class="card-title">Satut du membre</th>
             <th class="card-title">Actions</th>
             </thead>
             <tbody>
             {% for user in users %}
 
                 <tr>
-                    <td>{{ user.id }}</td>
+                    <td>
+                        <p>{{ user.id }}</p>
+                    </td>
                     <td>
                         <p>{{ user.pseudo }}<p>
+                    </td>
+                    <td>
+                        <p>{{ user.is_admin }}</p>
                     </td>
                     <td>
                         <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>

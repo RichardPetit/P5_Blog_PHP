@@ -86,6 +86,21 @@ class Users
         return $user;
     }
 
+    public function userProfil($id)
+    {
+        return $this->getProfil('users', 'User',$id);
+    }
+
+    public static function getProfil($id)
+    {
+        $pdo = Db::getDb();
+        $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
+        $req->execute(array($id));
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+
     public static function hydrateEntity($userFromDb) : User
     {
         //$userFromDB correspond à l'enregistrement PDO

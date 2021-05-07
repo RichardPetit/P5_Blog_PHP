@@ -208,4 +208,12 @@ class FrontController extends AbstractController
         session_destroy();
         $this->redirectTo('home');
     }
+
+    public function profilAction()
+    {
+        $id = $_GET['id'];
+        $this->render("front", "profile.html.twig", [
+            'user' => Users::getProfil($id),
+        ]);
+    }
 }

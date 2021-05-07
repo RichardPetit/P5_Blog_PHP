@@ -17,7 +17,7 @@ class Router
         'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction', 'url' => '/logout'],
         'dashbord' => ['controller' => 'AdminController', 'action' => 'dashbordAction', 'url' => '/admin'],
         'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
-
+        'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile/id'],
     ];
 
     public function run()

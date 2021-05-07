@@ -6,6 +6,18 @@
 
 {% block content %}
     <h1>Homepage</h1>
+    {% block cv %}
+<div class="svg">
+    <a class="button" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
+        <svg>
+            <rect height="40" width="130" fill="transparent" />
+        </svg>
+        <span>Mon CV</span>
+    </a>
+</div>
+
+    {% endblock cv %}
+
     {% block article %}
         {% for article in viewArticle %}
             <h4 class="card-title">{{ article.title }} - {{ article.author.pseudo }}</h4>

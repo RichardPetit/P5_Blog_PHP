@@ -18,10 +18,10 @@
 
                 <tr>
                     <td>
-                        <a href="detailArticle&id={{ article.id }}">{{ article.title }}</a>
+                        <a href="/articles/show{{ article.id }}">{{ article.title }}</a>
                     </td>
                     <td>
-                        <a href="detailArticle&id={{ article.id }}" class="btn btn-primary">Modifier</a>
+                        <a href="/articles/show{{ article.id }}" class="btn btn-primary">Modifier</a>
                         <form method="post" action="/admin">
                             <input type="hidden" name="delete">
                         <button name="delete" class="btn btn-danger">Supprimer</button>

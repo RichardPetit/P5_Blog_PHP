@@ -5,7 +5,6 @@ namespace Blog\Controller;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Blog\Entity\Article;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
@@ -14,15 +13,13 @@ use Blog\Model\Articles;
 use Blog\Model\Users;
 use Blog\Service\EmailService;
 use PHPMailer\PHPMailer\Exception;
-use Blog\Model\Connector\PDO;
 
 
 class FrontController extends AbstractController
 {
     public function homeAction()
     {
-        //$articles = Articles::getArticles();
-        $articles = [];
+        $articles = Articles::getArticles();
         $this->render("front", "home.html.twig", [
             'viewArticle' => $articles,
         ]);
@@ -35,15 +32,10 @@ class FrontController extends AbstractController
         ]);
     }
 
-    public function detailArticleAction()
+    public function detailArticleAction(int $id)
     {
-//        $id = $_GET['id'] ?? null;
-//        if (!$id || $id === null) {
-//            $this->redirectTo('?p=home');
-//        }
         try {
-            $id = 1;
-            $article = Articles::getArticle((int)$id);
+            $article = Articles::getArticle($id);
         } catch (ArticleNotFoundException $e) {
             $this->redirectTo('?p=home');
         }
@@ -209,11 +201,12 @@ class FrontController extends AbstractController
         $this->redirectTo('home');
     }
 
-    public function profilAction()
+    public function profileAction()
     {
-        $id = $_GET['id'];
+        $this->redirectToHomeIfNotLoggedIn();
+        $userLogged = $this->getUser();
         $this->render("front", "profile.html.twig", [
-            'user' => Users::getProfil($id),
+            'user' => $userLogged,
         ]);
     }
 }

@@ -18,14 +18,11 @@
 
                 <tr>
                     <td>
-                        <a href="/articles/show{{ article.id }}">{{ article.title }}</a>
+                        <a href="/articles/{{ article.id }}/edit">{{ article.title }}</a>
                     </td>
                     <td>
-                        <a href="/articles/show{{ article.id }}" class="btn btn-primary">Modifier</a>
-                        <form method="post" action="/admin">
-                            <input type="hidden" name="delete">
-                        <button name="delete" class="btn btn-danger">Supprimer</button>
-                        </form>
+                        <a href="/articles/{{ article.id }}/edit" class="btn btn-primary">Modifier</a>
+                        <a href="/articles/{{ article.id }}/delete" class="btn btn-primary">Supprimer</a>
 
                     </td>
                 </tr>
@@ -37,6 +34,6 @@
 
     <hr/>
 
-    <a href="/admin_users" class="btn btn-success"> Administer les membres</a>
+    <a href="../../../index.php" class="btn btn-success"> Administer les membres</a>
 
 {% endblock %}

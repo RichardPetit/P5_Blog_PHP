@@ -101,4 +101,18 @@ class AbstractController
         }
     }
 
+    protected function redirectToHomeIfNotLoggedIn()
+    {
+        if(!$this->isLoggedIn()) {
+            $this->redirectTo('home');
+        }
+    }
+
+    protected function redirectToHomeIfNotAdmin()
+    {
+        if(!$this->isAdmin()) {
+            $this->redirectTo('home');
+        }
+    }
+
 }

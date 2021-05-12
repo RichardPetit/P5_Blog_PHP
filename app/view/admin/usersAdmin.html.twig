@@ -1,4 +1,4 @@
-{% extends "_layout.html.twig" %}
+{% extends "._layout.html.twig" %}
 
 {% block head %}
     <title>Liste des membres</title>
@@ -30,7 +30,7 @@
                     </td>
                     <td>
                         <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>
-                        <a href="/admin_users" class="btn btn-danger">Supprimer le membre</a>
+                        <a href="../../../index.php" class="btn btn-danger">Supprimer le membre</a>
                     </td>
                 </tr>
 
@@ -38,7 +38,7 @@
             </tbody>
         </table>
         <br>
-        <a href="/admin" class="btn btn-success"> Administer les articles</a>
+        <a href="../../../index.php" class="btn btn-success"> Administer les articles</a>
     {% endblock  user %}
 
 {% endblock %}

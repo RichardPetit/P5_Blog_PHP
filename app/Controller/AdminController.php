@@ -8,14 +8,19 @@ use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Model\Articles;
 use Blog\Model\Users;
+use Blog\Service\Router;
 
 class AdminController extends AbstractController
 {
 
+    public function __construct(Router $router)
+    {
+        parent::__construct($router);
+        $this->redirectToHomeIfNotAdmin();
+    }
+
     public function createArticleAction()
     {
-        $this->throwExceptionIfNotAdmin();
-
         $error = false;
         $msgError = "";
         $msgSuccess = "";
@@ -69,8 +74,6 @@ class AdminController extends AbstractController
 
     public function editArticleAction()
     {
-        $this->throwExceptionIfNotAdmin();
-
         $error = false;
         $msgError = "";
         $msgSuccess = "";
@@ -121,8 +124,6 @@ class AdminController extends AbstractController
 
     public function deleteArticleAction()
     {
-        $this->throwExceptionIfNotAdmin();
-
         $deleteArticle = isset($_POST['delete']);
 
 
@@ -145,18 +146,16 @@ class AdminController extends AbstractController
 
 
 
-    public function dashbordAction()
+    public function dashboardAction()
     {
-//        $this->throwExceptionIfNotAdmin();
-
-        $this->render('front', 'dashbordAdmin.html.twig', [
+        $this->render('admin', 'dashboardAdmin.html.twig', [
             'articles' => Articles::getArticles(),
         ]);
     }
 
     public function usersAdminAction()
     {
-        $this->render('front', 'usersAdmin.html.twig', [
+        $this->render('admin', 'usersAdmin.html.twig', [
             'users' => Users::getAllUsers(),
         ]);
     }

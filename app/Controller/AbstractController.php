@@ -5,7 +5,7 @@ namespace Blog\Controller;
 use Blog\Entity\User;
 use Blog\Exception\UserNotFoundException;
 use Blog\Model\Users;
-use Blog\Service\Router;
+use Blog\Route\Router;
 use Exception;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;

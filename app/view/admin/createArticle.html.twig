@@ -15,12 +15,16 @@
         <div class="alert alert-success"> {{ msgSuccess }}</div>
     {% endif %}
     {% if( msgSuccess == "") %}
+        <div class="newArticleBtn">
+            <a href="{{ router.getUrlFromRouteName('dashboard') }}" class="btn btn-success"> Annuler</a>
+        </div>
 
     <div class="newArticleForm">
         <h2>Nouvel Article</h2>
         <br>
         <hr class="star-primary">
         <br>
+
         <div class="centerForm">
             <form method="post" action="/?p=createArticle">
                 <input type="hidden" name="add" value="1">

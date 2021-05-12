@@ -1,6 +1,6 @@
 <?php
 
-use Blog\Service\Router;
+use Blog\Route\Router;
 
 session_start();
 

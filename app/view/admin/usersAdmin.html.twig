@@ -1,4 +1,4 @@
-{% extends "._layout.html.twig" %}
+{% extends "_layout.html.twig" %}
 
 {% block head %}
     <title>Liste des membres</title>
@@ -12,7 +12,7 @@
             <thead>
             <th class="card-title">ID</th>
             <th class="card-title">Pseudo</th>
-            <th class="card-title">Satut du membre</th>
+            <th class="card-title">Admin</th>
             <th class="card-title">Actions</th>
             </thead>
             <tbody>
@@ -26,7 +26,7 @@
                         <p>{{ user.pseudo }}<p>
                     </td>
                     <td>
-                        <p>{{ user.is_admin }}</p>
+                        <p>{{ user.is_admin ? 'Oui': 'Non' }}</p>
                     </td>
                     <td>
                         <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>
@@ -37,8 +37,6 @@
             {% endfor %}
             </tbody>
         </table>
-        <br>
-        <a href="../../../index.php" class="btn btn-success"> Administer les articles</a>
     {% endblock  user %}
 
 {% endblock %}

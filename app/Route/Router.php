@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Blog\Service;
+namespace Blog\Route;
 
 class Router
 {

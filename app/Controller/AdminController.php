@@ -8,7 +8,7 @@ use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Model\Articles;
 use Blog\Model\Users;
-use Blog\Service\Router;
+use Blog\Route\Router;
 
 class AdminController extends AbstractController
 {
@@ -17,6 +17,7 @@ class AdminController extends AbstractController
     {
         parent::__construct($router);
         $this->redirectToHomeIfNotAdmin();
+
     }
 
     public function createArticleAction()
@@ -42,11 +43,12 @@ class AdminController extends AbstractController
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if(!$error && Articles::add($article)) {
+                    $this->redirectTo('dashboard');
                     $msgSuccess = "Votre article à bien été créé.";
                 }
             }
         }
-        $this->render('front', 'createArticle.html.twig', [
+        $this->render('admin', 'createArticle.html.twig', [
             'msgError' => $msgError,
             'msgSuccess' => $msgSuccess,
         ]);

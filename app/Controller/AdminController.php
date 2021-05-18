@@ -7,6 +7,7 @@ use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
 use Blog\Model\Articles;
+use Blog\Model\Comments;
 use Blog\Model\Users;
 use Blog\Route\Router;
 
@@ -162,6 +163,13 @@ class AdminController extends AbstractController
         ]);
     }
 
+    public function commentsListingAction($id)
+    {
+        $this->render("admin", "commentsAdmin.html.twig", [
+            'comments' => Comments::getCommentsForArticle($id, false),
+            'article' => Articles::getArticle($id),
+        ]);
+    }
 
 
 

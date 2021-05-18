@@ -25,22 +25,30 @@ class Comments
 
     }
 
-    public static function getCommentsForArticle($id)
+    public static function getCommentsForArticle($id, $moderateOnly = true)
     {
         $pdo = PDO::getInstance();
         try {
-            $commentsPDO = $pdo->prepare('SELECT * FROM comments WHERE  articles_id = ?');
+            $query = 'SELECT * FROM comments WHERE  articles_id = ?';
+            if ($moderateOnly){
+                $query .= " AND is_valid = 1";
+            }
+
+            $req = $pdo->prepare($query);
+            $req->execute([$id]);
         }
         catch (\Exception $e) {
             echo "Erreur de connexion à la base de données pour les commentaires. Exception reçue : " . $e->getMessage();
         }
+        $commentsPDO = $req->fetchAll();
+
+
         $commentEntities = [];
         foreach ($commentsPDO as $comment) {
-            $commentEntities[] = self::hydrateEntity($commentsPDO);
+            $commentEntities[] = self::hydrateEntity($comment);
         }
-        $commentsPDO->execute(array($id));
-        $data = $commentsPDO->fetchAll();
-        return $data;
+
+        return $commentEntities;
     }
 
     public  static function addComment($articleId, $title, $comment)
@@ -92,7 +100,7 @@ class Comments
         $commentEntity->setId($commentFromDb->id);
         $commentEntity->setTitle($commentFromDb->title);
         $commentEntity->setContent($commentFromDb->content);
-//        $commentEntity->setCreatedAt($commentFromDb->date);
+        $commentEntity->setCreatedAt(new \DateTime($commentFromDb->date));
         $author = Users::getUser($commentFromDb->users_id);
         $commentEntity->setAuthor($author);
         $article = Articles::getArticle($commentFromDb->articles_id);

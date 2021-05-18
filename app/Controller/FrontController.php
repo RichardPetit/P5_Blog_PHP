@@ -45,12 +45,6 @@ class FrontController extends AbstractController
         ]);
     }
 
-    public function commentsListingAction()
-    {
-        $this->render("front", "commentsAdmin.html.twig", [
-            'comments' => Comments::getAllComments(),
-        ]);
-    }
 
 
     public function createUserAction()

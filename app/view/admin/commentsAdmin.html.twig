@@ -6,13 +6,11 @@
 
 
 {% block content %}
-    <h2>Gestion des commentaires :</h2>
+    <h2>Commentaires de l'article {{ article.title }}</h2>
     {% block comment %}
         <table class="table">
             <thead>
-            <th class="card-title">ID</th>
-            <th class="card-title">Article associé</th>
-            <th class="card-title">Auteur du commentaire</th>
+            <th class="card-title">Auteur</th>
             <th class="card-title">Titre</th>
             <th class="card-title">Contenu</th>
             <th class="card-title">Date</th>
@@ -22,12 +20,6 @@
 
                 <tr>
                     <td>
-                        <p>{{ comment.id }}</p>
-                    </td>
-                    <td>
-                        <p>{{ comment.article.title }}<p>
-                    </td>
-                    <td>
                         <p>{{ comment.author.pseudo }}</p>
                     </td>
                     <td>
@@ -36,12 +28,11 @@
                     <td>
                         <p>{{ comment.content }}</p>
                     </td>
-{#                    <td>#}
-{#                        <p>{{ comment.getFullFormattedDate }}</p>#}
-{#                    </td>#}
                     <td>
-                        <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>
-                        <a href="../../../index.php" class="btn btn-danger">Supprimer le membre</a>
+                        <p>{{ comment.getFullFormattedDate }}</p>
+                    </td>
+                    <td>
+
                     </td>
                 </tr>
 

@@ -43,6 +43,9 @@ class Comment
      */
     public Article $article;
 
+    /** @var bool */
+    public bool $isValid = false;
+
     /**
      * @return int|null
      */
@@ -177,6 +180,22 @@ class Comment
         $comment->setArticle($article);
         $comment->setCreatedAt(new \DateTime());
         return $comment;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->isValid;
+    }
+
+    /**
+     * @param bool $isValid
+     */
+    public function setIsValid(bool $isValid): void
+    {
+        $this->isValid = $isValid;
     }
 
 }

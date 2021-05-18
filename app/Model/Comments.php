@@ -4,11 +4,30 @@
 namespace Blog\Model;
 
 use Blog\Entity\Comment;
+use Blog\Exception\CommentNotFoundException;
 use Blog\Model\Connector\PDO;
 
 
 class Comments
 {
+
+    public static function getComment(int $id)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $req = $pdo->prepare("SELECT * FROM comments WHERE id = ? ");
+            $req->execute([$id]);
+            $comment = $req->fetch();
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite. L'article n'a pas été trouvé ou n'existe pas." . $e->getMessage();
+        }
+
+        if(!$comment) {
+            throw new CommentNotFoundException('Comment not found');
+        }
+        return self::hydrateEntity($comment);
+    }
+
 
     public static function getAllComments()
     {
@@ -25,7 +44,7 @@ class Comments
 
     }
 
-    public static function getCommentsForArticle($id, $moderateOnly = true)
+    public static function getCommentsForArticle(int $id, bool $moderateOnly = true)
     {
         $pdo = PDO::getInstance();
         try {
@@ -49,6 +68,39 @@ class Comments
         }
 
         return $commentEntities;
+    }
+
+    public static function getCommentsForArticleForAdmin(int $id)
+    {
+        return self::getCommentsForArticle($id, false);
+    }
+
+
+    //Methode qui gère le changement de statut de validation d'un commentaire ($validate = true/false)
+
+    public static function changeValidationStatusForComment(int $id, bool $validate = true)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $query = 'UPDATE comments SET is_valid = ? WHERE id = ?';
+            $req = $pdo->prepare($query);
+            $req->execute([$validate, $id]);
+        }
+        catch (\Exception $e) {
+            echo "Erreur de connexion à la base de données pour les commentaires. Exception reçue : " . $e->getMessage();
+        }
+    }
+
+    //Methode validate
+    public static function validateComment(int $id)
+    {
+        self::changeValidationStatusForComment($id);
+    }
+
+    //Methode invalidate
+    public static function invalidateComment(int $id)
+    {
+        self::changeValidationStatusForComment($id, false);
     }
 
     public  static function addComment($articleId, $title, $comment)
@@ -101,6 +153,7 @@ class Comments
         $commentEntity->setTitle($commentFromDb->title);
         $commentEntity->setContent($commentFromDb->content);
         $commentEntity->setCreatedAt(new \DateTime($commentFromDb->date));
+        $commentEntity->setIsValid((bool)$commentFromDb->is_valid);
         $author = Users::getUser($commentFromDb->users_id);
         $commentEntity->setAuthor($author);
         $article = Articles::getArticle($commentFromDb->articles_id);

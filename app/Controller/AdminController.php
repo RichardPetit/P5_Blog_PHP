@@ -166,11 +166,33 @@ class AdminController extends AbstractController
     public function commentsListingAction($id)
     {
         $this->render("admin", "commentsAdmin.html.twig", [
-            'comments' => Comments::getCommentsForArticle($id, false),
+            'comments' => Comments::getCommentsForArticleForAdmin($id),
             'article' => Articles::getArticle($id),
         ]);
     }
 
+    public function validateCommentAction(int $id)
+    {
+        try {
+            $comment = Comments::getComment($id);
+            Comments::validateComment($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $articleId = $comment->getArticle()->getId();
+        $this->redirectToPath('/comments/'.$articleId);
+    }
 
+    public function invalidateCommentAction(int $id)
+    {
+        try {
+            $comment = Comments::getComment($id);
+            Comments::invalidateComment($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $articleId = $comment->getArticle()->getId();
+        $this->redirectToPath('/comments/'.$articleId);
+    }
 
 }

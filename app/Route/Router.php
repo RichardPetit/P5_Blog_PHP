@@ -21,6 +21,8 @@ class Router
         'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
         'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile'],
         'comments' => ['controller' => 'AdminController', 'action' => 'commentsListingAction', 'url' => '/comments/:id'],
+        'validateComment' => ['controller' => 'AdminController', 'action' => 'validateCommentAction', 'url' => '/comments-validate/:id'],
+        'invalidateComment' => ['controller' => 'AdminController', 'action' => 'invalidateCommentAction', 'url' => '/comments-invalidate/:id'],
     ];
 
     public function run()

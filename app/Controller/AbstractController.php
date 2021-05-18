@@ -73,6 +73,16 @@ class AbstractController
         exit;
     }
 
+    /**
+     * Redirects to a given path
+     * @param string $path
+     */
+    protected function redirectToPath(string $path)
+    {
+        header('Location: '.$path);
+        exit;
+    }
+
     protected function isLoggedIn(): bool
     {
         return isset($_SESSION['id']);

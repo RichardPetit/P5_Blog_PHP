@@ -22,7 +22,6 @@ class Articles
         foreach ($articlesPDO as $articlePDO) {
             $articleEntities[] = self::hydrateEntity($articlePDO);
         }
-
         return $articleEntities;
     }
 
@@ -40,7 +39,6 @@ class Articles
         if(!$showArticle) {
             throw new ArticleNotFoundException('Article not found');
         }
-
         return self::hydrateEntity($showArticle);
     }
 
@@ -90,7 +88,7 @@ class Articles
             $title = $article->getTitle();
             $sql = "DELETE FROM articles WHERE id = ? ";
         } catch (\Exception $e) {
-            echo "Une erreur c'est produite, l'article n'a pas pu être ajouté." . $e->getMessage();
+            echo "Une erreur c'est produite, l'article n'a pas pu être supprimé." . $e->getMessage();
         }
         header("Location: /admin");
         exit;
@@ -110,7 +108,6 @@ class Articles
 
         return $articleEntity;
     }
-
 
 
 }

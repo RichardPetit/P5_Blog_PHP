@@ -1,33 +1,44 @@
 {% extends "_layout.html.twig" %}
 
 {% block head %}
-    <title>Liste des membres</title>
+    <title>Liste des commentaires</title>
 {% endblock %}
 
 
 {% block content %}
-    <h2>Gestion des membres :</h2>
-    {% block user %}
+    <h2>Gestion des commentaires :</h2>
+    {% block comment %}
         <table class="table">
             <thead>
             <th class="card-title">ID</th>
-            <th class="card-title">Pseudo</th>
-            <th class="card-title">Admin</th>
-            <th class="card-title">Actions</th>
+            <th class="card-title">Article associé</th>
+            <th class="card-title">Auteur du commentaire</th>
+            <th class="card-title">Titre</th>
+            <th class="card-title">Contenu</th>
+            <th class="card-title">Date</th>
             </thead>
             <tbody>
-            {% for user in users %}
+            {% for comment in comments %}
 
                 <tr>
                     <td>
-                        <p>{{ user.id }}</p>
+                        <p>{{ comment.id }}</p>
                     </td>
                     <td>
-                        <p>{{ user.pseudo }}<p>
+                        <p>{{ comment.article.title }}<p>
                     </td>
                     <td>
-                        <p>{{ user.is_admin ? 'Oui': 'Non' }}</p>
+                        <p>{{ comment.author.pseudo }}</p>
                     </td>
+                    <td>
+                        <p>{{ comment.title }}</p>
+                    </td>
+                    <td>
+                        <p>{{ comment.content }}</p>
+                    </td>
+{#                    <td>#}
+{#                        <p>{{ comment.getFullFormattedDate }}</p>#}
+{#                    </td>#}
                     <td>
                         <a href="user_profile={{ user.id }}" class="btn btn-primary">Modifier statut</a>
                         <a href="../../../index.php" class="btn btn-danger">Supprimer le membre</a>
@@ -37,6 +48,6 @@
             {% endfor %}
             </tbody>
         </table>
-    {% endblock  user %}
+    {% endblock  comment %}
 
 {% endblock %}

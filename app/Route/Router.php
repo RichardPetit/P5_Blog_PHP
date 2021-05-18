@@ -18,6 +18,7 @@ class Router
         'dashboard' => ['controller' => 'AdminController', 'action' => 'dashboardAction', 'url' => '/admin'],
         'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
         'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile'],
+        'comments' => ['controller' => 'FrontController', 'action' => 'commentsListingAction', 'url' => '/comments'],
     ];
 
     public function run()

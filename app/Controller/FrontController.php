@@ -10,6 +10,7 @@ use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
 use Blog\Exception\UserNotFoundException;
 use Blog\Model\Articles;
+use Blog\Model\Comments;
 use Blog\Model\Users;
 use Blog\Service\EmailService;
 use PHPMailer\PHPMailer\Exception;
@@ -43,6 +44,14 @@ class FrontController extends AbstractController
             'detailArticle' => $article,
         ]);
     }
+
+    public function commentsListingAction()
+    {
+        $this->render("front", "commentsAdmin.html.twig", [
+            'comments' => Comments::getAllComments(),
+        ]);
+    }
+
 
     public function createUserAction()
     {

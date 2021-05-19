@@ -195,4 +195,52 @@ class AdminController extends AbstractController
         $this->redirectToPath('/comments/'.$articleId);
     }
 
+    public function changeUserStatusActiveAction(int $id)
+    {
+        try {
+            $user = Users::getUser($id);
+            Users::changeUserOnActive($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $userId= $user->getId();
+        $this->redirectToPath('/profile/'.$userId);
+    }
+
+    public function changeUserStatusInactiveAction(int $id)
+    {
+        try {
+            $user = Users::getUser($id);
+            Users::changeUserOnInactive($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $userId = $user->getId();
+        $this->redirectToPath('/profile/'.$userId);
+    }
+
+    public function changeUserToAdminAction(int $id)
+    {
+        try {
+            $user = Users::getUser($id);
+            Users::changeUserToAdmin($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $userId= $user->getId();
+        $this->redirectToPath('/profile/'.$userId);
+    }
+
+    public function changeAdminToUserAction(int $id)
+    {
+        try {
+            $user = Users::getUser($id);
+            Users::changeAdminToUser($id);
+        }catch (\Exception $e) {
+            $this->redirectTo('home');
+        }
+        $userId = $user->getId();
+        $this->redirectToPath('/profile/'.$userId);
+    }
+
 }

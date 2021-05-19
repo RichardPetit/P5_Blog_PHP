@@ -3,7 +3,6 @@
 
 namespace Blog\Entity;
 
-use Assert\Assertion;
 use Blog\Exception\UserNotFoundException;
 
 /**
@@ -35,12 +34,12 @@ class User
     /**
      * @var bool
      */
-    public bool $isAdmin;
+    public bool $isAdmin = false;
 
     /**
      * @var bool
      */
-    public bool $isActive;
+    public bool $isActive = true;
 
     /**
      * @var string

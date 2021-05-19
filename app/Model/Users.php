@@ -93,12 +93,62 @@ class Users
 
     public static function getProfil($id)
     {
-        $pdo = Db::getDb();
+        $pdo = PDO::getInstance();
         $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
         $req->execute(array($id));
         $data = $req->fetch(\PDO::FETCH_ASSOC);
         return $data;
     }
+
+    //Gère le changement de statut d'un utilisateur (actif ou non)
+
+     public static function changeUserStatus(int $id, bool $active = true)
+     {
+         $pdo = PDO::getInstance();
+         try {
+             $query = "UPDATE users SET is_active = ? WHERE id = ?";
+             $req = $pdo->prepare($query);
+             $req->execute([$active, $id]);
+         } catch (\Exception $e){
+             echo "Erreur de connexion à la base de données. Exception reçue : " . $e->getMessage();
+         }
+     }
+
+
+    public static function changeUserOnActive(int $id)
+    {
+        self::changeUserStatus($id);
+    }
+
+    public static function changeUserOnInactive(int $id)
+    {
+        self::changeUserStatus($id, false);
+    }
+
+    //Gère le changement de rôle d'un utilisateur (admin ou non)
+
+    public static function changeUserRole(int $id, bool $admin = true)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $query = "UPDATE users SET is_admin = ? WHERE id = ?";
+            $req = $pdo->prepare($query);
+            $req->execute([$admin, $id]);
+        } catch (\Exception $e){
+            echo "Erreur de connexion à la base de données. Exception reçue : " . $e->getMessage();
+        }
+    }
+
+    public static function changeUserToAdmin(int $id)
+    {
+        self::changeUserRole($id);
+    }
+    public static function changeAdminToUser(int $id)
+    {
+        self::changeUserRole($id, false);
+    }
+
+
 
 
     public static function hydrateEntity($userFromDb) : User

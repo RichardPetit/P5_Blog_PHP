@@ -23,6 +23,10 @@ class Router
         'comments' => ['controller' => 'AdminController', 'action' => 'commentsListingAction', 'url' => '/comments/:id'],
         'validateComment' => ['controller' => 'AdminController', 'action' => 'validateCommentAction', 'url' => '/comments-validate/:id'],
         'invalidateComment' => ['controller' => 'AdminController', 'action' => 'invalidateCommentAction', 'url' => '/comments-invalidate/:id'],
+        'activateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusActiveAction', 'url' => '/profile/:id'],
+        'deactivateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusInactiveAction', 'url' => '/profile/:id'],
+        'userToAdmin' => ['controller' => 'AdminController', 'action' => 'changeUserToAdminAction', 'url' => '/profile/:id'],
+        'adminToUser' => ['controller' => 'AdminController', 'action' => 'changeAdminToUserAction', 'url' => '/profile/:id'],
     ];
 
     public function run()

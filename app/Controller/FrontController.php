@@ -204,12 +204,13 @@ class FrontController extends AbstractController
         $this->redirectTo('home');
     }
 
-    public function profileAction()
+    public function profileAction(/*$id*/)
     {
         $this->redirectToHomeIfNotLoggedIn();
         $userLogged = $this->getUser();
         $this->render("front", "profile.html.twig", [
             'user' => $userLogged,
+//            'id' => Users::getUser($id),
         ]);
     }
 }

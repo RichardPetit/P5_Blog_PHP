@@ -8,13 +8,25 @@
 <div align="center">
     <h1>Profil utilisateur</h1>
     <hr class="star-primary">
-    {% block profil %}
+    {% block profile %}
 
     <h4>Profil de {{ user.pseudo }}</h4>
     <br>
     <p>Adresse email : {{ user.email }}</p>
     <p>Photo de profil : <img class="profilPic" src="{{ user.avatar }}" alt="photo de profil"></p>
-        <br> <br> <br>
-    {% endblock profil %}
+        <br> <br>
+        {% if is_admin == true %}
+            <p>Role de l'utilisateur : Membre</p>
+        {% else %}
+            <p>Role de l'utilisateur : Admin</p>
+        {% endif %}
+        <br>
+        {% if is_active == true %}
+            <p>Utilisateur inactif</p>
+        {% else %}
+            <p>Utilisateur actif</p>
+        {% endif %}
+
+    {% endblock profile %}
 </div>
 {% endblock %}

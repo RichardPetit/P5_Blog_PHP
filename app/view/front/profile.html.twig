@@ -16,15 +16,15 @@
     <p>Photo de profil : <img class="profilPic" src="{{ user.avatar }}" alt="photo de profil"></p>
         <br> <br>
         {% if is_admin == true %}
-            <p>Role de l'utilisateur : Membre</p>
-        {% else %}
             <p>Role de l'utilisateur : Admin</p>
+        {% else %}
+            <p>Role de l'utilisateur : Membre</p>
         {% endif %}
         <br>
         {% if is_active == true %}
-            <p>Utilisateur inactif</p>
-        {% else %}
             <p>Utilisateur actif</p>
+        {% else %}
+            <p>Utilisateur inactif</p>
         {% endif %}
 
     {% endblock profile %}

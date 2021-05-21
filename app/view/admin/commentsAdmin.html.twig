@@ -14,6 +14,8 @@
             <th class="card-title">Titre</th>
             <th class="card-title">Contenu</th>
             <th class="card-title">Date</th>
+            <th class="card-title">Statut</th>
+            <th class="card-title">Valider / Invalider</th>
             </thead>
             <tbody>
             {% for comment in comments %}
@@ -32,6 +34,21 @@
                         <p>{{ comment.getFullFormattedDate }}</p>
                     </td>
                     <td>
+                        {% if comment.is_active == true %}
+                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
+                        {% else %}
+                            <p class="btn btn-danger    "> <i class="fa fa-times"></i></p>
+                        {% endif %}
+
+                    </td>
+                    <td>
+                        {% if comment.is_active == true %}
+                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
+
+                        {% else %}
+                            <p class="btn btn-danger    "> <i class="fa fa-times"></i></p>
+                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
+                        {% endif %}
 
                     </td>
                 </tr>

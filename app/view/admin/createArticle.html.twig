@@ -26,7 +26,7 @@
         <br>
 
         <div class="centerForm">
-            <form method="post" action="/?p=createArticle">
+            <form method="post" action="/articles/add">
                 <input type="hidden" name="add" value="1">
                 <p>
                     <label for="title">Titre</label><br>
@@ -34,13 +34,18 @@
                 </p>
                 <p>
                     <label for="content">Contenu de l'article</label><br>
-                    <textarea name="content" id="content" cols="30" rows="8"
-                              class="form-control">{{ articleContent }}</textarea>
+                    <input type="button" value="G" style="font-weight: bold;" onclick="commande('bold');" />
+                    <input type="button" value="I" style="font-style: italic;" onclick="commande('italic');" />
+                    <input type="button" value="S" style="text-decoration: underline;" onclick="commande('underline');" />
+                    <input type="button" value="Lien" onclick="commande('createLink');" />
+                    <input type="button" value="Image" onclick="commande('insertImage');" />
+                </p>
+                <p>
+                    <textarea cols=100 rows=8 class="form-control" name="content" id="editor" contentEditable>{{ articleContent }}</textarea>
                 </p>
                 <p>
                     <label for="summary">Résumé de l'article</label><br>
-                    <textarea name="summary" id="summary" cols="12"
-                              rows="8" class="form-control">{{ articleSummary }}</textarea>
+                    <textarea cols=100 rows=8 class="form-control" name="summary" id="summary">{{ articleSummary }}</textarea>
                 </p>
                     <p>
                         <button type="submit" class="btn btn-success"> Créer l'article</button>

@@ -82,6 +82,7 @@ class Comments
     {
         $pdo = PDO::getInstance();
         try {
+            $validate = (int)$validate;
             $query = 'UPDATE comments SET is_valid = ? WHERE id = ?';
             $req = $pdo->prepare($query);
             $req->execute([$validate, $id]);

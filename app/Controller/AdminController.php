@@ -25,7 +25,6 @@ class AdminController extends AbstractController
     {
         $error = false;
         $msgError = "";
-        $msgSuccess = "";
 
 
         $addArticle = isset($_POST['add']);
@@ -45,13 +44,11 @@ class AdminController extends AbstractController
                 }
                 if(!$error && Articles::add($article)) {
                     $this->redirectTo('dashboard');
-                    $msgSuccess = "Votre article à bien été créé.";
                 }
             }
         }
         $this->render('admin', 'createArticle.html.twig', [
             'msgError' => $msgError,
-            'msgSuccess' => $msgSuccess,
         ]);
     }
 
@@ -67,7 +64,7 @@ class AdminController extends AbstractController
             Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
             Assertion::notEmpty($content, "Le champ du contenu doit être rempli.");
             Assertion::maxLength($summary, 250, "Le résumé doit faire au maximum 250 caractères.");
-
+            Assertion::notEmpty($summary, "Le champ du résumé doit être rempli.");
         } catch (AssertionFailedException $e){
             $error = $e->getMessage();
         }
@@ -98,7 +95,7 @@ class AdminController extends AbstractController
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if(!$error && Articles::edit($article)) {
-                    $msgSuccess = "Votre article à bien été créé.";
+                    $msgSuccess = "Votre article à bien été modifié.";
                 }
             }
         }

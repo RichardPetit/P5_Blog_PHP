@@ -6,6 +6,10 @@
 
 
 {% block content %}
+    <div class="newArticleBtn">
+        <a href="{{ router.getUrlFromRouteName('dashboard') }}" class="btn btn-success"> Retour</a>
+    </div>
+
     <h2>Commentaires de l'article {{ article.title }}</h2>
     {% block comment %}
         <table class="table">
@@ -34,22 +38,16 @@
                         <p>{{ comment.getFullFormattedDate }}</p>
                     </td>
                     <td>
-                        {% if comment.is_active == true %}
-                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
+                        {% if comment.isValid() == true %}
+                            <p><i class="fa fa-check"></i></p>
                         {% else %}
-                            <p class="btn btn-danger    "> <i class="fa fa-times"></i></p>
+                            <p> <i class="fa fa-times"></i></p>
                         {% endif %}
 
                     </td>
                     <td>
-                        {% if comment.is_active == true %}
-                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
-
-                        {% else %}
-                            <p class="btn btn-danger    "> <i class="fa fa-times"></i></p>
-                            <p class="btn btn-success"><i class="fa fa-check"></i></p>
-                        {% endif %}
-
+                            <a href="/comments-validate/{{ comment.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                            <a href="/comments-invalidate/{{ comment.id }}" class="btn btn-danger"> <i class="fa fa-times"></i></a>
                     </td>
                 </tr>
 

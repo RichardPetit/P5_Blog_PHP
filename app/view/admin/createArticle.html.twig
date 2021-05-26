@@ -55,16 +55,16 @@
         </div>
     </div>
     {% endif %}
+    <script>
+        $(document).ready(function() {
+            $("#btn-submit").click(function(event) {
+                event.preventDefault();
+                const contentHtml = $("#editor").html();
+                $("#textarea-content").text(contentHtml);
+                $("#form-create-article").submit();
+            })
+        })
+    </script>
 {% endblock %}
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $("#btn-submit").click(function() {
-            $(this).preventDefault();
-            const contentHtml = $("#editor").html();
-            $("#textarea-content").text(contentHtml);
-            $("#form-create-article").submit();
-        })
-    })
-</script>
+

@@ -19,14 +19,14 @@ class Router
         'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction', 'url' => '/logout'],
         'dashboard' => ['controller' => 'AdminController', 'action' => 'dashboardAction', 'url' => '/admin'],
         'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
-        'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile/:id'],
+        'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile'],
         'comments' => ['controller' => 'AdminController', 'action' => 'commentsListingAction', 'url' => '/comments/:id'],
         'validateComment' => ['controller' => 'AdminController', 'action' => 'validateCommentAction', 'url' => '/comments-validate/:id'],
         'invalidateComment' => ['controller' => 'AdminController', 'action' => 'invalidateCommentAction', 'url' => '/comments-invalidate/:id'],
-        'activateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusActiveAction', 'url' => '/profile/:id'],
-        'deactivateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusInactiveAction', 'url' => '/profile/:id'],
-        'userToAdmin' => ['controller' => 'AdminController', 'action' => 'changeUserToAdminAction', 'url' => '/profile/:id'],
-        'adminToUser' => ['controller' => 'AdminController', 'action' => 'changeAdminToUserAction', 'url' => '/profile/:id'],
+        'activateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusActiveAction', 'url' => '/active-user/:id'],
+        'deactivateUser' => ['controller' => 'AdminController', 'action' => 'changeUserStatusInactiveAction', 'url' => '/deactivate-user/:id'],
+        'userToAdmin' => ['controller' => 'AdminController', 'action' => 'changeUserToAdminAction', 'url' => '/pass-admin/:id'],
+        'adminToUser' => ['controller' => 'AdminController', 'action' => 'changeAdminToUserAction', 'url' => '/pass-user/:id'],
     ];
 
     public function run()

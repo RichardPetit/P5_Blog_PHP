@@ -13,19 +13,9 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
-{#    <!-- Jquery pour wysiwyg -->#}
-{#    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>#}
-{#    <script src="../../../js/jquery.wysibb.min.js"></script>#}
-{#    <script>#}
-{#        $(function() {#}
-{#            $("#wysibb").wysibb(wbbOpt );#}
-{#        })#}
-{#    </script>#}
-
 
     <link rel="stylesheet" href="../../../public/css/style.css"/>
     <link rel="stylesheet" href="../../../public/css/headerStyle.css"/>
-    <link rel="stylesheet" href="../../../public/css/wysibb/css/wbbtheme.css"/>
 </head>
 
 <body>
@@ -60,10 +50,13 @@
                             <a href="{{ router.getUrlFromRouteName('register') }}">S'inscrire</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('login') }}">Se connecter</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('logout') }}">Se déconnecter</a>
+                            <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
+
+                            {% if user.isLoggedIn()%}
+                            <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
+                            {% else %}
+                                <a href="{{ router.getUrlFromRouteName('logout') }}"><i class="fa fa-sign-out"></i></a>
+                            {% endif %}
                         </li>
                     </ul>
                 </div>

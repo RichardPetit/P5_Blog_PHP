@@ -154,6 +154,9 @@ a:link{
 /* Wysiwyg */
 
 #editor {
+    width: auto;
+    height: 200px;
+    border: 1px solid black;
     padding: 5px;
     overflow: auto;
 }

@@ -106,6 +106,7 @@ class Users
      {
          $pdo = PDO::getInstance();
          try {
+             $active = (int)$active;
              $query = "UPDATE users SET is_active = ? WHERE id = ?";
              $req = $pdo->prepare($query);
              $req->execute([$active, $id]);
@@ -131,6 +132,7 @@ class Users
     {
         $pdo = PDO::getInstance();
         try {
+            $admin = (int)$admin;
             $query = "UPDATE users SET is_admin = ? WHERE id = ?";
             $req = $pdo->prepare($query);
             $req->execute([$admin, $id]);

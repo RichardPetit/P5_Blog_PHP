@@ -8,7 +8,7 @@
     <h1>{{ detailArticle.title }}</h1>
     {% block article %}
         <h4 class="card-title">{{ detailArticle.title }}</h4>
-        <p>{{ detailArticle.content }} <br /> </p>
+        <p>{{ detailArticle.content | raw }} <br /> </p>
         <p>Publié le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
 

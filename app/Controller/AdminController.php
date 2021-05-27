@@ -76,7 +76,6 @@ class AdminController extends AbstractController
     {
         $error = false;
         $msgError = "";
-        $msgSuccess = "";
 
 
         $editArticle = isset($_POST['edit']);
@@ -95,13 +94,12 @@ class AdminController extends AbstractController
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if(!$error && Articles::edit($article)) {
-                    $msgSuccess = "Votre article à bien été modifié.";
+                    $this->redirectTo('dashboard');;
                 }
             }
         }
         $this->render('front', 'createArticle.html.twig', [
             'msgError' => $msgError,
-            'msgSuccess' => $msgSuccess,
         ]);
     }
 
@@ -134,13 +132,13 @@ class AdminController extends AbstractController
                 $error = true;
                 $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
             }
-            if (!$error && Articles::add($article)) {
-                $msgSuccess = "Votre article à bien été créé.";
+            if (!$error && Articles::delete($article)) {
+                $this->redirectTo('dashboard');
             }
         }
-        $this->render('front', 'createArticle.html.twig', [
+        $this->render('front', 'dashboardAdmin.html.twig', [
             'msgError' => $msgError,
-            'msgSuccess' => $msgSuccess,
+
         ]);
     }
 

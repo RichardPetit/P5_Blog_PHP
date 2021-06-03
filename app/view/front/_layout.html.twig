@@ -69,38 +69,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        <img class="img-responsive" src="../../../public/images/images.jpeg" alt="">
+                        <img class="img-responsive" src="../../../public/images/photo%20site.jpg" alt="">
                         <div class="intro-text">
                             <hr class="star-light">
-                            <span class="skills">Web Developer - Graphic Artist - User Experience Designer</span>
+                            <span class="skills"> Richard PETIT - Developpeur Web <br>- Pour mettre en avant votre entreprise -</span>
                         </div>
                     </div>
                 </div>
             </div>
         </header>
-{#        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">#}
-{#            <a class="navbar-brand" href="index.php">RICHARD PETIT</a>#}
-{#            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"#}
-{#                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
-{#                <span class="navbar-toggler-icon"></span>#}
-{#            </button>#}
-{#            <div class="collapse navbar-collapse" id="navbarNav">#}
-{#                <ul class="navbar-nav">#}
-{#                    <li class="nav-item active">#}
-{#                        <a class="nav-link" href="index.php">Accueil <span class="sr-only">(current)</span></a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="listing.html.twig">Les derniers posts</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="#">L'actu</a>#}
-{#                    </li>#}
-{#                    <li class="nav-item">#}
-{#                        <a class="nav-link" href="#">Me connecter</a>#}
-{#                    </li>#}
-{#                </ul>#}
-{#            </div>#}
-{#        </nav>#}
+
     </header>
 
 <div class="container" id="content">{% block content %}
@@ -115,36 +93,26 @@
             <div class="footer-above">
                 <div class="container">
                     <div class="row">
-                        <div class="footer-col col-md-4">
-                            <h3>Location</h3>
-                            <p>3481 Melrose Place
-                                <br>Beverly Hills, CA 90210</p>
-                        </div>
-                        <div class="footer-col col-md-4">
-                            <h3>Around the Web</h3>
+                        <div class="footer-col col-md-6">
+                            <h3>Me trouver sur le Web</h3>
                             <ul class="list-inline">
                                 <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                    <a href="https://www.facebook.com/richard.petit.54" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                    <a href="https://github.com/RichardPetit" class="btn-social btn-outline"><i class="fa fa-fw fab fa-github"></i></a>
                                 </li>
                                 <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                                    <a href="https://www.linkedin.com/in/richard-petit/" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
                                 </li>
                             </ul>
                         </div>
-                        <div class="footer-col col-md-4">
-                            <h3>About Freelancer</h3>
-                            <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
+                        <div class="footer-col col-md-6">
+                            <h3>Administration du site</h3>
+                                <a href="{{ router.getUrlFromRouteName('admin') }}" target="_blank" class="btn-social btn-outline" > <i class="fa fa-fw fas fa-cogs"></i></a>
                         </div>
                     </div>
+                    <hr class="star-light">
                 </div>
             </div>
         </footer>

@@ -6,6 +6,7 @@ namespace Blog\Controller;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
+use Blog\Exception\ArticleNotFoundException;
 use Blog\Model\Articles;
 use Blog\Model\Comments;
 use Blog\Model\Users;
@@ -43,12 +44,15 @@ class AdminController extends AbstractController
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if(!$error && Articles::add($article)) {
-                    $this->redirectTo('dashboard');
+                    $this->redirectTo('admin');
                 }
             }
         }
         $this->render('admin', 'createArticle.html.twig', [
             'msgError' => $msgError,
+            'title' => '',
+            'content' => '',
+            'summary' => ''
         ]);
     }
 
@@ -72,74 +76,52 @@ class AdminController extends AbstractController
     }
 
 
-    public function editArticleAction()
+    public function editArticleAction(int $id)
     {
-        $error = false;
         $msgError = "";
 
+        try {
+            $article = Articles::getArticle($id);
+        } catch (ArticleNotFoundException $e) {
+            $this->redirectTo('admin');
+        }
+        $title = $_POST['title'] ?? $article->getTitle();
+        $content = $_POST['content'] ?? $article->getContent();
+        $summary = $_POST['summary'] ?? $article->getSummary();
 
-        $editArticle = isset($_POST['edit']);
+        $editArticle = isset($_POST['add']);
 
         if ($editArticle) {
             $msgError = $this->checkFormEditArticleAction();
             if ($msgError === ''){
-                $author = $this->getUser();
-                $title = $_POST['title'] ?? '';
-                $content = $_POST['content'] ?? '';
-                $summary = $_POST['summary'] ?? '';
-                try {
-                    $article = Article::edit($title, $content, $summary,$author);
-                } catch (AssertionFailedException $e){
-                    $error = true;
-                    $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
-                }
-                if(!$error && Articles::edit($article)) {
-                    $this->redirectTo('dashboard');;
+                $article = Article::edit($title, $content, $summary, $article);
+                if(Articles::edit($article)) {
+                    $this->redirectTo('admin');
                 }
             }
         }
-        $this->render('front', 'createArticle.html.twig', [
+        $this->render('admin', 'createArticle.html.twig', [
             'msgError' => $msgError,
+            'title' => $title,
+            'content' => $content,
+            'summary' => $summary
         ]);
     }
 
     private function checkFormEditArticleAction()
     {
-        $title = $_POST['title'] ?? '';
-        $content = $_POST['content'] ?? '';
-        $summary = $_POST['summary'] ?? '';
-        $error = "";
-        try {
-            Assertion::notEmpty($title, "Le champ titre doit être rempli.");
-            Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
-            Assertion::notEmpty($content, "Le champ du contenu doit être rempli.");
-            Assertion::maxLength($summary, 250, "Le résumé doit faire au maximum 250 caractères.");
-        } catch (AssertionFailedException $e){
-            $error = $e->getMessage();
-        }
-        return $error;
+        return $this->checkFormCreateArticleAction();
     }
 
-    public function deleteArticleAction()
+    public function deleteArticleAction(int $id)
     {
-        $deleteArticle = isset($_POST['delete']);
-
-
-        if ($deleteArticle) {
-            try {
-                $article = Article::create($title, $content, $summary, $author);
-            } catch (AssertionFailedException $e) {
-                $error = true;
-                $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
-            }
-            if (!$error && Articles::delete($article)) {
-                $this->redirectTo('dashboard');
-            }
+        try {
+            $article = Articles::getArticle($id);
+            Articles::delete($article);
+            $this->redirectTo('admin');
+        } catch (ArticleNotFoundException $e) {
+            $this->redirectTo('home');
         }
-        $this->render('front', 'dashboardAdmin.html.twig', [
-            'msgError' => $msgError,
-
-        ]);
     }
 
 

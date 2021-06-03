@@ -2,7 +2,9 @@
 
 
 {% block head %}
-    <title>Nouvel article</title>.
+
+        <title>{{ title | length > 0 ? title : "Nouvel article" }}</title>
+
 {% endblock %}
 
 
@@ -16,21 +18,21 @@
     {% endif %}
     {% if( msgSuccess == "") %}
         <div class="newArticleBtn">
-            <a href="{{ router.getUrlFromRouteName('dashboard') }}" class="btn btn-success"> Annuler</a>
+            <a href="{{ router.getUrlFromRouteName('admin') }}" class="btn btn-success"> Annuler</a>
         </div>
 
     <div class="newArticleForm">
-        <h2>Nouvel Article</h2>
+        <h2>{{ title | length > 0 ? title : "Nouvel article" }}</h2>
         <br>
         <hr class="star-primary">
         <br>
 
         <div class="centerForm">
-            <form method="post" id="form-create-article" action="/articles/add">
+            <form method="post" id="form-create-article">
                 <input type="hidden" name="add" value="1">
                 <p>
                     <label for="title">Titre</label><br>
-                    <input type="text" name="title" id="title" value="{{ articleTitle }}" class="form-control">
+                    <input type="text" name="title" id="title" value="{{ title }}" class="form-control">
                 </p>
                 <p>
                     <label for="content">Contenu de l'article</label><br>
@@ -40,13 +42,13 @@
                     <input type="button" value="Lien" onclick="commande('createLink');" />
                     <input type="button" value="Image" onclick="commande('insertImage');" />
                 </p>
-                <div id="editor" contentEditable></div>
+                <div id="editor" contentEditable> {{ content | raw }}</div>
                 <p style="display:none;">
                     <textarea name="content" id="textarea-content"></textarea>
                 </p>
                 <p>
                     <label for="summary">Résumé de l'article</label><br>
-                    <textarea cols=100 rows=8 class="form-control" name="summary" id="summary">{{ articleSummary }}</textarea>
+                    <textarea cols=100 rows=8 class="form-control" name="summary" id="summary">{{ summary }}</textarea>
                 </p>
                     <p>
                         <button id="btn-submit" type="submit" class="btn btn-success"> Créer l'article</button>

@@ -19,7 +19,7 @@ class Router
         'contact' => ['controller' => 'FrontController', 'action' => 'contactAction', 'url' => '/contact'],
         'login' => ['controller' => 'FrontController', 'action' => 'loginAction', 'url' => '/login'],
         'logout' => ['controller' => 'FrontController', 'action' => 'logoutAction', 'url' => '/logout'],
-        'dashboard' => ['controller' => 'AdminController', 'action' => 'dashboardAction', 'url' => '/admin'],
+        'admin' => ['controller' => 'AdminController', 'action' => 'dashboardAction', 'url' => '/admin'],
         'usersAdmin' => ['controller' => 'AdminController', 'action' => 'usersAdminAction', 'url' => '/admin_users'],
         'profile' => ['controller' => 'FrontController', 'action' => 'profileAction', 'url' => '/profile'],
         'comments' => ['controller' => 'AdminController', 'action' => 'commentsListingAction', 'url' => '/comments/:id'],

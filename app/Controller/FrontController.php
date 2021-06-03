@@ -8,6 +8,7 @@ use Assert\AssertionFailedException;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
+use Blog\Exception\UserNotActiveException;
 use Blog\Exception\UserNotFoundException;
 use Blog\Model\Articles;
 use Blog\Model\Comments;
@@ -38,7 +39,7 @@ class FrontController extends AbstractController
         try {
             $article = Articles::getArticle($id);
         } catch (ArticleNotFoundException $e) {
-            $this->redirectTo('?p=home');
+            $this->redirectTo('home');
         }
         $this->render("front", "detailArticle.html.twig", [
             'detailArticle' => $article,
@@ -168,12 +169,16 @@ class FrontController extends AbstractController
                 try {
                     $user = Users::getUserByEmail($email);
                     $user->verifyPassword($password);
+                    $user->verifyStatus();
                     $_SESSION['id'] = $user->getId();
                     $_SESSION['pseudo'] = $user->getPseudo();
                     $_SESSION['email'] = $user->getEmail();
                     $this->redirectTo('home');
                 } catch (UserNotFoundException $e) {
                     $msgError = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
+                } catch (UserNotActiveException $e){
+                    $msgError = "Votre compte est inactif, merci de contacter l'administrateur.";
+
                 }
             }
         }

@@ -4,6 +4,8 @@
 namespace Blog\Entity;
 
 use Blog\Exception\UserNotFoundException;
+use Blog\Exception\UserNotActiveException;
+
 
 /**
  * Class User
@@ -175,6 +177,17 @@ class User
 
         if (!password_verify($password, $this->getPassword())) {
             throw new UserNotFoundException();
+        }
+    }
+
+    /**
+     * @throws UserNotActiveException
+     */
+    public function verifyStatus():void
+    {
+
+        if (!$this->isActive()) {
+            throw new UserNotActiveException();
         }
     }
 

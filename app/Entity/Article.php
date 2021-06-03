@@ -12,7 +12,7 @@ class Article
 {
 
     public const SHORT_FORMAT_DATE = 'd/m/Y';
-    public const FULL_FORMAT_DATE = 'd/m/Y';
+    public const FULL_FORMAT_DATE = 'd/m/Y H:i';
 
     /**
      * @var int|null
@@ -191,8 +191,11 @@ class Article
         string $title,
         string $content,
         string $summary,
-        User $author
+        Article $article
     ): self {
-
+        $article->setTitle($title);
+        $article->setContent($content);
+        $article->setSummary($summary);
+        return $article;
     }
 }

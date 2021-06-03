@@ -31,7 +31,8 @@
                         <p>{{ user.is_admin ? "<i class='fa fa-check'></i>": "<i class='fa fa-times'></i>" }}</p>
                     </td>
                     <td>
-{#                        <p>{{ user.is_active ? "<i class='fa fa-check'></i>": "<i class='fa fa-times'></i>" }}</p>#}
+
+                       <p>{{ user.is_active ? "<i class='fa fa-check'></i>": "<i class='fa fa-times'></i>" }}</p>
                         {% if user.isActive() == true %}
                             <p><i class="fa fa-check"></i></p>
 

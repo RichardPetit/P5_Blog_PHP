@@ -65,12 +65,12 @@ class Articles
         $pdo = PDO::getInstance();
         try {
             $articleId = $article->getId();
-            $userId = $article->getAuthor()->getId();
             $content = $article->getContent();
             $summary = $article->getSummary();
             $title = $article->getTitle();
-            $sql = "UPDATE articles SET (id, title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) WHERE id = ? ";
-            $pdo->prepare($sql)->execute([$articleId, $title, $content, $summary, $userId]);
+            $sql = "UPDATE articles SET title = ? , content =  ?, summary = ?, date = NOW() WHERE id = $articleId ";
+            $prepare = $pdo->prepare($sql);
+            $prepare->execute([ $title, $content, $summary]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, l'article n'a pas pu être modifié." . $e->getMessage();
         }
@@ -87,8 +87,6 @@ class Articles
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, l'article n'a pas pu être supprimé." . $e->getMessage();
         }
-        header("Location: /admin");
-        exit;
     }
 
 

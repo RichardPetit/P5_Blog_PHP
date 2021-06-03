@@ -38,12 +38,14 @@ footer .footer-above {
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
     transition: background-color .5s, box-shadow .5s, margin-left .5s;
 }
+.card-title {
+    color: #1b6d85;
+}
 .posts-container{
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
 .post-image{
     width: 200px;
     height: 220px;
@@ -78,7 +80,6 @@ a:link{
     padding-left: 20px;
     color: #768CA4;
     font-family: 'Roboto', sans-serif;
-
 }
 .author{
     width: 100%;
@@ -87,13 +88,11 @@ a:link{
     margin-left: 20px;
     margin-top: 5px;
     border-radius: 10px;
-
 }
 .author-content{
     width: 60%;
     height: 60px;
     margin-left: 10px;
-
     float: left;
 }
 .author-image{
@@ -120,14 +119,17 @@ a:link{
 }
 
 .newArticleForm{
-    /*display: flex;*/
-    /*flex-direction: column;*/
-    /*justify-content: center;*/
     margin: 0 8% 2% 8% ;
 }
 .formRegister{
     margin: 0 20% 2% 20%;
 }
+.img-responsive{
+    width: 250px;
+    height: 320px;
+    border-radius: 130px / 160px;
+}
+
 /* Connection */
 .formConnection{
     margin: 0 25% 2% 25%;
@@ -135,7 +137,6 @@ a:link{
 #passwordForget{
     font-size: small;
 }
-
 .profilPic{
     width: 300px;
     height: 300px;
@@ -164,22 +165,7 @@ a:link{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* TEST BOUTON CV */
-
+/*BOUTON CV */
 
 svg {
     width: 130px;

@@ -8,7 +8,9 @@
     <h1>{{ detailArticle.title }}</h1>
     {% block article %}
         <h4 class="card-title">{{ detailArticle.title }}</h4>
+        <div class="post-content">
         <p>{{ detailArticle.content | raw }} <br /> </p>
+        </div>
         <p>Modifié le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
 
@@ -18,7 +20,8 @@
             {% for comment in comments%}
                 <h4>{{ comment.title }}</h4>
                 <p>{{ comment.content }}</p>
-                <p>Auteur : {{ comment.users_id }} <br>Publié le {{ comment.date }}</p>
+                <p>Auteur : {{ comment.users_id }} </p>
+                <p>Publié le {{ comment.date }}</p>
                 <br>
             {% endfor %}
 
@@ -26,7 +29,7 @@
                 <div class="alert alert-success">Votre commentaire à bien été soumis pour validation.</div>
             {% endif %}
 
-            <form action="/?p=detailsArticle&id={{ article.id }}" method="post">
+            <form class="formComment" action="/?p=detailsArticle&id={{ article.id }}" method="post">
                 <p><label for="author">Pseudo</label><br>
                     <input type="text" name="author" id="author" value="{{ authorName }}"
                            class="form-control"></p>

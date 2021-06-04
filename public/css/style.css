@@ -18,7 +18,7 @@ header img{
 #footer{
     height: 21rem;
 }
-footer .footer-above {
+footer .footer-above{
     padding-top: 10px;
 }
 .card{
@@ -38,13 +38,8 @@ footer .footer-above {
     box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
     transition: background-color .5s, box-shadow .5s, margin-left .5s;
 }
-.card-title {
+.card-title{
     color: #1b6d85;
-}
-.posts-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 .post-image{
     width: 200px;
@@ -55,11 +50,17 @@ footer .footer-above {
     float: left;
 }
 .post-content{
-    width: 55%;
-    height: 250px;
+    width: auto;
     float: left;
     margin-left: 5px;
-    overflow: hidden;
+}
+.post-content img{
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px 10px 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 a:link{
     font-size: 28px;
@@ -67,57 +68,10 @@ a:link{
     color: #3B3C3F;
     text-decoration: none;
 }
-.post-header{
-    font-size: 28px;
-    font-family: 'Roboto', sans-serif;
-    margin-top: 15px;
-    color: #3B3C3F;
-    margin-left: 10px;
-    text-align: center;
+a:link i{
+    width: 3rem;
+    color: #fff;
 }
-.post-text{
-    font-size: 15px;
-    padding-left: 20px;
-    color: #768CA4;
-    font-family: 'Roboto', sans-serif;
-}
-.author{
-    width: 100%;
-    height: 60px;
-    background-color: #F2F5F8;
-    margin-left: 20px;
-    margin-top: 5px;
-    border-radius: 10px;
-}
-.author-content{
-    width: 60%;
-    height: 60px;
-    margin-left: 10px;
-    float: left;
-}
-.author-image{
-    width: 50px;
-    height: 50px;
-    border-radius: 100%;
-    float: left;
-    margin-left: 10px;
-    margin-top: 5px;
-}
-.author-name{
-    font-size: 20px;
-    color: #3B3C3F;
-    font-family: 'Roboto', sans-serif;
-    font-weight: bold;
-    margin-top: 10px;
-    padding-left: 10px;
-}
-.date{
-    font-size: 13px;
-    font-family: 'Roboto', sans-serif;
-    margin-top: -15px;
-    padding-left: 10px;
-}
-
 .newArticleForm{
     margin: 0 8% 2% 8% ;
 }
@@ -129,6 +83,48 @@ a:link{
     height: 320px;
     border-radius: 130px / 160px;
 }
+.card-article{
+    border-radius: 5px;
+    box-shadow: 2px 2px 22px 2px rgba(0, 0, 255, .2);
+    margin: 2rem 4rem;
+    padding: 1rem;
+}
+#contactBtn{
+    margin: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+#contactBtn a{
+    margin: 0 25% 0 25%;
+}
+
+/* Dashboard */
+#btn-delete{
+    color: white;
+    transition: transform .6s;
+}
+#btn-delete:hover{
+   transform: scale(1.1);
+}
+#btn-edit{
+    color: white;
+    transition: transform .6s;
+}
+#btn-edit:hover{
+    transform: scale(1.1);
+}
+.board ,tr td a{
+    color: #2C3E50;
+}
+.btn{
+    font-size: 18px;
+}
+.formComment{
+    margin: 0 10% 2% 10%;
+}
+
 
 /* Connection */
 .formConnection{

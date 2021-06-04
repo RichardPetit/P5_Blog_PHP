@@ -10,7 +10,6 @@
     {% block user %}
         <table class="table">
             <thead>
-            <th class="card-title">ID</th>
             <th class="card-title">Pseudo</th>
             <th class="card-title">Admin</th>
             <th class="card-title">Actif</th>
@@ -21,9 +20,6 @@
             {% for user in users %}
 
                 <tr>
-                    <td>
-                        <p>{{ user.id }}</p>
-                    </td>
                     <td>
                         <p>{{ user.pseudo }}<p>
                     </td>

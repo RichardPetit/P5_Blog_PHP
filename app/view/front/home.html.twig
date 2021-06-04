@@ -4,8 +4,24 @@
     <title>Accueil</title>
 {% endblock %}
 
+{% block header %}
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="../../../public/images/photo%20site.jpg" alt="">
+                    <div class="intro-text">
+                        <hr class="star-light">
+                        <span class="skills"> Richard PETIT - Developpeur Web <br>- Pour mettre en avant votre entreprise -</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+{% endblock %}
 {% block content %}
     {% block cv %}
+        <div class="cv-card">
         <h2>Mieux me connaitre</h2>
         <p>Cliquer sur le bouton pour voir mon Curriculum Vitae</p>
 <div class="svg">
@@ -16,17 +32,26 @@
         <span>Mon CV</span>
     </a>
 </div>
+        </div>
 
     {% endblock cv %}
     {% block article %}
         <h2>Les derniers articles :</h2>
         <br>
         {% for article in viewArticle %}
-            <h4 class="card-title">{{ article.title }} - de {{ article.author.pseudo }}</h4>
-            <p>{{ article.summary }}</p>
-            <p>Publié le : {{ article.getFullFormattedDate() }}</p>
-            <a href="/articles/{{ article.id }}"> Lire l'article</a>
+            <div class="card-article">
+                <h4 class="card-title">{{ article.title }} - de {{ article.author.pseudo }}</h4>
+                <p>{{ article.summary }}</p>
+                <p>Publié le : {{ article.getFullFormattedDate() }}</p>
+                <a href="/articles/{{ article.id }}"> Lire l'article</a>
+            </div>
         {% endfor %}
     {% endblock  article %}
+
+
+    <div id="contactBtn">
+        <h4 align="center">Besoin d'information ?</h4>
+        <a href="{{ router.getUrlFromRouteName('contact') }}" class="btn btn-success"> Me contacter</a>
+    </div>
 
 {% endblock %}

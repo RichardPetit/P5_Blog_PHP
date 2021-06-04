@@ -19,7 +19,8 @@
             <th class="card-title">Contenu</th>
             <th class="card-title">Date</th>
             <th class="card-title">Statut</th>
-            <th class="card-title">Valider / Invalider</th>
+            <th class="card-title">Valider</th>
+            <th class="card-title">Invalider</th>
             </thead>
             <tbody>
             {% for comment in comments %}
@@ -47,7 +48,9 @@
                     </td>
                     <td>
                             <a href="/comments-validate/{{ comment.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                            <a href="/comments-invalidate/{{ comment.id }}" class="btn btn-danger"> <i class="fa fa-times"></i></a>
+                    </td>
+                    <td>
+                        <a href="/comments-invalidate/{{ comment.id }}" class="btn btn-danger"> <i class="fa fa-times"></i></a>
                     </td>
                 </tr>
 

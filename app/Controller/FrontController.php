@@ -112,10 +112,11 @@ class FrontController extends AbstractController
             $msgError = $this->checkFormForContactAction();
             if ($msgError === ''){
                 $email = $_POST['emailContact'] ?? '';
+                $name = $_POST['nameContact'] ?? '';
                 $subject = $_POST['subjectContact'] ?? '';
                 $contentMesssage = $_POST['contentContact'] ?? '';
                 try {
-                    $contact = Contact::create($email, $subject, $contentMesssage);
+                    $contact = Contact::create($email, $name, $subject, $contentMesssage);
                     try {
                         $emailService = new EmailService();
                         $emailService->sendEmail($contact);

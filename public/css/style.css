@@ -88,7 +88,12 @@ a:link i{
     box-shadow: 2px 2px 22px 2px rgba(0, 0, 255, .2);
     margin: 2rem 4rem;
     padding: 1rem;
+    transition: transform .5s;
 }
+.card-article:hover {
+    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
 #contactBtn{
     margin: 2rem;
     width: 100%;

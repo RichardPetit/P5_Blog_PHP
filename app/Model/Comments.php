@@ -100,13 +100,22 @@ class Comments
         self::changeValidationStatusForComment($id, false);
     }
 
-    public  static function addComment($articleId, $title, $comment)
+    public  static function addComment(Comment $comment)
     {
         $pdo = PDO::getInstance();
-        $now = date("Y-m-d H:i:s");
-        $insertNewComment = $pdo->prepare('INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, 1, ?)');
-        $insertNewComment->execute(array($articleId, $title, $comment, $now));
-        $insertNewComment->closeCursor();
+        try {
+            $userId = $comment->getAuthor()->getId();
+            $articleId = $comment->getArticle()->getId();
+            $content = $comment->getContent();
+            $title = $comment->getTitle();
+            $now = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, ?, ?)";
+            $pdo->prepare($sql)->execute([$articleId, $title, $content, $userId, $now]);
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite, le commentaire n'a pas pu être ajouté." . $e->getMessage();
+        }
+        $comment->setId($pdo->lastInsertId());
+        return $comment;
     }
 
     public static function edit(Comment $comment)
@@ -119,7 +128,7 @@ class Comments
             $content = $comment->getContent();
             $title = $comment->getTitle();
             $now = date("Y-m-d H:i:s");
-            $sql = "UPDATE comments SET (title, content, users_id, articles_id, date ) VALUES (?, ?, ?, ?, ? ) WHERE id = ? ";
+            $sql = "UPDATE comments SET (title, content, users_id, articles_id, date ) VALUES (?, ?, ?, ?, ? ) WHERE id = $commentId ";
             $pdo->prepare($sql)->execute([$title, $content, $userId, $articleId, $now]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, le commentaire n'a pas pu être modifié." . $e->getMessage();
@@ -132,11 +141,8 @@ class Comments
         $pdo = PDO::getInstance();
         try {
             $commentId = $comment->getId();
-            $userId = $comment->getAuthor()->getId();
-            $articleId = $comment->getArticle()->getId();
-            $content = $comment->getContent();
-            $title = $comment->getTitle();
             $sql = "DELETE FROM comments WHERE id = ? ";
+            $pdo->prepare($sql)->execute([$commentId]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, le commentaire n'a pas pu être supprimé." . $e->getMessage();
         }

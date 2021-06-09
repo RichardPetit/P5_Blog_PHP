@@ -36,7 +36,7 @@
             <div class="card-article">
                 <h4 class="card-title">{{ article.title }} - de {{ article.author.pseudo }}</h4>
                 <p>{{ article.summary }}</p>
-                <p>Publié le : {{ article.getFullFormattedDate() }}</p>
+                <p class="published">Publié le : {{ article.getFullFormattedDate() }}</p>
                 <a href="/articles/{{ article.id }}"> Lire l'article</a>
             </div>
         {% endfor %}

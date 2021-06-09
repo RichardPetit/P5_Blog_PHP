@@ -52,6 +52,12 @@ header img{
 footer .footer-above{
     padding-top: 10px;
 }
+@media screen and (max-width: 770px){
+    .footer-line{
+display: none;
+    }
+}
+
 a.cv{
     color: white;
     font-size: 14px;
@@ -126,9 +132,12 @@ a i{
     transition: transform .5s;
 }
 .card-article:hover {
-    transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+    transform: scale(1.05);
 }
 
+.published{
+    font-size: 14px;
+}
 #contactBtn{
     margin: 2rem;
     width: 100%;

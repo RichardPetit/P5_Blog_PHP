@@ -5,6 +5,8 @@ namespace Blog\Controller;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
+use Blog\Entity\Article;
+use Blog\Entity\Comment;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
@@ -219,5 +221,55 @@ class FrontController extends AbstractController
         $this->render("front", "profile.html.twig", [
             'user' => $userLogged,
         ]);
+    }
+
+
+    public function addCommentAction()
+    {
+        $error = false;
+        $msgError = "";
+
+
+        $addComment= isset($_POST['add']);
+
+        if ($addComment) {
+            $msgError = $this->checkFormCreateCommentAction();
+            if ($msgError === ''){
+                $author = $this->getUser();
+                $articleId = Articles::getArticle()->getId();
+                $title = $_POST['title'] ?? '';
+                $content = $_POST['content'] ?? '';
+                try {
+                    $comment = Comment::create($title, $content,$author, $articleId);
+                } catch (AssertionFailedException $e){
+                    $error = true;
+                    $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
+                }
+                if(!$error && Comments::addComment($comment)) {
+                    $this->redirectTo('/articles/'.$articleId);
+                }
+            }
+        }
+        $this->render('front', 'detailArticle.html.twig', [
+            'msgError' => $msgError,
+            'title' => '',
+            'content' => '',
+        ]);
+    }
+
+    private function checkFormCreateCommentAction()
+    {
+        $title = $_POST['title'] ?? '';
+        $comment = $_POST['comment'] ?? '';
+        $error = "";
+
+        try {
+            Assertion::notEmpty($title, "Le champ titre doit être rempli.");
+            Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
+            Assertion::notEmpty($comment, "Le champ du contenu doit être rempli.");
+           } catch (AssertionFailedException $e){
+            $error = $e->getMessage();
+        }
+        return $error;
     }
 }

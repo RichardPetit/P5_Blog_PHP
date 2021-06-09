@@ -11,7 +11,7 @@
         <div class="post-content">
         <p>{{ detailArticle.content | raw }} <br /> </p>
         </div>
-        <p>Modifié le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
+        <p class="published">Dernière modification le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
 
 
@@ -19,8 +19,8 @@
             <p>Commentaires :</p>
             {% for comment in commentsArticle %}
                 <h4>{{ comment.title }}</h4>
-                <p>{{ comment.content }}</p>
-                <p>Auteur : {{ comment.author.pseudo }} </p>
+                <p>{{ comment.content }}</p><br>
+                <p>Auteur : {{ comment.author.pseudo }} </p> <br>
                 <p>Publié le {{ comment.getFullFormattedDate }}</p>
                 <br>
             {% endfor %}

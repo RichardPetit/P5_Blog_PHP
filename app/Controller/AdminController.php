@@ -85,6 +85,7 @@ class AdminController extends AbstractController
         } catch (ArticleNotFoundException $e) {
             $this->redirectTo('admin');
         }
+        $author = $this->getUser();
         $title = $_POST['title'] ?? $article->getTitle();
         $content = $_POST['content'] ?? $article->getContent();
         $summary = $_POST['summary'] ?? $article->getSummary();
@@ -94,7 +95,7 @@ class AdminController extends AbstractController
         if ($editArticle) {
             $msgError = $this->checkFormEditArticleAction();
             if ($msgError === ''){
-                $article = Article::edit($title, $content, $summary, $article);
+                $article = Article::edit($title, $content, $summary, $author, $article);
                 if(Articles::edit($article)) {
                     $this->redirectTo('admin');
                 }

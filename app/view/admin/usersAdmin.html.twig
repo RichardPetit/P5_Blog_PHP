@@ -11,9 +11,9 @@
         <table class="table">
             <thead>
             <th class="card-title">Pseudo</th>
-            <th class="card-title">Admin</th>
             <th class="card-title">Actif</th>
             <th class="card-title">Activer / Désactiver</th>
+            <th class="card-title">Admin</th>
             <th class="card-title">Passer admin</th>
             </thead>
             <tbody>
@@ -24,24 +24,18 @@
                         <p>{{ user.pseudo }}<p>
                     </td>
                     <td>
-                        <p>{{ user.is_admin ? "<i class='fa fa-check'></i>": "<i class='fa fa-times'></i>" }}</p>
+                       <p>{{ user.isActive ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
                     </td>
-                    <td>
-
-                       <p>{{ user.is_active ? "<i class='fa fa-check'></i>": "<i class='fa fa-times'></i>" }}</p>
-                        {% if user.isActive() == true %}
-                            <p><i class="fa fa-check"></i></p>
-
-                        {% else %}
-                            <p ><i class="fa fa-times"></i></p>
-                        {% endif %}
-                        </td>
                     <td>
                         <a href="/active-user/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
                         <a href="/deactivate-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
-                    </td><td>
-                        <a href="/pass-admin/{{ user.id }}" class="btn btn-info"><i class="fa fa-arrow-up"></i></a>
-                        <a href="/pass-user/{{ user.id }}" class="btn btn-warning"><i class="fa fa-arrow-down"></i></a>
+                    </td>
+                    <td>
+                        <p>{{ user.isAdmin() ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
+                    </td>
+                    <td>
+                        <a href="/pass-admin/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                        <a href="/pass-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
 

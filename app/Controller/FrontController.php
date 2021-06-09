@@ -38,11 +38,13 @@ class FrontController extends AbstractController
     {
         try {
             $article = Articles::getArticle($id);
+            $comments = Comments::getCommentsForArticle($id);
         } catch (ArticleNotFoundException $e) {
             $this->redirectTo('home');
         }
         $this->render("front", "detailArticle.html.twig", [
             'detailArticle' => $article,
+            'commentsArticle' => $comments,
         ]);
     }
 
@@ -53,7 +55,7 @@ class FrontController extends AbstractController
         $error = false;
         $msgError = "";
         $msgSuccess = "";
-        $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
+        $addUser = isset($_POST['add']);
         if ($addUser) {
             $msgError = $this->checkFormForCreateUserAction();
             if($msgError === '') {

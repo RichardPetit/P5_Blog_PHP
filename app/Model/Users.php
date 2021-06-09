@@ -31,11 +31,15 @@ class Users
     {
         $pdo = PDO::getInstance();
         try {
-            $allUsers = $pdo->query('SELECT id, pseudo, email, is_admin FROM users');
+            $allUsers = $pdo->query('SELECT * FROM users');
         } catch (\Exception $e) {
             echo "Une erreur c'est produite." . $e->getMessage();
         }
-        return $allUsers;
+        $usersEntities = [];
+        foreach ($allUsers as $userPDO) {
+            $usersEntities[] = self::hydrateEntity($userPDO);
+        }
+        return $usersEntities;
     }
 
     public static function getUserByEmail($email) : User
@@ -100,8 +104,6 @@ class Users
         return $data;
     }
 
-    //Gère le changement de statut d'un utilisateur (actif ou non)
-
      public static function changeUserStatus(int $id, bool $active = true)
      {
          $pdo = PDO::getInstance();
@@ -126,7 +128,6 @@ class Users
         self::changeUserStatus($id, false);
     }
 
-    //Gère le changement de rôle d'un utilisateur (admin ou non)
 
     public static function changeUserRole(int $id, bool $admin = true)
     {
@@ -155,8 +156,7 @@ class Users
 
     public static function hydrateEntity($userFromDb) : User
     {
-        //$userFromDB correspond à l'enregistrement PDO
-        //On instantie l'entité User et on hydrate ses paramètres depuis le PDO
+
         $userEntity = new User();
         $userEntity->setId($userFromDb->id);
         $userEntity->setPseudo($userFromDb->pseudo);
@@ -165,7 +165,6 @@ class Users
         $userEntity->setIsActive($userFromDb->is_active == 1);
         $userEntity->setAvatar($userFromDb->avatar);
         $userEntity->setPassword($userFromDb->password);
-        //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
 

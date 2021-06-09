@@ -6,13 +6,18 @@
 
 {% block header %}
     <header>
-        <div class="container">
+        <div class="container home-headband">
             <div class="row">
                 <div class="col-lg-12">
                     <img class="img-responsive" src="../../../public/images/photo%20site.jpg" alt="">
                     <div class="intro-text">
                         <hr class="star-light">
                         <span class="skills"> Richard PETIT - Developpeur Web <br>- Pour mettre en avant votre entreprise -</span>
+                        <br>
+                        <hr class="star-light">
+                            <a class="cv" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
+                                <span class="btn btn-primary">Afficher mon CV</span>
+                            </a>
                     </div>
                 </div>
             </div>
@@ -21,24 +26,13 @@
 {% endblock %}
 {% block content %}
     {% block cv %}
-        <div class="cv-card">
-        <h2>Mieux me connaitre</h2>
-        <p>Cliquer sur le bouton pour voir mon Curriculum Vitae</p>
-<div class="svg">
-    <a class="button" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
-        <svg>
-            <rect height="40" width="130" fill="transparent" />
-        </svg>
-        <span>Mon CV</span>
-    </a>
-</div>
-        </div>
+
 
     {% endblock cv %}
     {% block article %}
         <h2>Les derniers articles :</h2>
         <br>
-        {% for article in viewArticle %}
+        {% for article in viewArticle|slice(0, 10) %}
             <div class="card-article">
                 <h4 class="card-title">{{ article.title }} - de {{ article.author.pseudo }}</h4>
                 <p>{{ article.summary }}</p>

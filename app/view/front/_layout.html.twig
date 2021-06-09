@@ -15,15 +15,13 @@
 
 
     <link rel="stylesheet" href="../../../public/css/style.css"/>
-    <link rel="stylesheet" href="../../../public/css/headerStyle.css"/>
 </head>
 
 <body>
 
     <header>
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
-            <div class="container">
-                <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="container nav-container">
                 <div class="navbar-header page-scroll">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
@@ -41,7 +39,7 @@
                             <a href="{{ router.getUrlFromRouteName('home') }}">Accueil</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('articlesListing') }}">Les Articles</a>
+                            <a href="{{ router.getUrlFromRouteName('articlesListing') }}">Articles</a>
                         </li>
                         <li class="page-scroll">
                             <a href="{{ router.getUrlFromRouteName('contact') }}">Contact</a>
@@ -50,12 +48,10 @@
                             <a href="{{ router.getUrlFromRouteName('register') }}">S'inscrire</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
-
-                            {% if user.isLoggedIn()%}
-                            <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
-                            {% else %}
+                            {% if isLoggedIn %}
                                 <a href="{{ router.getUrlFromRouteName('logout') }}"><i class="fa fa-sign-out"></i></a>
+                            {% else %}
+                                <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
                             {% endif %}
                         </li>
                     </ul>

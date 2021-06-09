@@ -14,7 +14,7 @@ class Articles
     {
         $pdo = PDO::getInstance();
         try {
-            $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC limit 10');
+            $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC');
         } catch (\Exception $e) {
             echo "Une erreur c'est produite." . $e->getMessage();
         }
@@ -50,8 +50,9 @@ class Articles
             $content = $article->getContent();
             $summary = $article->getSummary();
             $title = $article->getTitle();
-            $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) ";
-            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
+            $now = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, ?) ";
+            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId, $now]);
         } catch (\Exception $e) {
            echo "Une erreur c'est produite, l'article n'a pas pu être ajouté." . $e->getMessage();
         }
@@ -64,13 +65,15 @@ class Articles
     {
         $pdo = PDO::getInstance();
         try {
+            $userId = $article->getAuthor()->getId();
             $articleId = $article->getId();
             $content = $article->getContent();
             $summary = $article->getSummary();
             $title = $article->getTitle();
-            $sql = "UPDATE articles SET title = ? , content =  ?, summary = ?, date = NOW() WHERE id = $articleId ";
+            $now = date("Y-m-d H:i:s");
+            $sql = "UPDATE articles SET title = ? , content =  ?, summary = ?, users_id = ?, date = ? WHERE id = $articleId ";
             $prepare = $pdo->prepare($sql);
-            $prepare->execute([ $title, $content, $summary]);
+            $prepare->execute([ $title, $content, $summary, $userId, $now]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, l'article n'a pas pu être modifié." . $e->getMessage();
         }

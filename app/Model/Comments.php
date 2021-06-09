@@ -76,8 +76,6 @@ class Comments
     }
 
 
-    //Methode qui gère le changement de statut de validation d'un commentaire ($validate = true/false)
-
     public static function changeValidationStatusForComment(int $id, bool $validate = true)
     {
         $pdo = PDO::getInstance();
@@ -92,13 +90,11 @@ class Comments
         }
     }
 
-    //Methode validate
     public static function validateComment(int $id)
     {
         self::changeValidationStatusForComment($id);
     }
 
-    //Methode invalidate
     public static function invalidateComment(int $id)
     {
         self::changeValidationStatusForComment($id, false);
@@ -107,8 +103,9 @@ class Comments
     public  static function addComment($articleId, $title, $comment)
     {
         $pdo = PDO::getInstance();
-        $insertNewComment = $pdo->prepare('INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, 1, NOW())');
-        $insertNewComment->execute(array($articleId, $title, $comment));
+        $now = date("Y-m-d H:i:s");
+        $insertNewComment = $pdo->prepare('INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, 1, ?)');
+        $insertNewComment->execute(array($articleId, $title, $comment, $now));
         $insertNewComment->closeCursor();
     }
 
@@ -121,8 +118,9 @@ class Comments
             $articleId = $comment->getArticle()->getId();
             $content = $comment->getContent();
             $title = $comment->getTitle();
-            $sql = "UPDATE comments SET (title, content, users_id, articles_id, date ) VALUES (?, ?, ?, ?, NOW()) WHERE id = ? ";
-            $pdo->prepare($sql)->execute([$title, $content, $userId, $articleId]);
+            $now = date("Y-m-d H:i:s");
+            $sql = "UPDATE comments SET (title, content, users_id, articles_id, date ) VALUES (?, ?, ?, ?, ? ) WHERE id = ? ";
+            $pdo->prepare($sql)->execute([$title, $content, $userId, $articleId, $now]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, le commentaire n'a pas pu être modifié." . $e->getMessage();
         }

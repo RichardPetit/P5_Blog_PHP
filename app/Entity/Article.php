@@ -191,11 +191,13 @@ class Article
         string $title,
         string $content,
         string $summary,
+        User $author,
         Article $article
     ): self {
         $article->setTitle($title);
         $article->setContent($content);
         $article->setSummary($summary);
+        $article->setAuthor($author);
         return $article;
     }
 }

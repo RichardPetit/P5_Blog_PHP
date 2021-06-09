@@ -17,11 +17,11 @@
 
         {% block comment %}
             <p>Commentaires :</p>
-            {% for comment in comments%}
+            {% for comment in commentsArticle %}
                 <h4>{{ comment.title }}</h4>
                 <p>{{ comment.content }}</p>
-                <p>Auteur : {{ comment.users_id }} </p>
-                <p>Publié le {{ comment.date }}</p>
+                <p>Auteur : {{ comment.author.pseudo }} </p>
+                <p>Publié le {{ comment.getFullFormattedDate }}</p>
                 <br>
             {% endfor %}
 
@@ -29,7 +29,7 @@
                 <div class="alert alert-success">Votre commentaire à bien été soumis pour validation.</div>
             {% endif %}
 
-            <form class="formComment" action="/?p=detailsArticle&id={{ article.id }}" method="post">
+            <form class="formComment" action="/comment={{ article.id }}" method="post">
                 <p><label for="author">Pseudo</label><br>
                     <input type="text" name="author" id="author" value="{{ authorName }}"
                            class="form-control"></p>

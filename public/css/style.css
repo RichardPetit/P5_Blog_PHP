@@ -39,7 +39,11 @@ header .container {
 }
 
 
-
+#summary{
+    font-size: 16px;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
 div#content{
 margin-top: 10rem;
 }
@@ -171,6 +175,11 @@ a i{
 #btn-comments:hover{
     transform: scale(1.1);
 }
+.newArticleBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem ;
+}
 
 .board ,tr td a{
     color: #2C3E50;
@@ -182,6 +191,29 @@ a i{
     margin: 0 10% 2% 10%;
 }
 
+/* New article page */
+
+.articles-labels{
+    margin-top: 3rem;
+}
+
+.btn.btn-danger{
+    font-weight: bold;
+}
+#textarea-content{
+    border-radius: 2px;
+    background-color: yellow;
+}
+/* Wysiwyg */
+
+#editor {
+    width: auto;
+    height: 200px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: auto;
+}
 
 /* Connection */
 .formConnection{
@@ -218,13 +250,4 @@ a i{
 }
 
 
-/* Wysiwyg */
-
-#editor {
-    width: auto;
-    height: 200px;
-    border: 1px solid black;
-    padding: 5px;
-    overflow: auto;
-}
 

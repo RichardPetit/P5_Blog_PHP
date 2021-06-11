@@ -181,8 +181,7 @@ class AdminController extends AbstractController
         }catch (\Exception $e) {
             $this->redirectTo('home');
         }
-        $userId= $user->getId();
-        $this->redirectToPath('/profile/'.$userId);
+        $this->redirectToPath('/admin_users');
     }
 
     public function changeUserStatusInactiveAction(int $id)
@@ -193,8 +192,7 @@ class AdminController extends AbstractController
         }catch (\Exception $e) {
             $this->redirectTo('home');
         }
-        $userId = $user->getId();
-        $this->redirectToPath('/profile/'.$userId);
+        $this->redirectToPath('/admin_users');
     }
 
     public function changeUserToAdminAction(int $id)
@@ -205,8 +203,7 @@ class AdminController extends AbstractController
         }catch (\Exception $e) {
             $this->redirectTo('home');
         }
-        $userId= $user->getId();
-        $this->redirectToPath('/profile/'.$userId);
+        $this->redirectToPath('/admin_users');
     }
 
     public function changeAdminToUserAction(int $id)
@@ -217,8 +214,7 @@ class AdminController extends AbstractController
         }catch (\Exception $e) {
             $this->redirectTo('home');
         }
-        $userId = $user->getId();
-        $this->redirectToPath('/profile/'.$userId);
+        $this->redirectToPath('/admin_users');
     }
 
 }

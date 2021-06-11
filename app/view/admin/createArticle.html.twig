@@ -18,7 +18,7 @@
     {% endif %}
     {% if( msgSuccess == "") %}
         <div class="newArticleBtn">
-            <a href="{{ router.getUrlFromRouteName('admin') }}" class="btn btn-success"> Annuler</a>
+            <a href="{{ router.getUrlFromRouteName('admin') }}" class="btn btn-danger"> Annuler</a>
         </div>
 
     <div class="newArticleForm">
@@ -35,7 +35,7 @@
                     <input type="text" name="title" id="title" value="{{ title }}" class="form-control">
                 </p>
                 <p>
-                    <label for="content">Contenu de l'article</label><br>
+                    <label class="articles-labels"  for="content">Contenu de l'article</label><br>
                     <input type="button" value="G" style="font-weight: bold;" onclick="commande('bold');" />
                     <input type="button" value="I" style="font-style: italic;" onclick="commande('italic');" />
                     <input type="button" value="S" style="text-decoration: underline;" onclick="commande('underline');" />
@@ -44,10 +44,10 @@
                 </p>
                 <div id="editor" contentEditable> {{ content | raw }}</div>
                 <p style="display:none;">
-                    <textarea name="content" id="textarea-content"></textarea>
+                    <textarea name="content" id="textarea-content" ></textarea>
                 </p>
                 <p>
-                    <label for="summary">Résumé de l'article</label><br>
+                    <label class="articles-labels" for="summary">Résumé de l'article</label><br>
                     <textarea cols=100 rows=8 class="form-control" name="summary" id="summary">{{ summary }}</textarea>
                 </p>
                     <p>

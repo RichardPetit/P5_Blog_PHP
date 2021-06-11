@@ -1,16 +1,19 @@
 {% extends "_layout.html.twig" %}
 
 {% block head %}
-    <title>Détails</title>
+    <title>{{ detailArticle.title }}</title>
 {% endblock %}
 
 {% block content %}
-    <h1>{{ detailArticle.title }}</h1>
     {% block article %}
-        <h4 class="card-title">{{ detailArticle.title }}</h4>
+        <h1 class="card-title">{{ detailArticle.title }}</h1>
+        <p id="summary">Résumé de l'article : {{ detailArticle.summary }}</p>
+
         <div class="post-content">
-        <p>{{ detailArticle.content | raw }} <br /> </p>
+        <p>{{ detailArticle.content | raw }} </p>
         </div>
+        <br>
+        <hr>
         <p class="published">Dernière modification le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
 

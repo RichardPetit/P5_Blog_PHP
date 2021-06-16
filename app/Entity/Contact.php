@@ -15,6 +15,7 @@ class Contact
      * @var string
      */
     public string $email;
+
     /**
      * @var string
      */
@@ -60,7 +61,7 @@ class Contact
     }
 
     /**
-     * @param string $email
+     * @param string $name
      */
     public function setName(string $name): void
     {

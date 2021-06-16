@@ -14,6 +14,7 @@ class EmailService
     const SMTP_USERNAME_DEFAULT= '84a7fd0b1e99dd';
     const SMTP_PASSWORD_DEFAULT= '843a9dd5383b44';
     const SMTP_PORT_DEFAULT= '465';
+    const TO = 'richard-petit@live.fr' ;
 
     private PHPMailer $phpMailer;
 
@@ -35,15 +36,12 @@ class EmailService
     public function sendEmail(Contact $contact)
     {
         $phpMailer = $this->phpMailer;
-        $phpMailer->addAddress($contact->getEmail());
+        $phpMailer->addAddress( self::TO );
+        $phpMailer->setFrom($contact->getEmail(), $contact->getName() );
         $phpMailer->Subject = $contact->getSubject();
         $phpMailer->Body = $contact->getMessage();
-        try {
-            $phpMailer->send();
-        } catch (\Exception $e) {
-            var_dump($e->getMessage());
-            exit;
-        }
+
+        $phpMailer->send();
     }
 
 }

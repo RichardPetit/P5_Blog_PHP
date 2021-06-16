@@ -34,9 +34,9 @@
         <br>
         {% for article in viewArticle|slice(0, 10) %}
             <div class="card-article">
-                <h4 class="card-title">{{ article.title }} - de {{ article.author.pseudo }}</h4>
+                <h4 class="card-title">{{ article.title }} </h4>
                 <p>{{ article.summary }}</p>
-                <p class="published">Publié le : {{ article.getFullFormattedDate() }}</p>
+                <p class="published">Publié le : {{ article.getFullFormattedDate() }} par {{ article.author.pseudo }}</p>
                 <a href="/articles/{{ article.id }}"> Lire l'article</a>
             </div>
         {% endfor %}

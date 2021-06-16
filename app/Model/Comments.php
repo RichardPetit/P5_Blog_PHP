@@ -109,7 +109,7 @@ class Comments
             $content = $comment->getContent();
             $title = $comment->getTitle();
             $now = date("Y-m-d H:i:s");
-            $sql = "INSERT INTO comments (articles_id, title, content, users_id, date) VALUES (?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO comments (articles_id, title, content, users_id, is_valid, date ) VALUES (?, ?, ?, ?, 0, ?)";
             $pdo->prepare($sql)->execute([$articleId, $title, $content, $userId, $now]);
         } catch (\Exception $e) {
             echo "Une erreur c'est produite, le commentaire n'a pas pu être ajouté." . $e->getMessage();

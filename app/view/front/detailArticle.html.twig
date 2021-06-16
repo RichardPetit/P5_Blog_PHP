@@ -7,7 +7,7 @@
 {% block content %}
     {% block article %}
         <h1 class="card-title">{{ detailArticle.title }}</h1>
-        <p id="summary">Résumé de l'article : {{ detailArticle.summary }}</p>
+        <p id="summary"> {{ detailArticle.summary }}</p>
 
         <div class="post-content">
         <p>{{ detailArticle.content | raw }} </p>
@@ -16,38 +16,39 @@
         <hr>
         <p class="published">Dernière modification le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
+        <hr>
 
 
         {% block comment %}
-            <p>Commentaires :</p>
             {% for comment in commentsArticle %}
                 <h4>{{ comment.title }}</h4>
                 <p>{{ comment.content }}</p><br>
-                <p>Auteur : {{ comment.author.pseudo }} </p> <br>
-                <p>Publié le {{ comment.getFullFormattedDate }}</p>
-                <br>
+                <p>Publié le {{ comment.getFullFormattedDate }} par {{ comment.author.pseudo }} </p>
+                <hr>
             {% endfor %}
 
             {% if commentSubmitted %}
                 <div class="alert alert-success">Votre commentaire à bien été soumis pour validation.</div>
             {% endif %}
 
-            <form class="formComment" action="/comment={{ article.id }}" method="post">
-                <p><label for="author">Pseudo</label><br>
-                    <input type="text" name="author" id="author" value="{{ authorName }}"
-                           class="form-control"></p>
-                <p><label for="title">Titre</label><br>
-                    <input type="text" name="title" id="title" value="{{ commentTitle }}"
-                           class="form-control"></p>
-                <p><label for="comment">Commentaire</label><br>
-                    <textarea name="comment" id="comment" cols="30"
-                              rows="8" class="form-control">{{ commentContent }}</textarea></p>
-                <input type="hidden" name="add" value="1">
-                {% if commentSubmitted == false %}
+            {% if isLoggedIn %}
+
+                <form class="formComment" action="/add-comment/{{ detailArticle.id }}" method="post">
+                    <p><label for="title">Titre</label><br>
+                        <input type="text" name="title" id="title" value="{{ commentTitle }}"
+                               class="form-control"></p>
+                    <p><label for="comment">Commentaire</label><br>
+                        <textarea name="content" id="content" cols="30"
+                                  rows="8" class="form-control">{{ commentContent }}</textarea></p>
+                    <input type="hidden" name="add" value="1">
 
                     <button type="submit" class="btn btn-success"> Envoyer</button>
-                {% endif %}
-            </form>
+
+                </form>
+                {% else  %}
+                <p>Pour ajouter un commentaire, merci de <a href="/login">vous connecter</a>.</p>
+            {% endif %}
+
 
 
         {% endblock comment %}

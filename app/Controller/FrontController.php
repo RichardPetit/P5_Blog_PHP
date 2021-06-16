@@ -118,21 +118,15 @@ class FrontController extends AbstractController
                 $email = $_POST['emailContact'] ?? '';
                 $name = $_POST['nameContact'] ?? '';
                 $subject = $_POST['subjectContact'] ?? '';
-                $contentMesssage = $_POST['contentContact'] ?? '';
+                $contentMessage = $_POST['contentContact'] ?? '';
                 try {
-                    $contact = Contact::create($email, $name, $subject, $contentMesssage);
-                    try {
-                        $emailService = new EmailService();
-                        $emailService->sendEmail($contact);
-                        echo 'Le message a été envoyé';
-                    } catch (Exception $e){
-                        echo "Le message n'a pas été envoyé";
-                    }
-                } catch (AssertionFailedException $e) {
+                    $contact = Contact::create($email, $name, $subject, $contentMessage);
+                    $emailService = new EmailService();
+                    $emailService->sendEmail($contact);
+                } catch (\Exception $e) {
                     $error = true;
                     $msgError = "L'erreur suivante c'est produite : " . $e->getMessage();
                 }
-                // ajouter l'envoie d'email après la création du service après le !$error
                 if (!$error) {
                     $msgSuccess = "Votre message a été envoyé. Vous receverez la réponse par email dans les plus brefs délais.";
                 }
@@ -224,11 +218,13 @@ class FrontController extends AbstractController
     }
 
 
-    public function addCommentAction()
+    public function addCommentAction($articleId)
     {
+        $this->redirectToHomeIfNotLoggedIn();
         $error = false;
         $msgError = "";
-
+        $commentSubmitted = false;
+        $article = Articles::getArticle($articleId);
 
         $addComment= isset($_POST['add']);
 
@@ -236,17 +232,17 @@ class FrontController extends AbstractController
             $msgError = $this->checkFormCreateCommentAction();
             if ($msgError === ''){
                 $author = $this->getUser();
-                $articleId = Articles::getArticle()->getId();
                 $title = $_POST['title'] ?? '';
                 $content = $_POST['content'] ?? '';
                 try {
-                    $comment = Comment::create($title, $content,$author, $articleId);
+                    $comment = Comment::create($title, $content, $author, $article );
                 } catch (AssertionFailedException $e){
                     $error = true;
                     $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
                 }
                 if(!$error && Comments::addComment($comment)) {
-                    $this->redirectTo('/articles/'.$articleId);
+                    $commentSubmitted = true;
+
                 }
             }
         }
@@ -254,13 +250,15 @@ class FrontController extends AbstractController
             'msgError' => $msgError,
             'title' => '',
             'content' => '',
+            'commentSubmitted' => $commentSubmitted,
+            'detailArticle' => $article,
         ]);
     }
 
     private function checkFormCreateCommentAction()
     {
         $title = $_POST['title'] ?? '';
-        $comment = $_POST['comment'] ?? '';
+        $comment = $_POST['content'] ?? '';
         $error = "";
 
         try {

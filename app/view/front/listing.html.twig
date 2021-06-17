@@ -13,7 +13,7 @@
                 <h5>Résumé de l'article:</h5>
                 <p>{{ article.summary }}</p>
                 <p>Dernière modification : {{ article.getFullFormattedDate }}</p>
-                <a href="articles/{{ article.id }}"> Lire l'article</a>
+                <a class="show-article" href="articles/{{ article.id }}"> Lire l'article</a>
             </div>
         {% endfor %}
     {% endblock  article %}

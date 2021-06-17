@@ -1,8 +1,22 @@
 # P5_Blog_PHP
 
+    
+#Bibliothèques externe
+composer require twig/twig
 composer require beberlei/assert
+composer require phpmailer/phpmailer
+#Base de données
+Pour la base de données, allez dans le dossier sql puis exécuter les requetes se trouvant dans le fichier schema.sql.
+Modifier les informations relatives à votre base de données dans le fichier .env .
 
-Contexte
+
+#Envoi d'email
+Préciser les information vous concernant (SMPT_HOST, USERNAME etc...) dans le fichier EmailService.php .
+
+Chemin du fichier: app/Service/EmailService.php
+
+
+#Contexte
 
 Ça y est, vous avez sauté le pas ! Le monde du développement web avec PHP est à portée de main et vous avez besoin de visibilité pour pouvoir convaincre vos futurs employeurs/clients en un seul regard. Vous êtes développeur PHP, il est donc temps de montrer vos talents au travers d’un blog à vos couleurs.
 Description du besoin

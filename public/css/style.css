@@ -21,11 +21,20 @@ header .container {
     padding-top: 30px;
     padding-bottom: 20px;
 }
-@media screen and (max-width: 1200px){
-.navbar-brand{
-    display: none;
+@media screen and (max-width: 1200px) {
+    .navbar-brand {
+        display: none;
+    }
 }
+@media (max-width: 767px) {
+    .navbar-toggle{
+        display: none;
+    }
+    .collapse{
+        display: block;
+    }
 }
+
 .navbar-custom .navbar-toggle{
     margin: -9px 20px 0 0;
 }
@@ -128,6 +137,9 @@ a i{
     height: 320px;
     border-radius: 130px / 160px;
 }
+.show-article{
+    font-size: 20px;
+}
 .card-article{
     border-radius: 5px;
     box-shadow: 2px 2px 22px 2px rgba(0, 0, 255, .2);
@@ -138,74 +150,101 @@ a i{
 .card-article:hover {
     transform: scale(1.05);
 }
+@media screen and (max-width: 991px) {
+    .card-article {
+        margin: 0 -5%;
+    }
+}
+@media screen and (max-width: 850px) {
+    .card-article {
+        margin: 0 -2%;
+    }
+}
 
-.published{
+@media screen and (max-width: 767px) {
+    .card-article {
+        margin: auto;
+    }
+}
+
+
+.published {
     font-size: 14px;
 }
-#contactBtn{
+
+#contactBtn {
     margin: 2rem;
     width: 100%;
     display: flex;
     justify-content: center;
     flex-direction: column;
 }
-#contactBtn a{
+
+#contactBtn a {
     margin: 0 25% 0 25%;
 }
 
 /* Dashboard */
-#btn-delete{
+#btn-delete {
     color: white;
     transition: transform .6s;
-}
-#btn-delete:hover{
-   transform: scale(1.1);
-}
-#btn-edit{
-    color: white;
-    transition: transform .6s;
-}
-#btn-edit:hover{
-    transform: scale(1.1);
-}
-#btn-comments{
-    color: white;
-    transition: transform .6s;
-}
-#btn-comments:hover{
-    transform: scale(1.1);
-}
-.newArticleBtn{
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem ;
 }
 
-.board ,tr td a{
+#btn-delete:hover {
+    transform: scale(1.1);
+}
+
+#btn-edit {
+    color: white;
+    transition: transform .6s;
+}
+
+#btn-edit:hover {
+    transform: scale(1.1);
+}
+
+#btn-comments {
+    color: white;
+    transition: transform .6s;
+}
+
+#btn-comments:hover {
+    transform: scale(1.1);
+}
+
+.newArticleBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+
+.board, tr td a {
     color: #2C3E50;
 }
-.btn{
+
+.btn {
     font-size: 18px;
 }
-.formComment{
+
+.formComment {
     margin: 0 10% 2% 10%;
 }
 
 /* New article page */
-
-.articles-labels{
+.articles-labels {
     margin-top: 3rem;
 }
 
-.btn.btn-danger{
+.btn.btn-danger {
     font-weight: bold;
 }
-#textarea-content{
+
+#textarea-content {
     border-radius: 2px;
     background-color: yellow;
 }
-/* Wysiwyg */
 
+/* Wysiwyg */
 #editor {
     width: auto;
     height: 200px;
@@ -216,38 +255,40 @@ a i{
 }
 
 /* Connection */
-.formConnection{
+.formConnection {
     margin: 0 25% 2% 25%;
 }
-#passwordForget{
+
+#passwordForget {
     font-size: small;
 }
-.profilPic{
+
+.profilPic {
     width: 300px;
     height: 300px;
 }
 
 /* Contact */
-
-.formContact{
+.formContact {
     margin: 0 20% 2% 20%;
 }
-#contentContact{
+
+#contentContact {
     height: 15rem;
 }
 
 /* Users list */
-.check{
+.check {
     color: #00c79c;
 }
-.cross{
+
+.cross {
     color: #e43949;
 }
+
 /* Comments */
 
-@media screen and (max-width: 770px){
 
-}
 
 
 

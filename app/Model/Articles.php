@@ -10,11 +10,16 @@ use Blog\Model\Connector\PDO;
 class Articles
 {
     //Fonction qui récupère les articles en BDD
-    public static function getArticles()
+    public static function getArticles(?int $limit = null)
     {
         $pdo = PDO::getInstance();
         try {
-            $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC limit 10');
+            $sql = "SELECT * FROM articles ORDER BY id DESC";
+            if ($limit) {
+                $sql .= " LIMIT $limit";
+            }
+            $articlesPDO = $pdo->query($sql);
+
         } catch (\Exception $e) {
             echo "Une erreur c'est produite." . $e->getMessage();
         }
@@ -22,7 +27,6 @@ class Articles
         foreach ($articlesPDO as $articlePDO) {
             $articleEntities[] = self::hydrateEntity($articlePDO);
         }
-
         return $articleEntities;
     }
 
@@ -40,7 +44,6 @@ class Articles
         if(!$showArticle) {
             throw new ArticleNotFoundException('Article not found');
         }
-
         return self::hydrateEntity($showArticle);
     }
 
@@ -52,8 +55,9 @@ class Articles
             $content = $article->getContent();
             $summary = $article->getSummary();
             $title = $article->getTitle();
-            $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, NOW()) ";
-            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId]);
+            $now = date("Y-m-d H:i:s");
+            $sql = "INSERT INTO articles (title, content, summary, users_id, date ) VALUES (?, ?, ?, ?, ?) ";
+            $pdo->prepare($sql)->execute([$title, $content, $summary, $userId, $now]);
         } catch (\Exception $e) {
            echo "Une erreur c'est produite, l'article n'a pas pu être ajouté." . $e->getMessage();
         }
@@ -62,6 +66,36 @@ class Articles
     }
 
 
+    public static function edit(Article $article)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $userId = $article->getAuthor()->getId();
+            $articleId = $article->getId();
+            $content = $article->getContent();
+            $summary = $article->getSummary();
+            $title = $article->getTitle();
+            $now = date("Y-m-d H:i:s");
+            $sql = "UPDATE articles SET title = ? , content =  ?, summary = ?, users_id = ?, date = ? WHERE id = $articleId ";
+            $prepare = $pdo->prepare($sql);
+            $prepare->execute([ $title, $content, $summary, $userId, $now]);
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite, l'article n'a pas pu être modifié." . $e->getMessage();
+        }
+        return $article;
+    }
+
+    public static function delete(Article $article)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $articleId = $article->getId();
+            $sql = "DELETE FROM articles WHERE id = ? ";
+            $pdo->prepare($sql)->execute([$articleId]);
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite, l'article n'a pas pu être supprimé." . $e->getMessage();
+        }
+    }
 
 
     public static function hydrateEntity($articleFromDb): Article
@@ -77,8 +111,6 @@ class Articles
 
         return $articleEntity;
     }
-
-
 
 
 }

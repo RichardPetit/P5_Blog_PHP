@@ -1,0 +1,70 @@
+{% extends '_layout.html.twig' %}
+
+
+{% block head %}
+
+        <title>{{ title | length > 0 ? title : "Nouvel article" }}</title>
+
+{% endblock %}
+
+
+{% block content %}
+
+    {% if( msgError != "") %}
+        <div class="alert alert-danger"> {{ msgError }}</div>
+    {% endif %}
+    {% if( msgSuccess != "") %}
+        <div class="alert alert-success"> {{ msgSuccess }}</div>
+    {% endif %}
+    {% if( msgSuccess == "") %}
+        <div class="newArticleBtn">
+            <a href="{{ router.getUrlFromRouteName('admin') }}" class="btn btn-danger"> Annuler</a>
+        </div>
+
+    <div class="newArticleForm">
+        <h2>{{ title | length > 0 ? title : "Nouvel article" }}</h2>
+        <br>
+        <hr class="star-primary">
+        <br>
+
+        <div class="centerForm">
+            <form method="post" id="form-create-article">
+                <input type="hidden" name="add" value="1">
+                <p>
+                    <label for="title">Titre</label><br>
+                    <input type="text" name="title" id="title" value="{{ title }}" class="form-control">
+                </p>
+                <p>
+                    <label class="articles-labels"  for="content">Contenu de l'article</label><br>
+                    <input type="button" value="G" style="font-weight: bold;" onclick="commande('bold');" />
+                    <input type="button" value="I" style="font-style: italic;" onclick="commande('italic');" />
+                    <input type="button" value="S" style="text-decoration: underline;" onclick="commande('underline');" />
+                    <input type="button" value="Lien" onclick="commande('createLink');" />
+                    <input type="button" value="Image" onclick="commande('insertImage');" />
+                </p>
+                <div id="editor" contentEditable> {{ content | raw }}</div>
+                <p style="display:none;">
+                    <textarea name="content" id="textarea-content" ></textarea>
+                </p>
+                <p>
+                    <label class="articles-labels" for="summary">Résumé de l'article</label><br>
+                    <textarea cols=100 rows=8 class="form-control" name="summary" id="summary">{{ summary }}</textarea>
+                </p>
+                    <p>
+                        <button id="btn-submit" type="submit" class="btn btn-success">Enregistrer</button>
+                    </p>
+            </form>
+        </div>
+    </div>
+    {% endif %}
+    <script>
+        $(document).ready(function() {
+            $("#btn-submit").click(function(event) {
+                event.preventDefault();
+                const contentHtml = $("#editor").html();
+                $("#textarea-content").text(contentHtml);
+                $("#form-create-article").submit();
+            })
+        })
+    </script>
+{% endblock %}

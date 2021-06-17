@@ -1,0 +1,47 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Liste des membres</title>
+{% endblock %}
+
+
+{% block content %}
+    <h2>Gestion des membres :</h2>
+    {% block user %}
+        <table class="table">
+            <thead>
+            <th class="card-title">Pseudo</th>
+            <th class="card-title">Actif</th>
+            <th class="card-title">Activer / Désactiver</th>
+            <th class="card-title">Admin</th>
+            <th class="card-title">Passer admin</th>
+            </thead>
+            <tbody>
+            {% for user in users %}
+
+                <tr>
+                    <td>
+                        <p>{{ user.pseudo }}<p>
+                    </td>
+                    <td>
+                       <p>{{ user.isActive ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
+                    </td>
+                    <td>
+                        <a href="/active-user/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                        <a href="/deactivate-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                    </td>
+                    <td>
+                        <p>{{ user.isAdmin() ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
+                    </td>
+                    <td>
+                        <a href="/pass-admin/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                        <a href="/pass-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock  user %}
+
+{% endblock %}

@@ -5,12 +5,16 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Listing-page</h1>
+    <h1 align="center">Liste des articles</h1>
     {% block article %}
         {% for article in articles %}
-            <h4 class="card-title">{{ article.title }}</h4>
-            <p>{{ article.summary }}</p>
-            <a href="?p=detailsArticle&id={{ article.id }}"> Lire l'article</a>
+            <div class="card-article">
+                <h3 class="card-title">{{ article.title }}</h3>
+                <h5>Résumé de l'article:</h5>
+                <p>{{ article.summary }}</p>
+                <p>Dernière modification : {{ article.getFullFormattedDate }}</p>
+                <a class="show-article" href="articles/{{ article.id }}"> Lire l'article</a>
+            </div>
         {% endfor %}
     {% endblock  article %}
 

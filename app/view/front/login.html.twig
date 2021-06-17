@@ -15,7 +15,7 @@
             <h2>Me connecter</h2>
             <hr class="star-primary"/>
             <br>
-            <form method="post" action="/?p=login">
+            <form method="post" action="{{ router.getUrlFromRouteName('login') }}">
                 <input type="hidden" name="submit" value="1"/>
                 <p>
                     <label for="emailConnect">Email :</label><br>
@@ -29,7 +29,7 @@
                 </p>
                 <p>
                     <button type="submit" name="formConnect" class="btn btn-success"> Me connecter</button>
-                    <br><a id="passwordForget" href="#">Mot de passe oublié?</a>
+{#                    <br><a id="passwordForget" href="#">Mot de passe oublié?</a>#}
                 </p>
                 <div></div>
 

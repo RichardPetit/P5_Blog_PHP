@@ -3,8 +3,9 @@
 
 namespace Blog\Entity;
 
-use Assert\Assertion;
 use Blog\Exception\UserNotFoundException;
+use Blog\Exception\UserNotActiveException;
+
 
 /**
  * Class User
@@ -35,12 +36,12 @@ class User
     /**
      * @var bool
      */
-    public bool $isAdmin;
+    public bool $isAdmin = false;
 
     /**
      * @var bool
      */
-    public bool $isActive;
+    public bool $isActive = true;
 
     /**
      * @var string
@@ -176,6 +177,17 @@ class User
 
         if (!password_verify($password, $this->getPassword())) {
             throw new UserNotFoundException();
+        }
+    }
+
+    /**
+     * @throws UserNotActiveException
+     */
+    public function verifyStatus():void
+    {
+
+        if (!$this->isActive()) {
+            throw new UserNotActiveException();
         }
     }
 

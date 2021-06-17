@@ -5,7 +5,7 @@ namespace Blog\Controller;
 use Blog\Entity\User;
 use Blog\Exception\UserNotFoundException;
 use Blog\Model\Users;
-use Blog\Service\Router;
+use Blog\Route\Router;
 use Exception;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -73,6 +73,16 @@ class AbstractController
         exit;
     }
 
+    /**
+     * Redirects to a given path
+     * @param string $path
+     */
+    protected function redirectToPath(string $path)
+    {
+        header('Location: '.$path);
+        exit;
+    }
+
     protected function isLoggedIn(): bool
     {
         return isset($_SESSION['id']);
@@ -98,6 +108,20 @@ class AbstractController
     {
         if (!$this->isAdmin()) {
             throw new Exception();
+        }
+    }
+
+    protected function redirectToHomeIfNotLoggedIn()
+    {
+        if(!$this->isLoggedIn()) {
+            $this->redirectTo('home');
+        }
+    }
+
+    protected function redirectToHomeIfNotAdmin()
+    {
+        if(!$this->isAdmin()) {
+            $this->redirectTo('home');
         }
     }
 

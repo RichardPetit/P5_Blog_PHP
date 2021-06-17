@@ -1,0 +1,32 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Profil</title>
+{% endblock %}
+
+{% block content %}
+<div align="center">
+    <h1>Profil utilisateur</h1>
+    <hr class="star-primary">
+    {% block profile %}
+
+    <h4>Profil de {{ user.pseudo }}</h4>
+    <br>
+    <p>Adresse email : {{ user.email }}</p>
+    <p>Photo de profil : <img class="profilPic" src="{{ user.avatar }}" alt="photo de profil"></p>
+        <br> <br>
+        {% if user.isAdmin == true %}
+            <p>Role de l'utilisateur : Admin</p>
+        {% else %}
+            <p>Role de l'utilisateur : Membre</p>
+        {% endif %}
+        <br>
+        {% if user.isActive == true %}
+            <p>Utilisateur actif</p>
+        {% else %}
+            <p>Utilisateur inactif</p>
+        {% endif %}
+
+    {% endblock profile %}
+</div>
+{% endblock %}

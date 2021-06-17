@@ -6,23 +6,24 @@ namespace Blog\Controller;
 use Assert\Assertion;
 use Assert\AssertionFailedException;
 use Blog\Entity\Article;
+use Blog\Entity\Comment;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
 use Blog\Exception\ArticleNotFoundException;
+use Blog\Exception\UserNotActiveException;
 use Blog\Exception\UserNotFoundException;
 use Blog\Model\Articles;
+use Blog\Model\Comments;
 use Blog\Model\Users;
 use Blog\Service\EmailService;
 use PHPMailer\PHPMailer\Exception;
-use Blog\Model\Connector\PDO;
 
 
 class FrontController extends AbstractController
 {
     public function homeAction()
     {
-        //$articles = Articles::getArticles();
-        $articles = [];
+        $articles = Articles::getArticles(10);
         $this->render("front", "home.html.twig", [
             'viewArticle' => $articles,
         ]);
@@ -35,29 +36,28 @@ class FrontController extends AbstractController
         ]);
     }
 
-    public function detailArticleAction()
+    public function detailArticleAction(int $id)
     {
-//        $id = $_GET['id'] ?? null;
-//        if (!$id || $id === null) {
-//            $this->redirectTo('?p=home');
-//        }
         try {
-            $id = 1;
-            $article = Articles::getArticle((int)$id);
+            $article = Articles::getArticle($id);
+            $comments = Comments::getCommentsForArticle($id);
         } catch (ArticleNotFoundException $e) {
-            $this->redirectTo('?p=home');
+            $this->redirectTo('home');
         }
         $this->render("front", "detailArticle.html.twig", [
             'detailArticle' => $article,
+            'commentsArticle' => $comments,
         ]);
     }
+
+
 
     public function createUserAction()
     {
         $error = false;
         $msgError = "";
         $msgSuccess = "";
-        $addUser = isset($_POST['add']); //true si le form est posté / false si on arrive sur la page (donc form non posté)
+        $addUser = isset($_POST['add']);
         if ($addUser) {
             $msgError = $this->checkFormForCreateUserAction();
             if($msgError === '') {
@@ -75,9 +75,6 @@ class FrontController extends AbstractController
                 }
             }
         }
-        //Si on arrive là c'est qu'on est pas dans le if($addUser) donc que le form est pas posté
-        //Donc là on affiche le form
-
         $this->render('front', 'register.html.twig', [
             'msgError' => $msgError,
             'msgSuccess' => $msgSuccess,
@@ -119,22 +116,17 @@ class FrontController extends AbstractController
             $msgError = $this->checkFormForContactAction();
             if ($msgError === ''){
                 $email = $_POST['emailContact'] ?? '';
+                $name = $_POST['nameContact'] ?? '';
                 $subject = $_POST['subjectContact'] ?? '';
-                $contentMesssage = $_POST['contentContact'] ?? '';
+                $contentMessage = $_POST['contentContact'] ?? '';
                 try {
-                    $contact = Contact::create($email, $subject, $contentMesssage);
-                    try {
-                        $emailService = new EmailService();
-                        $emailService->sendEmail($contact);
-                        echo 'Le message a été envoyé';
-                    } catch (Exception $e){
-                        echo "Le message n'a pas été envoyé";
-                    }
-                } catch (AssertionFailedException $e) {
+                    $contact = Contact::create($email, $name, $subject, $contentMessage);
+                    $emailService = new EmailService();
+                    $emailService->sendEmail($contact);
+                } catch (\Exception $e) {
                     $error = true;
                     $msgError = "L'erreur suivante c'est produite : " . $e->getMessage();
                 }
-                // ajouter l'envoie d'email après la création du service après le !$error
                 if (!$error) {
                     $msgSuccess = "Votre message a été envoyé. Vous receverez la réponse par email dans les plus brefs délais.";
                 }
@@ -176,12 +168,16 @@ class FrontController extends AbstractController
                 try {
                     $user = Users::getUserByEmail($email);
                     $user->verifyPassword($password);
+                    $user->verifyStatus();
                     $_SESSION['id'] = $user->getId();
                     $_SESSION['pseudo'] = $user->getPseudo();
                     $_SESSION['email'] = $user->getEmail();
                     $this->redirectTo('home');
                 } catch (UserNotFoundException $e) {
                     $msgError = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
+                } catch (UserNotActiveException $e){
+                    $msgError = "Votre compte est inactif, merci de contacter l'administrateur.";
+
                 }
             }
         }
@@ -212,4 +208,66 @@ class FrontController extends AbstractController
         $this->redirectTo('home');
     }
 
+    public function profileAction()
+    {
+        $this->redirectToHomeIfNotLoggedIn();
+        $userLogged = $this->getUser();
+        $this->render("front", "profile.html.twig", [
+            'user' => $userLogged,
+        ]);
+    }
+
+
+    public function addCommentAction($articleId)
+    {
+        $this->redirectToHomeIfNotLoggedIn();
+        $error = false;
+        $msgError = "";
+        $commentSubmitted = false;
+        $article = Articles::getArticle($articleId);
+
+        $addComment= isset($_POST['add']);
+
+        if ($addComment) {
+            $msgError = $this->checkFormCreateCommentAction();
+            if ($msgError === ''){
+                $author = $this->getUser();
+                $title = $_POST['title'] ?? '';
+                $content = $_POST['content'] ?? '';
+                try {
+                    $comment = Comment::create($title, $content, $author, $article );
+                } catch (AssertionFailedException $e){
+                    $error = true;
+                    $msgError = "L'erreur suivante s'est produite : " . $e->getMessage();
+                }
+                if(!$error && Comments::addComment($comment)) {
+                    $commentSubmitted = true;
+
+                }
+            }
+        }
+        $this->render('front', 'detailArticle.html.twig', [
+            'msgError' => $msgError,
+            'title' => '',
+            'content' => '',
+            'commentSubmitted' => $commentSubmitted,
+            'detailArticle' => $article,
+        ]);
+    }
+
+    private function checkFormCreateCommentAction()
+    {
+        $title = $_POST['title'] ?? '';
+        $comment = $_POST['content'] ?? '';
+        $error = "";
+
+        try {
+            Assertion::notEmpty($title, "Le champ titre doit être rempli.");
+            Assertion::minLength($title, 5, "Le titre doit faire au minimum 5 caractères.");
+            Assertion::notEmpty($comment, "Le champ du contenu doit être rempli.");
+           } catch (AssertionFailedException $e){
+            $error = $e->getMessage();
+        }
+        return $error;
+    }
 }

@@ -1,0 +1,40 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Tableau de bord</title>
+{% endblock %}
+
+
+{% block content %}
+    <div class="newArticleBtn">
+        <a href="{{ router.getUrlFromRouteName('createArticle') }}" class="btn btn-success create-article-btn"> Créer un article</a>
+    </div>
+
+    <h2>Administration des articles :</h2>
+    {% block article %}
+        <table class="table">
+            <thead>
+            <th class="card-title">Titre</th>
+            <th class="card-title">Actions</th>
+            </thead>
+            <tbody>
+            {% for article in articles %}
+            <div class="board"></div>
+                <tr>
+                    <td>
+                        <a href="/articles/{{ article.id }}">{{ article.title }}</a>
+                    </td>
+                    <td>
+                        <a href="/edit-article/{{ article.id }}" id="btn-edit" title="Éditer" class="btn btn-success"><i class="fa fa-fw fa-edit"></i></a>
+                        <a href="/comments/{{ article.id }}" id="btn-comments" title="Commentaires"class="btn btn-primary"><i class="fa fa-fw fa-comments"></i></a>
+                        <a href="/delete-article/{{ article.id }}" onclick="return confirm('Êtes vous sur de vouloir supprimer cet article ?');" id="btn-delete" title="Supprimer" class="btn btn-danger"><i class="fa fa-fw fa-trash"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock  article %}
+
+
+{% endblock %}

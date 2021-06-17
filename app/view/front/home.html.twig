@@ -4,100 +4,48 @@
     <title>Accueil</title>
 {% endblock %}
 
-{% block content %}
-    <h1>Homepage</h1>
-    {% block article %}
-        {% for article in viewArticle %}
-            <h4 class="card-title">{{ article.title }} - {{ article.author.pseudo }}</h4>
-            <p>{{ article.summary }}</p>
-            <p>{{ article.content }} <br>Publié le : {{ article.getFullFormattedDate() }}</p>
-            <a href="/?p=detailArticle&id={{ article.id }}"> Lire l'article</a>
-        {% endfor %}
-    {% endblock  article %}
-    <div class="newArticleBtn">
-        <a href="?p=createArticle" class="btn btn-success"> Créer un article</a>
-    </div>
-    <br>
-    <a href="?p=usersList" class="btn btn-success"> Voir les membres</a>
-
-
-
-
-
-    <section id="portfolio">
-        <div class="container">
+{% block header %}
+    <header>
+        <div class="container home-headband">
             <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Portfolio</h2>
-                    <hr class="star-primary">
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cabin.png" class="img-responsive" alt="">
-                    </a>
-
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/cake.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/circus.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/game.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/safe.png" class="img-responsive" alt="">
-                    </a>
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="../../../startbootstrap-freelancer-gh-pages/img/portfolio/submarine.png" class="img-responsive" alt="">
-                    </a>
+                <div class="col-lg-12">
+                    <img class="img-responsive" src="../../../public/images/photo%20site.jpg" alt="">
+                    <div class="intro-text">
+                        <hr class="star-light">
+                        <span class="skills"> Richard PETIT - Developpeur Web <br>- Pour mettre en avant votre entreprise -</span>
+                        <br>
+                        <hr class="star-light">
+                            <a class="cv" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
+                                <span class="btn btn-primary">Afficher mon CV</span>
+                            </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </header>
+{% endblock %}
+{% block content %}
+    {% block cv %}
 
 
+    {% endblock cv %}
+    {% block article %}
+        <h2>Les derniers articles :</h2>
+        <br>
+        {% for article in viewArticle %}
+            <div class="card-article">
+                <h4 class="card-title">{{ article.title }} </h4>
+                <p>{{ article.summary }}</p>
+                <p class="published">Publié le : {{ article.getFullFormattedDate() }} par {{ article.author.pseudo }}</p>
+                <a class="show-article" href="/articles/{{ article.id }}"> Lire l'article</a>
+            </div>
+        {% endfor %}
+    {% endblock  article %}
+
+
+    <div id="contactBtn">
+        <h4 align="center">Besoin d'information ?</h4>
+        <a href="{{ router.getUrlFromRouteName('contact') }}" class="btn btn-success"> Me contacter</a>
+    </div>
 
 {% endblock %}

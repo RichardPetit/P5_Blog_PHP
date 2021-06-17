@@ -21,8 +21,13 @@
             <hr class="star-primary"/>
             <br>
 
-            <form method="post" action="/?p=contact">
+            <form method="post" action="/contact">
                 <input type="hidden" name="add" value="1"/>
+                <p>
+                    <label for="nameContact">Nom et Prénom :</label>
+                    <input type="nameContact" placeholder="Votre nom et prénom" id="nameContact"
+                           name="nameContact" value="{{ nameContact }}" class="form-control">
+                </p>
                 <p>
                     <label for="emailContact">Email :</label>
                     <input type="emailContact" placeholder="Votre adresse email" id="emailContact"

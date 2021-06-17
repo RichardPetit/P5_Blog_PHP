@@ -19,6 +19,11 @@ class Contact
     /**
      * @var string
      */
+    public string $name;
+
+    /**
+     * @var string
+     */
     public string $subject;
 
     /**
@@ -45,6 +50,22 @@ class Contact
     public function setEmail(string $email): void
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     /**
@@ -98,11 +119,13 @@ class Contact
 
     public static function create(
         string $email,
+        string $name,
         string $subject,
         string $message
     ): self {
         $contactMessage = new self();
         $contactMessage->setEmail($email);
+        $contactMessage->setName($name);
         $contactMessage->setSubject($subject);
         $contactMessage->setMessage($message);
         $contactMessage->setSendedAt(new \DateTime());

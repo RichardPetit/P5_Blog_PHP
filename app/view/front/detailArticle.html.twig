@@ -1,52 +1,57 @@
 {% extends "_layout.html.twig" %}
 
 {% block head %}
-    <title>Détails</title>
+    <title>{{ detailArticle.title }}</title>
 {% endblock %}
 
 {% block content %}
-    <h1>{{ detailArticle.title }}</h1>
     {% block article %}
-        <h4 class="card-title">{{ detailArticle.title }}</h4>
-        <p>{{ detailArticle.content }} <br /> </p>
-        <p>Publié le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
+        <h1 class="card-title">{{ detailArticle.title }}</h1>
+        <p id="summary"> {{ detailArticle.summary }}</p>
+
+        <div class="post-content">
+        <p>{{ detailArticle.content | raw }} </p>
+        </div>
+        <br>
+        <hr>
+        <p class="published">Dernière modification le : {{ detailArticle.getFullFormattedDate() }} <br /></p>
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
+        <hr>
 
 
         {% block comment %}
-            <p>Commentaires :</p>
-            {% for comment in comments%}
+            {% for comment in commentsArticle %}
                 <h4>{{ comment.title }}</h4>
-                <p>{{ comment.content }}</p>
-                <p>Auteur : {{ comment.users_id }} <br>Publié le {{ comment.date }}</p>
-                <br>
+                <p>{{ comment.content }}</p><br>
+                <p>Publié le {{ comment.getFullFormattedDate }} par {{ comment.author.pseudo }} </p>
+                <hr>
             {% endfor %}
 
             {% if commentSubmitted %}
                 <div class="alert alert-success">Votre commentaire à bien été soumis pour validation.</div>
             {% endif %}
 
-            <form action="/?p=detailsArticle&id={{ article.id }}" method="post">
-                <p><label for="author">Pseudo</label><br>
-                    <input type="text" name="author" id="author" value="{{ authorName }}"
-                           class="form-control"></p>
-                <p><label for="title">Titre</label><br>
-                    <input type="text" name="title" id="title" value="{{ commentTitle }}"
-                           class="form-control"></p>
-                <p><label for="comment">Commentaire</label><br>
-                    <textarea name="comment" id="comment" cols="30"
-                              rows="8" class="form-control">{{ commentContent }}</textarea></p>
-                <input type="hidden" name="add" value="1">
-                {% if commentSubmitted == false %}
+            {% if isLoggedIn %}
+
+                <form class="formComment" action="/add-comment/{{ detailArticle.id }}" method="post">
+                    <p><label for="title">Titre</label><br>
+                        <input type="text" name="title" id="title" value="{{ commentTitle }}"
+                               class="form-control"></p>
+                    <p><label for="comment">Commentaire</label><br>
+                        <textarea name="content" id="content" cols="30"
+                                  rows="8" class="form-control">{{ commentContent }}</textarea></p>
+                    <input type="hidden" name="add" value="1">
 
                     <button type="submit" class="btn btn-success"> Envoyer</button>
-                {% endif %}
-            </form>
+
+                </form>
+                {% else  %}
+                <p>Pour ajouter un commentaire, merci de <a href="/login">vous connecter</a>.</p>
+            {% endif %}
+
 
 
         {% endblock comment %}
     {% endblock  article %}
-
-
 
 {% endblock %}

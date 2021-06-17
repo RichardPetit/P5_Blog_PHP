@@ -27,6 +27,21 @@ class Users
 
     }
 
+    public static function  getAllUsers()
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $allUsers = $pdo->query('SELECT * FROM users');
+        } catch (\Exception $e) {
+            echo "Une erreur c'est produite." . $e->getMessage();
+        }
+        $usersEntities = [];
+        foreach ($allUsers as $userPDO) {
+            $usersEntities[] = self::hydrateEntity($userPDO);
+        }
+        return $usersEntities;
+    }
+
     public static function getUserByEmail($email) : User
     {
         $pdo = PDO::getInstance();
@@ -75,10 +90,73 @@ class Users
         return $user;
     }
 
+    public function userProfil($id)
+    {
+        return $this->getProfil('users', 'User',$id);
+    }
+
+    public static function getProfil($id)
+    {
+        $pdo = PDO::getInstance();
+        $req = $pdo->prepare("SELECT id, pseudo, email, is_admin, is_active, avatar FROM users WHERE id = ? ");
+        $req->execute(array($id));
+        $data = $req->fetch(\PDO::FETCH_ASSOC);
+        return $data;
+    }
+
+     public static function changeUserStatus(int $id, bool $active = true)
+     {
+         $pdo = PDO::getInstance();
+         try {
+             $active = (int)$active;
+             $query = "UPDATE users SET is_active = ? WHERE id = ?";
+             $req = $pdo->prepare($query);
+             $req->execute([$active, $id]);
+         } catch (\Exception $e){
+             echo "Erreur de connexion à la base de données. Exception reçue : " . $e->getMessage();
+         }
+     }
+
+
+    public static function changeUserOnActive(int $id)
+    {
+        self::changeUserStatus($id);
+    }
+
+    public static function changeUserOnInactive(int $id)
+    {
+        self::changeUserStatus($id, false);
+    }
+
+
+    public static function changeUserRole(int $id, bool $admin = true)
+    {
+        $pdo = PDO::getInstance();
+        try {
+            $admin = (int)$admin;
+            $query = "UPDATE users SET is_admin = ? WHERE id = ?";
+            $req = $pdo->prepare($query);
+            $req->execute([$admin, $id]);
+        } catch (\Exception $e){
+            echo "Erreur de connexion à la base de données. Exception reçue : " . $e->getMessage();
+        }
+    }
+
+    public static function changeUserToAdmin(int $id)
+    {
+        self::changeUserRole($id);
+    }
+    public static function changeAdminToUser(int $id)
+    {
+        self::changeUserRole($id, false);
+    }
+
+
+
+
     public static function hydrateEntity($userFromDb) : User
     {
-        //$userFromDB correspond à l'enregistrement PDO
-        //On instantie l'entité User et on hydrate ses paramètres depuis le PDO
+
         $userEntity = new User();
         $userEntity->setId($userFromDb->id);
         $userEntity->setPseudo($userFromDb->pseudo);
@@ -87,7 +165,6 @@ class Users
         $userEntity->setIsActive($userFromDb->is_active == 1);
         $userEntity->setAvatar($userFromDb->avatar);
         $userEntity->setPassword($userFromDb->password);
-        //A ce moment là on a une Entité User parfaitement instantiée et hydratée, on retourne donc le résultat
         return $userEntity;
     }
 

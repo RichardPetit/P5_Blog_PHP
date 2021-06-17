@@ -6,13 +6,12 @@ namespace Blog\Entity;
 use Exception;
 
 /**
- * Class Article
+ * Class Comment
  */
-class Article
+class Comment
 {
-
     public const SHORT_FORMAT_DATE = 'd/m/Y';
-    public const FULL_FORMAT_DATE = 'd/m/Y H:i';
+    public const FULL_FORMAT_DATE = 'd/m/Y';
 
     /**
      * @var int|null
@@ -30,9 +29,9 @@ class Article
     public string $content;
 
     /**
-     * @var string
+     * @var \DateTimeInterface
      */
-    public string $summary;
+    public \DateTimeInterface $createdAt;
 
     /**
      * @var User
@@ -40,14 +39,12 @@ class Article
     public User $author;
 
     /**
-     * @var \DateTimeInterface
+     * @var Article
      */
-    public \DateTimeInterface $createdAt;
+    public Article $article;
 
-    /**
-     * @var string
-     */
-    public string $picture;
+    /** @var bool */
+    public bool $isValid = false;
 
     /**
      * @return int|null
@@ -56,7 +53,6 @@ class Article
     {
         return $this->id;
     }
-
     /**
      * @param int|null $id
      */
@@ -98,22 +94,6 @@ class Article
     }
 
     /**
-     * @return string
-     */
-    public function getSummary(): string
-    {
-        return $this->summary;
-    }
-
-    /**
-     * @param string $summary
-     */
-    public function setSummary(string $summary): void
-    {
-        $this->summary = $summary;
-    }
-
-    /**
      * @return User
      */
     public function getAuthor(): User
@@ -127,6 +107,22 @@ class Article
     public function setAuthor(User $author): void
     {
         $this->author = $author;
+    }
+
+    /**
+     * @return Article
+     */
+    public function getArticle(): Article
+    {
+        return $this->article;
+    }
+
+    /**
+     * @param Article $article
+     */
+    public function setArticle(Article $article): void
+    {
+        $this->article = $article;
     }
 
     /**
@@ -166,38 +162,40 @@ class Article
     /**
      * @param string $title
      * @param string $content
-     * @param string $summary
      * @param User $author
+     * @param Article $article
      * @return static
      * @throws Exception
      */
     public static function create(
         string $title,
         string $content,
-        string $summary,
-            User $author
-    ): self {
-        //On instantie l'Entité Article et on set les paramètres nécessaires
-        $article = new self();
-        $article->setTitle($title);
-        $article->setContent($content);
-        $article->setSummary($summary);
-        $article->setAuthor($author);
-        $article->setCreatedAt(new \DateTime());
-        return $article;
-    }
-
-    public static function edit(
-        string $title,
-        string $content,
-        string $summary,
         User $author,
         Article $article
     ): self {
-        $article->setTitle($title);
-        $article->setContent($content);
-        $article->setSummary($summary);
-        $article->setAuthor($author);
-        return $article;
+        $comment = new self();
+        $comment->setTitle($title);
+        $comment->setContent($content);
+        $comment->setAuthor($author);
+        $comment->setArticle($article);
+        $comment->setCreatedAt(new \DateTime());
+        return $comment;
     }
+
+    /**
+     * @return bool
+     */
+    public function isValid(): bool
+    {
+        return $this->isValid;
+    }
+
+    /**
+     * @param bool $isValid
+     */
+    public function setIsValid(bool $isValid): void
+    {
+        $this->isValid = $isValid;
+    }
+
 }

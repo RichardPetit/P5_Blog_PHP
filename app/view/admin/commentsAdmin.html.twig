@@ -1,0 +1,62 @@
+{% extends "_layout.html.twig" %}
+
+{% block head %}
+    <title>Liste des commentaires</title>
+{% endblock %}
+
+
+{% block content %}
+    <div>
+        <a href="{{ router.getUrlFromRouteName('admin') }}" class="btn btn-success"> Retour</a>
+    </div>
+
+    <h2>Commentaires de l'article {{ article.title }}</h2>
+    {% block comment %}
+        <table class="table">
+            <thead>
+            <th class="card-title">Auteur</th>
+            <th class="card-title">Titre</th>
+            <th class="card-title">Contenu</th>
+            <th class="card-title">Date</th>
+            <th class="card-title">Statut</th>
+            <th class="card-title">Valider</th>
+            <th class="card-title">Invalider</th>
+            </thead>
+            <tbody>
+            {% for comment in comments %}
+
+                <tr>
+                    <td>
+                        <p>{{ comment.author.pseudo }}</p>
+                    </td>
+                    <td>
+                        <p>{{ comment.title }}</p>
+                    </td>
+                    <td>
+                        <p>{{ comment.content }}</p>
+                    </td>
+                    <td>
+                        <p>{{ comment.getFullFormattedDate }}</p>
+                    </td>
+                    <td>
+                        {% if comment.isValid() == true %}
+                            <p><i class="fa fa-check check"></i></p>
+                        {% else %}
+                            <p> <i class="fa fa-times cross"></i></p>
+                        {% endif %}
+
+                    </td>
+                    <td>
+                            <a href="/comments-validate/{{ comment.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
+                    </td>
+                    <td>
+                        <a href="/comments-invalidate/{{ comment.id }}" class="btn btn-danger"> <i class="fa fa-times"></i></a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endblock  comment %}
+
+{% endblock %}

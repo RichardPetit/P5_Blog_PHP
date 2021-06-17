@@ -13,7 +13,11 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
 
+    <script src="../../../js/wysiwyg.js"></script>
 
+
+    <!-- Jquery pour wysiwyg -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../../../public/css/style.css"/>
 </head>
@@ -24,12 +28,12 @@
         <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
             <div class="container nav-container">
                 <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
                         <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
                     </button>
-                    <a class="navbar-brand" href="/home">Richard Petit</a>
+                    <a class="navbar-brand" href="?p=home">Richard Petit</a>
                 </div>
-
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav navbar-right">
@@ -37,36 +41,36 @@
                             <a href="#page-top"></a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('home') }}">Accueil</a>
+                            <a href="{{ router.getUrlFromRouteName('home') }}" target="_blank">Voir le site</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('articlesListing') }}">Articles</a>
+                            <a href="{{ router.getUrlFromRouteName('admin') }}">Dashboard</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('contact') }}">Contact</a>
+                            <a href="{{ router.getUrlFromRouteName('usersAdmin') }}">Membres</a>
                         </li>
                         <li class="page-scroll">
-                            <a href="{{ router.getUrlFromRouteName('register') }}">S'inscrire</a>
-                        </li>
-                        <li class="page-scroll">
-                            {% if isLoggedIn %}
-                                <a href="{{ router.getUrlFromRouteName('logout') }}"><i class="fa fa-sign-out"></i></a>
-                            {% else %}
-                                <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
-                            {% endif %}
+                            <a href="{{ router.getUrlFromRouteName('logout') }}"><i class="fa fa-sign-out"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+
+        <div class="container headband">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <h2>Interface administrateur</h2>
+                        <hr class="star-light">
+                    </div>
+                </div>
+            </div>
+        </div>
     </header>
 
-    {% block header %}
-    {% endblock %}
 
-<div class="container" id="content">{% block content %}
-
-    {% endblock %}</div>
+<div class="container" id="content">{% block content %}    {% endblock %}</div>
 
 
 
@@ -92,7 +96,7 @@
                         </div>
                         <div class="footer-col col-md-6">
                             <h3>Administration du site</h3>
-                                <a href="{{ router.getUrlFromRouteName('admin') }}" target="_blank" class="btn-social btn-outline" > <i class="fa fa-fw fas fa-cogs"></i></a>
+                            <a href="{{ router.getUrlFromRouteName('admin') }}" target="_blank" class="btn-social btn-outline" > <i class="fa fa-fw fas fa-cogs"></i></a>
                         </div>
                     </div>
                     <hr class="star-light footer-line">

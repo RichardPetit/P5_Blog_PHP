@@ -10,11 +10,16 @@ use Blog\Model\Connector\PDO;
 class Articles
 {
     //Fonction qui récupère les articles en BDD
-    public static function getArticles()
+    public static function getArticles(?int $limit = null)
     {
         $pdo = PDO::getInstance();
         try {
-            $articlesPDO = $pdo->query('SELECT * FROM articles ORDER BY id DESC');
+            $sql = "SELECT * FROM articles ORDER BY id DESC";
+            if ($limit) {
+                $sql .= " LIMIT $limit";
+            }
+            $articlesPDO = $pdo->query($sql);
+
         } catch (\Exception $e) {
             echo "Une erreur c'est produite." . $e->getMessage();
         }

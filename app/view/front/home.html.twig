@@ -32,7 +32,7 @@
     {% block article %}
         <h2>Les derniers articles :</h2>
         <br>
-        {% for article in viewArticle|slice(0, 10) %}
+        {% for article in viewArticle %}
             <div class="card-article">
                 <h4 class="card-title">{{ article.title }} </h4>
                 <p>{{ article.summary }}</p>

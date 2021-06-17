@@ -27,12 +27,12 @@ header .container {
     }
 }
 @media (max-width: 767px) {
-    .navbar-toggle{
-        display: none;
-    }
-    .collapse{
-        display: block;
-    }
+    /*.navbar-toggle{*/
+    /*    display: none;*/
+    /*}*/
+    /*.collapse{*/
+    /*    display: block;*/
+    /*}*/
 }
 
 .navbar-custom .navbar-toggle{

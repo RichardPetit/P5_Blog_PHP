@@ -68,7 +68,6 @@ class AbstractController
     {
         $path = $this->router->getUrlFromRouteName($routeName);
         header('Location: '.$path);
-        exit;
     }
 
     /**
@@ -78,7 +77,6 @@ class AbstractController
     protected function redirectToPath(string $path)
     {
         header('Location: '.$path);
-        exit;
     }
 
     protected function isLoggedIn(): bool

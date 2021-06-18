@@ -44,7 +44,6 @@ class Router
             }
         } else {
             header('Location: /home');
-            exit;
         }
     }
 

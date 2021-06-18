@@ -73,7 +73,6 @@ class AdminController extends AbstractController
     public function editArticleAction(int $id)
     {
         $msgError = "";
-
         try {
             $article = Articles::getArticle($id);
         } catch (ArticleNotFoundException $e) {
@@ -85,7 +84,6 @@ class AdminController extends AbstractController
         $summary = $_POST['summary'] ?? $article->getSummary();
 
         $editArticle = isset($_POST['add']);
-
         if ($editArticle) {
             $msgError = $this->checkFormEditArticleAction();
             if ($msgError === ''){

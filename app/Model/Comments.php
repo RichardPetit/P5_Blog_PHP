@@ -138,7 +138,6 @@ class Comments
             echo "Une erreur c'est produite, le commentaire n'a pas pu être supprimé." . $e->getMessage();
         }
         header("Location: /admin");
-        exit;
     }
 
     private static function hydrateEntity($commentFromDb) : Comment

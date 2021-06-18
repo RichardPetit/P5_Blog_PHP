@@ -4,7 +4,6 @@
     <title>Liste des membres</title>
 {% endblock %}
 
-
 {% block content %}
     <h2>Gestion des membres :</h2>
     {% block user %}
@@ -18,7 +17,6 @@
             </thead>
             <tbody>
             {% for user in users %}
-
                 <tr>
                     <td>
                         <p>{{ user.pseudo }}<p>

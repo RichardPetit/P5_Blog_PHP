@@ -4,7 +4,6 @@
     <title>Contact</title>
 {% endblock %}
 
-
 {% block content %}
 
     {% if( msgError != "") %}
@@ -15,12 +14,10 @@
     {% endif %}
     {% if( msgSuccess == "") %}
 
-
         <div class="formContact" align="center">
             <h2>Contact</h2>
             <hr class="star-primary"/>
             <br>
-
             <form method="post" action="/contact">
                 <input type="hidden" name="add" value="1"/>
                 <p>

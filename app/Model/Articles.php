@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Model;
 
 use Blog\Entity\Article;
@@ -9,7 +8,6 @@ use Blog\Model\Connector\PDO;
 
 class Articles
 {
-    //Fonction qui récupère les articles en BDD
     public static function getArticles(?int $limit = null)
     {
         $pdo = PDO::getInstance();
@@ -111,6 +109,4 @@ class Articles
 
         return $articleEntity;
     }
-
-
 }

@@ -50,8 +50,6 @@ class FrontController extends AbstractController
         ]);
     }
 
-
-
     public function createUserAction()
     {
         $error = false;
@@ -177,7 +175,6 @@ class FrontController extends AbstractController
                     $msgError = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
                 } catch (UserNotActiveException $e){
                     $msgError = "Votre compte est inactif, merci de contacter l'administrateur.";
-
                 }
             }
         }

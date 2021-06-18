@@ -57,8 +57,6 @@ class AbstractController
             return null;
         }
         $userId = $_SESSION['id'];
-
-        //On fait appel au modèle Users pour récupérer en dur pour le moment l'User avec l'ID 1
         return Users::getUser($userId);
     }
 
@@ -124,5 +122,5 @@ class AbstractController
             $this->redirectTo('home');
         }
     }
-
 }
+

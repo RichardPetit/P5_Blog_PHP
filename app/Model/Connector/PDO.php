@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Model\Connector;
 
 class PDO
@@ -20,8 +19,8 @@ class PDO
             $dbUser=$_ENV['DATABASE_USER'] ?? self::DATABASE_USER_DEFAULT;
             $dbPwd=$_ENV['DATABASE_PWD'] ?? self::DATABASE_PWD_DEFAULT;
             $pdo= new \PDO("mysql:dbname=$dbName;host=$host", $dbUser, $dbPwd);
-            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION); // permet d'indiquer qu'on veut des exceptions en cas d'erreur
-            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ); //demande  que ça renvoi sous forme d'objet et non d'un tableau
+            $pdo->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
+            $pdo->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_OBJ);
             self::$instance = $pdo;
         }
         return self::$instance;

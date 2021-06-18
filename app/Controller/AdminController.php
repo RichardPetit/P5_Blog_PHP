@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Controller;
 
 use Assert\Assertion;
@@ -14,22 +13,17 @@ use Blog\Route\Router;
 
 class AdminController extends AbstractController
 {
-
     public function __construct(Router $router)
     {
         parent::__construct($router);
         $this->redirectToHomeIfNotAdmin();
-
     }
 
     public function createArticleAction()
     {
         $error = false;
         $msgError = "";
-
-
         $addArticle = isset($_POST['add']);
-
         if ($addArticle) {
             $msgError = $this->checkFormCreateArticleAction();
             if ($msgError === ''){
@@ -216,5 +210,5 @@ class AdminController extends AbstractController
         }
         $this->redirectToPath('/admin_users');
     }
-
 }
+

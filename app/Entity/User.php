@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Entity;
 
 use Blog\Exception\UserNotFoundException;
@@ -174,7 +173,6 @@ class User
      */
     public function verifyPassword(string $password):void
     {
-
         if (!password_verify($password, $this->getPassword())) {
             throw new UserNotFoundException();
         }
@@ -185,7 +183,6 @@ class User
      */
     public function verifyStatus():void
     {
-
         if (!$this->isActive()) {
             throw new UserNotActiveException();
         }
@@ -208,6 +205,5 @@ class User
         $user->setPassword($password);
         return $user;
     }
-
-
 }
+

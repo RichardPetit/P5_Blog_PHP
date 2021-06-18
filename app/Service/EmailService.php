@@ -1,9 +1,6 @@
 <?php
 
-
 namespace Blog\Service;
-
-
 
 use Blog\Entity\Contact;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -43,5 +40,4 @@ class EmailService
 
         $phpMailer->send();
     }
-
 }

@@ -1,0 +1,227 @@
+
+#summary {
+    font-size: 16px;
+    margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.card {
+    width: 65%;
+    height: 250px;
+    background: rgb(255, 255, 255);
+    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(242, 245, 248, 1) 35%, rgba(236, 236, 237, 1) 100%);
+    box-shadow: 0 13px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-left: 5%;
+    margin-top: 30px;
+    transition: background-color .5s, box-shadow .5s, margin-left .5s;
+}
+
+.card:hover {
+    margin-left: 8%;
+    background-color: #ffff;
+    box-shadow: 0 30px 30px rgba(0, 0, 0, 0.3);
+    transition: background-color .5s, box-shadow .5s, margin-left .5s;
+}
+
+.card-title {
+    color: #1b6d85;
+}
+
+.post-image {
+    width: 200px;
+    height: 220px;
+    margin-top: 15px;
+    margin-left: 15px;
+    border-radius: 10px 10px 10px;
+    float: left;
+}
+
+.post-content {
+    width: auto;
+    float: left;
+    margin-left: 5px;
+}
+
+.post-content img {
+    max-width: 80%;
+    height: auto;
+    border-radius: 10px 10px 10px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.newArticleForm {
+    margin: 0 8% 2% 8%;
+}
+
+.formRegister {
+    margin: 0 20% 2% 20%;
+}
+
+.img-responsive {
+    width: 250px;
+    height: 320px;
+    border-radius: 130px / 160px;
+}
+
+.show-article {
+    font-size: 20px;
+}
+
+.card-article {
+    border-radius: 5px;
+    box-shadow: 2px 2px 22px 2px rgba(0, 0, 255, .2);
+    margin: 2rem 4rem;
+    padding: 1rem;
+    transition: transform .5s;
+}
+
+.card-article:hover {
+    transform: scale(1.05);
+}
+
+@media screen and (max-width: 991px) {
+    .card-article {
+        margin: 0 -5%;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    .card-article {
+        margin: 0 -2%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .card-article {
+        margin: auto;
+    }
+}
+
+
+.published {
+    font-size: 14px;
+}
+
+#contactBtn {
+    margin: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#contactBtn a {
+    margin: 0 25% 0 25%;
+}
+
+/* Dashboard */
+#btn-delete {
+    color: white;
+    transition: transform .6s;
+}
+
+#btn-delete:hover {
+    transform: scale(1.1);
+}
+
+#btn-edit {
+    color: white;
+    transition: transform .6s;
+}
+
+#btn-edit:hover {
+    transform: scale(1.1);
+}
+
+#btn-comments {
+    color: white;
+    transition: transform .6s;
+}
+
+#btn-comments:hover {
+    transform: scale(1.1);
+}
+
+.newArticleBtn {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+}
+
+.board, tr td a {
+    color: #2C3E50;
+}
+
+.btn {
+    font-size: 18px;
+}
+
+.formComment {
+    margin: 0 10% 2% 10%;
+}
+
+/* New article page */
+.articles-labels {
+    margin-top: 3rem;
+}
+
+.btn.btn-danger {
+    font-weight: bold;
+}
+
+#textarea-content {
+    border-radius: 2px;
+    background-color: yellow;
+}
+
+/* Wysiwyg */
+#editor {
+    width: auto;
+    height: 200px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    padding: 5px;
+    overflow: auto;
+}
+
+/* Connection */
+.formConnection {
+    margin: 0 25% 2% 25%;
+}
+
+#passwordForget {
+    font-size: small;
+}
+
+.profilPic {
+    width: 300px;
+    height: 300px;
+}
+
+/* Contact */
+.formContact {
+    margin: 0 20% 2% 20%;
+}
+
+#contentContact {
+    height: 15rem;
+}
+
+/* Users list */
+.check {
+    color: #00c79c;
+}
+
+.cross {
+    color: #e43949;
+}
+
+/* Comments */
+
+
+
+
+

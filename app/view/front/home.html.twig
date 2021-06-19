@@ -5,22 +5,21 @@
 {% endblock %}
 
 {% block header %}
-    <header>
-        <div class="container home-headband">
-            <div class="row">
-                <div class="col-lg-12">
-                    <img class="img-responsive" src="../../../public/images/photo%20site.jpg" alt="">
-                    <div class="intro-text">
-                        <hr class="star-light">
-                        <span class="skills"> Richard PETIT - Developpeur Web <br>- Pour mettre en avant votre entreprise -</span>
-                        <br>
-                        <hr class="star-light">
-                            <a class="cv" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
-                                <span class="btn btn-primary">Afficher mon CV</span>
-                            </a>
-                    </div>
-                </div>
-            </div>
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Avatar Image-->
+            <img class="masthead-avatar mb-5" src="assets/img/avataaars.svg" alt="..."/>
+            <!-- Masthead Heading-->
+            <h3 class="masthead-heading text-uppercase mb-0">Richard PETIT - Développeur Web</h3>
+            <!-- Icon Divider-->
+            <!-- Masthead Subheading-->
+            <p class="masthead-subheading font-weight-light mb-0">Pour mettre en avant votre entreprise</p>
+            <hr class="star-light" />
+            <p>
+                <a class="cv" href="../../../public/images/Curriculum%20Vitae%20Richard%20PETIT%20.pdf" target="_blank">
+                    <span class="btn btn-primary">Afficher mon CV</span>
+                </a>
+            </p>
         </div>
     </header>
 {% endblock %}
@@ -43,9 +42,14 @@
     {% endblock  article %}
 
 
-    <div id="contactBtn">
-        <h4 align="center">Besoin d'information ?</h4>
-        <a href="{{ router.getUrlFromRouteName('contact') }}" class="btn btn-success"> Me contacter</a>
+    <div class="row">
+        <div class="col-12">
+            <div class="text-center">
+                <h4>Besoin d'information ?</h4>
+                <a href="{{ router.getUrlFromRouteName('contact') }}" class="btn btn-success"> Me contacter</a>
+            </div>
+        </div>
+
     </div>
 
 {% endblock %}

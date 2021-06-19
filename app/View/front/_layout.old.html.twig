@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+{% block head %} {% endblock %}
+    <link href="../../../public/css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Theme CSS -->
+    <link href="../../../public/css/freelancer.min.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../../../public/css/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="../../../public/css/style.css"/>
+</head>
+
+<body>
+    <header>
+        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top navbar-custom">
+            <div class="container nav-container">
+                <div class="navbar-header page-scroll">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/home">Richard Petit</a>
+                </div>
+
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="hidden">
+                            <a href="#page-top"></a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ router.getUrlFromRouteName('home') }}">Accueil</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ router.getUrlFromRouteName('articlesListing') }}">Articles</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ router.getUrlFromRouteName('contact') }}">Contact</a>
+                        </li>
+                        <li class="page-scroll">
+                            <a href="{{ router.getUrlFromRouteName('register') }}">S'inscrire</a>
+                        </li>
+                        <li class="page-scroll">
+                            {% if isLoggedIn %}
+                                <a href="{{ router.getUrlFromRouteName('logout') }}"><i class="fa fa-sign-out"></i></a>
+                            {% else %}
+                                <a href="{{ router.getUrlFromRouteName('login') }}"><i class="fa fa-sign-in"></i></a>
+                            {% endif %}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    {% block header %}
+    {% endblock %}
+
+<div class="container" id="content">{% block content %}
+
+    {% endblock %}</div>
+
+
+<div id="footer">{% block footer %}
+        <footer class="text-center">
+            <div class="footer-above">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-col col-md-6">
+                            <h3>Me trouver sur le Web</h3>
+                            <ul class="list-inline">
+                                <li>
+                                    <a href="https://www.facebook.com/richard.petit.54" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://github.com/RichardPetit" class="btn-social btn-outline"><i class="fa fa-fw fab fa-github"></i></a>
+                                </li>
+                                <li>
+                                    <a href="https://www.linkedin.com/in/richard-petit/" target="_blank" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="footer-col col-md-6">
+                            <h3>Administration du site</h3>
+                                <a href="{{ router.getUrlFromRouteName('admin') }}" target="_blank" class="btn-social btn-outline" > <i class="fa fa-fw fas fa-cogs"></i></a>
+                        </div>
+                    </div>
+                    <hr class="star-light footer-line">
+                </div>
+            </div>
+        </footer>
+    {% endblock %}</div>
+</body>
+</html>

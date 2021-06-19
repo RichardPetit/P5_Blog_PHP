@@ -14,10 +14,10 @@
             <!-- Icon Divider-->
             <!-- Masthead Subheading-->
             <p class="masthead-subheading font-weight-light mb-0">Pour mettre en avant votre entreprise</p>
-            <hr class="star-light" />
+            <hr class="star-light"/>
             <p>
-                <a class="cv" href="/assets/file/CV_Richard_Petit.pdf" target="_blank">
-                    <span class="btn btn-primary">Afficher mon CV</span>
+                <a class="btn btn-primary" href="/assets/file/CV_Richard_Petit.pdf" target="_blank">
+                    Afficher mon CV
                 </a>
             </p>
         </div>
@@ -35,7 +35,8 @@
             <div class="card-article">
                 <h4 class="card-title">{{ article.title }} </h4>
                 <p>{{ article.summary }}</p>
-                <p class="published">Publié le : {{ article.getFullFormattedDate() }} par {{ article.author.pseudo }}</p>
+                <p class="published">Publié le : {{ article.getFullFormattedDate() }}
+                    par {{ article.author.pseudo }}</p>
                 <a class="show-article" href="/articles/{{ article.id }}"> Lire l'article</a>
             </div>
         {% endfor %}

@@ -32,6 +32,7 @@ class AbstractController
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws UserNotFoundException
      */
     protected function render(string $folder, string $viewName, array $content)
     {

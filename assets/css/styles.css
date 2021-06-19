@@ -2949,8 +2949,8 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #1abc9c;
-  border-color: #1abc9c;
+  background-color: #2D3E4F;
+  border-color: #2D3E4F;
 }
 .btn-primary:hover {
   color: #fff;
@@ -10978,7 +10978,7 @@ html {
   padding-bottom: 1rem;
 }
 .masthead .masthead-heading {
-  font-size: 2.75rem;
+  font-size: 1.75rem;
   line-height: 2.75rem;
 }
 .masthead .masthead-subheading {
@@ -10994,7 +10994,7 @@ html {
     padding-bottom: 1rem;
   }
   .masthead .masthead-heading {
-    font-size: 4rem;
+    font-size: 2rem;
     line-height: 3.5rem;
   }
   .masthead .masthead-subheading {

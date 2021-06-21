@@ -140,7 +140,13 @@ class Comments
         header("Location: /admin");
     }
 
-    private static function hydrateEntity($commentFromDb) : Comment
+    /**
+     * @param object $commentFromDb
+     * @return Comment
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
+    private static function hydrateEntity(object $commentFromDb) : Comment
     {
         $commentEntity = new Comment();
         $commentEntity->setId($commentFromDb->id);

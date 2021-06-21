@@ -141,7 +141,11 @@ class Users
         self::changeUserRole($id, false);
     }
 
-    public static function hydrateEntity($userFromDb) : User
+    /**
+     * @param object $userFromDb
+     * @return User
+     */
+    public static function hydrateEntity(object $userFromDb) : User
     {
         $userEntity = new User();
         $userEntity->setId($userFromDb->id);

@@ -96,11 +96,11 @@ class Articles
     }
 
     /**
-     * @param $articleFromDb
+     * @param object $articleFromDb
      * @return Article
      * @throws \Blog\Exception\UserNotFoundException
      */
-    public static function hydrateEntity($articleFromDb): Article
+    public static function hydrateEntity(object $articleFromDb): Article
     {
         $articleEntity = new Article();
         $articleEntity->setId($articleFromDb->id);

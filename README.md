@@ -1,12 +1,23 @@
 # P5_Blog_PHP
 
-    
+#Prérequis
+
+Ce projet necessite l'environnement suivant: <br/>
+* PHP >= 7.4 
+* MySQL >= 5.6
+* Composer 
+
+
 #Bibliothèques externe
 
-composer
-composer require twig/twig
-composer require beberlei/assert
-composer require phpmailer/phpmailer
+Afin d'installer les librairies du projet, vous devez lancer la commande suivante: <br>
+composer install
+
+#Variables d'environnement
+
+Afin de déclarer vos variables d'environnement (configuration base de données et email)
+vous devez copier le fichier .env.example vers un fichier .env à la racine du projet.
+Vous devez personaliser ce fichier .env avec vos propres valeurs.
 
 #Base de données
 
@@ -15,9 +26,7 @@ Modifier les informations relatives à votre base de données dans le fichier .e
 
 #Envoi d'email
 
-Préciser les information vous concernant (SMPT_HOST, USERNAME etc...) dans le fichier EmailService.php .
-
-Chemin du fichier: app/Service/EmailService.php
+Vous devez configurer les valeurs SMTP dans le fichier .env afin de configurer l'envoi d'email.
 
 
 #Contexte

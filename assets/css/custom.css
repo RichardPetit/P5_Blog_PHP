@@ -1,8 +1,19 @@
-
 #summary {
     font-size: 16px;
     margin-top: 3rem;
     margin-bottom: 5rem;
+}
+
+hr.star-primary{
+    color: rgb(44, 62, 80);
+    text-align: center;
+    max-width: 250px;
+    padding: 0px;
+    border-style: solid;
+    border-color: initial;
+    border-image: initial;
+    border-top: 5px solid;
+    margin: 25px auto 30px;
 }
 
 .card {
@@ -174,7 +185,6 @@
 
 #textarea-content {
     border-radius: 2px;
-    background-color: yellow;
 }
 
 /* Wysiwyg */
@@ -218,10 +228,16 @@
 .cross {
     color: #e43949;
 }
+.admin-btn{
+    width: 3rem;
+}
 
-/* Comments */
+/* CV */
 
-
+/*.cv:hover{*/
+/*    background-color: #1b6d85;*/
+/*    border-color: #1b6d85;*/
+/*}*/
 
 
 

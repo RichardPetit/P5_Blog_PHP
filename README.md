@@ -2,17 +2,19 @@
 
     
 #Bibliothèques externe
+
 composer
 composer require twig/twig
 composer require beberlei/assert
 composer require phpmailer/phpmailer
 
 #Base de données
+
 Pour la base de données, allez dans le dossier sql puis exécuter les requetes se trouvant dans le fichier schema.sql.
 Modifier les informations relatives à votre base de données dans le fichier .env .
-Lancer un terminal dans le dossier docker afin de lancer la commande docker-compose up et ainsi se connecter à la base de données.
 
 #Envoi d'email
+
 Préciser les information vous concernant (SMPT_HOST, USERNAME etc...) dans le fichier EmailService.php .
 
 Chemin du fichier: app/Service/EmailService.php

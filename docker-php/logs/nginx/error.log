@@ -1,0 +1,548 @@
+2021/02/22 10:30:01 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.18.0.1, server: app.local, request: "HEAD / HTTP/1.1", upstream: "fastcgi://172.18.0.2:9000", host: "app.local"
+2021/02/22 10:30:17 [error] 7#7: *3 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.18.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.18.0.2:9000", host: "app.local"
+2021/02/22 10:30:17 [error] 7#7: *3 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.18.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.18.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:33:50 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.20.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.2:9000", host: "app.local"
+2021/02/22 10:33:50 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.20.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:33:52 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.20.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.2:9000", host: "app.local"
+2021/02/22 10:33:53 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.20.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.20.0.2:9000", host: "app.local"
+2021/02/22 10:33:53 [error] 7#7: *1 FastCGI sent in stderr: "Primary script unknown" while reading response header from upstream, client: 172.20.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.20.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:44:32 [error] 9#9: *18 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:20
+Stack trace:
+#0 /var/www/app/formulaire.php(20): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 20" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /.formulaire.php HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:44:33 [error] 9#9: *18 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:20
+Stack trace:
+#0 /var/www/app/formulaire.php(20): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 20" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/.formulaire.php"
+2021/02/22 10:44:53 [error] 9#9: *21 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:20
+Stack trace:
+#0 /var/www/app/formulaire.php(20): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 20" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /.formulaire.php HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:44:53 [error] 9#9: *21 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:20
+Stack trace:
+#0 /var/www/app/formulaire.php(20): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 20" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/.formulaire.php"
+2021/02/22 10:45:30 [error] 9#9: *25 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /.formulaire.php HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:45:30 [error] 9#9: *25 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/.formulaire.php"
+2021/02/22 10:45:37 [error] 9#9: *25 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:45:37 [error] 9#9: *25 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:46:33 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:46:33 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:46:34 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:46:34 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:46:35 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:46:35 [error] 9#9: *31 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:48:50 [error] 8#8: *39 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:48:50 [error] 8#8: *39 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:49:04 [error] 8#8: *39 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:49:04 [error] 8#8: *39 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:49:27 [error] 8#8: *47 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:49:27 [error] 8#8: *47 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:49:59 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:49:59 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:01 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:50:01 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:12 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:50:12 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:19 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:50:19 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:20 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:50:20 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:20 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:50:20 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:50:32 [error] 9#9: *50 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:51:03 [error] 8#8: *67 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:51:03 [error] 8#8: *67 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(2): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:57:39 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:57:39 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:57:40 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:57:40 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:57:41 [error] 9#9: *72 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(3): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:58:36 [error] 9#9: *83 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:58:36 [error] 9#9: *83 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:59:13 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:59:13 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:59:20 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:59:20 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 10:59:26 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 10:59:27 [error] 9#9: *87 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] No such file or directory in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=loca...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:01:59 [error] 9#9: *96 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:02:00 [error] 9#9: *96 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:02:29 [error] 8#8: *101 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:02:29 [error] 8#8: *101 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:02:33 [error] 8#8: *101 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:02:33 [error] 8#8: *101 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:06:12 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:06:12 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:06:13 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:06:13 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:06:13 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:06:14 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:06:14 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:06:14 [error] 8#8: *106 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:06:48 [error] 9#9: *116 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:06:48 [error] 9#9: *116 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:08:06 [error] 8#8: *120 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:08:06 [error] 8#8: *120 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', 'Ak9teniti?')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:08:33 [error] 9#9: *124 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local"
+2021/02/22 11:08:33 [error] 9#9: *124 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [2002] Connection refused in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=127....', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.22.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.22.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:13:33 [error] 8#8: *2 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.19.0.3' (using password: NO) in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 11:13:33 [error] 8#8: *2 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1045] Access denied for user 'root'@'172.19.0.3' (using password: NO) in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', '')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:13:52 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 11:13:52 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 11:13:57 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 11:13:57 [error] 8#8: *5 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 15:08:45 [error] 8#8: *11 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 15:08:45 [error] 8#8: *11 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 16:31:47 [error] 6#6: *15 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 16:31:48 [error] 6#6: *15 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(4): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 16:32:35 [error] 8#8: *19 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 16:32:35 [error] 8#8: *19 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local"
+2021/02/22 16:32:35 [error] 8#8: *19 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/22 16:32:35 [error] 8#8: *19 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.23.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.23.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/23 10:43:38 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.25.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local"
+2021/02/23 10:43:38 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.25.0.1, server: app.local, request: "GET / HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local"
+2021/02/23 10:43:38 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.25.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/23 10:43:38 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.25.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local", referrer: "http://app.local/"
+2021/02/23 10:43:49 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.25.0.1, server: app.local, request: "GET /index.php HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local"
+2021/02/23 10:43:49 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.25.0.1, server: app.local, request: "GET /index.php HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local"
+2021/02/23 10:43:49 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Warning:  preg_match(): Unknown modifier 'V' in /var/www/app/index.php on line 6" while reading response header from upstream, client: 172.25.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local", referrer: "http://app.local/index.php"
+2021/02/23 10:43:49 [error] 8#8: *1 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000] [1049] Unknown database 'mydb' in /var/www/app/formulaire.php:21
+Stack trace:
+#0 /var/www/app/formulaire.php(21): PDO->__construct('mysql:host=db;d...', 'root', 'root')
+#1 /var/www/app/index.php(16): require('/var/www/app/fo...')
+#2 {main}
+  thrown in /var/www/app/formulaire.php on line 21" while reading upstream, client: 172.25.0.1, server: app.local, request: "GET /favicon.ico HTTP/1.1", upstream: "fastcgi://172.25.0.2:9000", host: "app.local", referrer: "http://app.local/index.php"

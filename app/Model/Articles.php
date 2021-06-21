@@ -95,7 +95,11 @@ class Articles
         }
     }
 
-
+    /**
+     * @param $articleFromDb
+     * @return Article
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function hydrateEntity($articleFromDb): Article
     {
         $articleEntity = new Article();

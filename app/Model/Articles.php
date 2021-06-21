@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Model;
 
 use Blog\Entity\Article;
@@ -9,7 +8,6 @@ use Blog\Model\Connector\PDO;
 
 class Articles
 {
-    //Fonction qui récupère les articles en BDD
     public static function getArticles(?int $limit = null)
     {
         $pdo = PDO::getInstance();
@@ -97,8 +95,12 @@ class Articles
         }
     }
 
-
-    public static function hydrateEntity($articleFromDb): Article
+    /**
+     * @param object $articleFromDb
+     * @return Article
+     * @throws \Blog\Exception\UserNotFoundException
+     */
+    public static function hydrateEntity(object $articleFromDb): Article
     {
         $articleEntity = new Article();
         $articleEntity->setId($articleFromDb->id);
@@ -111,6 +113,4 @@ class Articles
 
         return $articleEntity;
     }
-
-
 }

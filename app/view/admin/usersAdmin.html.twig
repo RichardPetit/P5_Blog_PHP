@@ -4,7 +4,6 @@
     <title>Liste des membres</title>
 {% endblock %}
 
-
 {% block content %}
     <h2>Gestion des membres :</h2>
     {% block user %}
@@ -18,7 +17,6 @@
             </thead>
             <tbody>
             {% for user in users %}
-
                 <tr>
                     <td>
                         <p>{{ user.pseudo }}<p>
@@ -27,15 +25,15 @@
                        <p>{{ user.isActive ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
                     </td>
                     <td>
-                        <a href="/active-user/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                        <a href="/deactivate-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                        <a href="/active-user/{{ user.id }}" class="btn btn-success admin-btn"><i class="fa fa-check"></i></a>
+                        <a href="/deactivate-user/{{ user.id }}" class="btn btn-danger admin-btn"><i class="fa fa-times"></i></a>
                     </td>
                     <td>
                         <p>{{ user.isAdmin() ? "<i class='fa fa-check check'></i>": "<i class='fa fa-times cross'></i>" }}</p>
                     </td>
                     <td>
-                        <a href="/pass-admin/{{ user.id }}" class="btn btn-success"><i class="fa fa-check"></i></a>
-                        <a href="/pass-user/{{ user.id }}" class="btn btn-danger"><i class="fa fa-times"></i></a>
+                        <a href="/pass-admin/{{ user.id }}" class="btn btn-success admin-btn"><i class="fa fa-check"></i></a>
+                        <a href="/pass-user/{{ user.id }}" class="btn btn-danger admin-btn"><i class="fa fa-times"></i></a>
                     </td>
                 </tr>
 

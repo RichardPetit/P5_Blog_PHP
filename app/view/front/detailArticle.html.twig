@@ -18,7 +18,6 @@
         <p> Auteur : {{ detailArticle.author.pseudo }}</p>
         <hr>
 
-
         {% block comment %}
             {% for comment in commentsArticle %}
                 <h4>{{ comment.title }}</h4>
@@ -48,7 +47,6 @@
                 {% else  %}
                 <p>Pour ajouter un commentaire, merci de <a href="/login">vous connecter</a>.</p>
             {% endif %}
-
 
 
         {% endblock comment %}

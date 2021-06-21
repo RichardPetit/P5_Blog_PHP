@@ -5,7 +5,6 @@ namespace Blog\Controller;
 
 use Assert\Assertion;
 use Assert\AssertionFailedException;
-use Blog\Entity\Article;
 use Blog\Entity\Comment;
 use Blog\Entity\Contact;
 use Blog\Entity\User;
@@ -16,7 +15,6 @@ use Blog\Model\Articles;
 use Blog\Model\Comments;
 use Blog\Model\Users;
 use Blog\Service\EmailService;
-use PHPMailer\PHPMailer\Exception;
 
 
 class FrontController extends AbstractController
@@ -49,8 +47,6 @@ class FrontController extends AbstractController
             'commentsArticle' => $comments,
         ]);
     }
-
-
 
     public function createUserAction()
     {
@@ -177,7 +173,6 @@ class FrontController extends AbstractController
                     $msgError = "Erreur d'identifiant. Pseudo ou mot de passe incorrect.";
                 } catch (UserNotActiveException $e){
                     $msgError = "Votre compte est inactif, merci de contacter l'administrateur.";
-
                 }
             }
         }

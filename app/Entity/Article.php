@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Entity;
 
 use Exception;
@@ -10,7 +9,6 @@ use Exception;
  */
 class Article
 {
-
     public const SHORT_FORMAT_DATE = 'd/m/Y';
     public const FULL_FORMAT_DATE = 'd/m/Y H:i';
 
@@ -177,7 +175,6 @@ class Article
         string $summary,
             User $author
     ): self {
-        //On instantie l'Entité Article et on set les paramètres nécessaires
         $article = new self();
         $article->setTitle($title);
         $article->setContent($content);
@@ -201,3 +198,4 @@ class Article
         return $article;
     }
 }
+

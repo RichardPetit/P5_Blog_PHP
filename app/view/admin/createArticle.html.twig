@@ -1,12 +1,10 @@
 {% extends '_layout.html.twig' %}
 
-
 {% block head %}
 
         <title>{{ title | length > 0 ? title : "Nouvel article" }}</title>
 
 {% endblock %}
-
 
 {% block content %}
 
@@ -57,6 +55,8 @@
         </div>
     </div>
     {% endif %}
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI="
+            crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
             $("#btn-submit").click(function(event) {

@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Blog\Route;
 
 use function str_replace;
 
 class Router
 {
-
     public array $routes = [
         'home' => ['controller' => 'FrontController', 'action' => 'homeAction', 'url' => '/home'],
         'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction', 'url' => '/articles'],
@@ -46,7 +44,6 @@ class Router
             }
         } else {
             header('Location: /home');
-            exit;
         }
     }
 
@@ -77,5 +74,4 @@ class Router
     {
         return "#".str_replace(':id','([0-9]+)', $uri)."$#";
     }
-
 }

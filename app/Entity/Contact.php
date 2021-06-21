@@ -3,8 +3,6 @@
 
 namespace Blog\Entity;
 
-use Blog\Controller\FrontController;
-use Exception;
 
 /**
  * Class Contact
@@ -131,5 +129,5 @@ class Contact
         $contactMessage->setSendedAt(new \DateTime());
         return $contactMessage;
     }
-
 }
+

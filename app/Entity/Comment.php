@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Entity;
 
 use Exception;
@@ -53,6 +52,7 @@ class Comment
     {
         return $this->id;
     }
+
     /**
      * @param int|null $id
      */
@@ -197,5 +197,5 @@ class Comment
     {
         $this->isValid = $isValid;
     }
-
 }
+

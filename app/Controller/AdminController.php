@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Blog\Controller;
 
 use Assert\Assertion;
@@ -14,22 +13,17 @@ use Blog\Route\Router;
 
 class AdminController extends AbstractController
 {
-
     public function __construct(Router $router)
     {
         parent::__construct($router);
         $this->redirectToHomeIfNotAdmin();
-
     }
 
     public function createArticleAction()
     {
         $error = false;
         $msgError = "";
-
-
         $addArticle = isset($_POST['add']);
-
         if ($addArticle) {
             $msgError = $this->checkFormCreateArticleAction();
             if ($msgError === ''){
@@ -79,7 +73,6 @@ class AdminController extends AbstractController
     public function editArticleAction(int $id)
     {
         $msgError = "";
-
         try {
             $article = Articles::getArticle($id);
         } catch (ArticleNotFoundException $e) {
@@ -91,7 +84,6 @@ class AdminController extends AbstractController
         $summary = $_POST['summary'] ?? $article->getSummary();
 
         $editArticle = isset($_POST['add']);
-
         if ($editArticle) {
             $msgError = $this->checkFormEditArticleAction();
             if ($msgError === ''){
@@ -176,7 +168,7 @@ class AdminController extends AbstractController
     public function changeUserStatusActiveAction(int $id)
     {
         try {
-            $user = Users::getUser($id);
+            Users::getUser($id);
             Users::changeUserOnActive($id);
         }catch (\Exception $e) {
             $this->redirectTo('home');
@@ -187,7 +179,7 @@ class AdminController extends AbstractController
     public function changeUserStatusInactiveAction(int $id)
     {
         try {
-            $user = Users::getUser($id);
+            Users::getUser($id);
             Users::changeUserOnInactive($id);
         }catch (\Exception $e) {
             $this->redirectTo('home');
@@ -198,7 +190,7 @@ class AdminController extends AbstractController
     public function changeUserToAdminAction(int $id)
     {
         try {
-            $user = Users::getUser($id);
+            Users::getUser($id);
             Users::changeUserToAdmin($id);
         }catch (\Exception $e) {
             $this->redirectTo('home');
@@ -209,12 +201,12 @@ class AdminController extends AbstractController
     public function changeAdminToUserAction(int $id)
     {
         try {
-            $user = Users::getUser($id);
+            Users::getUser($id);
             Users::changeAdminToUser($id);
         }catch (\Exception $e) {
             $this->redirectTo('home');
         }
         $this->redirectToPath('/admin_users');
     }
-
 }
+

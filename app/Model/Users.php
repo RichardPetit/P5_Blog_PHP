@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Blog\Model;
-
 
 use Blog\Entity\User;
 use Blog\Exception\UserNotFoundException;
@@ -12,14 +10,10 @@ class Users
 {
     public static function getUser($id) : User
     {
-        //On récupère l'instance de PDO
         $pdo = PDO::getInstance();
-        //On récupère grâce à PDO l'enregistrement MySQL de l'user id = $id
         $req = $pdo->prepare("SELECT * FROM users WHERE id = ? ");
         $req->execute([$id]);
-        //On fetch ici le résultat pour avoir l'enregistrement retourné par la requête
         $userPDO = $req->fetch();
-        //On retourne ensuite l'Entité User hydraté depuis l'enregistrement PDO
         if (!$userPDO){
             throw new UserNotFoundException();
         }
@@ -54,8 +48,6 @@ class Users
         }
         return self::hydrateEntity($userPDO);
     }
-
-
 
     public static function add(User $user)
     {
@@ -117,7 +109,6 @@ class Users
          }
      }
 
-
     public static function changeUserOnActive(int $id)
     {
         self::changeUserStatus($id);
@@ -127,7 +118,6 @@ class Users
     {
         self::changeUserStatus($id, false);
     }
-
 
     public static function changeUserRole(int $id, bool $admin = true)
     {
@@ -151,12 +141,12 @@ class Users
         self::changeUserRole($id, false);
     }
 
-
-
-
-    public static function hydrateEntity($userFromDb) : User
+    /**
+     * @param object $userFromDb
+     * @return User
+     */
+    public static function hydrateEntity(object $userFromDb) : User
     {
-
         $userEntity = new User();
         $userEntity->setId($userFromDb->id);
         $userEntity->setPseudo($userFromDb->pseudo);
@@ -167,7 +157,4 @@ class Users
         $userEntity->setPassword($userFromDb->password);
         return $userEntity;
     }
-
-
-
 }

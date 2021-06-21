@@ -1,16 +1,13 @@
 <?php
 
-
 namespace Blog\Model;
 
 use Blog\Entity\Comment;
 use Blog\Exception\CommentNotFoundException;
 use Blog\Model\Connector\PDO;
 
-
 class Comments
 {
-
     public static function getComment(int $id)
     {
         $pdo = PDO::getInstance();
@@ -21,13 +18,11 @@ class Comments
         } catch (\Exception $e) {
             echo "Une erreur c'est produite. L'article n'a pas été trouvé ou n'existe pas." . $e->getMessage();
         }
-
         if(!$comment) {
             throw new CommentNotFoundException('Comment not found');
         }
         return self::hydrateEntity($comment);
     }
-
 
     public static function getAllComments()
     {
@@ -41,7 +36,6 @@ class Comments
         foreach ($commentsPDO as $commentPDO) {
             $commentEntities[] = self::hydrateEntity($commentPDO);
         }
-
     }
 
     public static function getCommentsForArticle(int $id, bool $moderateOnly = true)
@@ -52,7 +46,6 @@ class Comments
             if ($moderateOnly){
                 $query .= " AND is_valid = 1";
             }
-
             $req = $pdo->prepare($query);
             $req->execute([$id]);
         }
@@ -61,12 +54,10 @@ class Comments
         }
         $commentsPDO = $req->fetchAll();
 
-
         $commentEntities = [];
         foreach ($commentsPDO as $comment) {
             $commentEntities[] = self::hydrateEntity($comment);
         }
-
         return $commentEntities;
     }
 
@@ -147,11 +138,15 @@ class Comments
             echo "Une erreur c'est produite, le commentaire n'a pas pu être supprimé." . $e->getMessage();
         }
         header("Location: /admin");
-        exit;
     }
 
-
-    private static function hydrateEntity($commentFromDb) : Comment
+    /**
+     * @param object $commentFromDb
+     * @return Comment
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
+    private static function hydrateEntity(object $commentFromDb) : Comment
     {
         $commentEntity = new Comment();
         $commentEntity->setId($commentFromDb->id);

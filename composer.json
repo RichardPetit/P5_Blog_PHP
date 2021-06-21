@@ -13,7 +13,7 @@
         "twig/twig": "^3.0",
         "vlucas/phpdotenv": "^5.3",
         "beberlei/assert": "^3.3",
-        "phpmailer/phpmailer": "^6.4"
+        "phpmailer/phpmailer": "^6.5"
     },
 
     "autoload": {

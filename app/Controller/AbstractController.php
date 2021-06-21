@@ -32,6 +32,7 @@ class AbstractController
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
+     * @throws UserNotFoundException
      */
     protected function render(string $folder, string $viewName, array $content)
     {
@@ -57,8 +58,6 @@ class AbstractController
             return null;
         }
         $userId = $_SESSION['id'];
-
-        //On fait appel au modèle Users pour récupérer en dur pour le moment l'User avec l'ID 1
         return Users::getUser($userId);
     }
 
@@ -70,7 +69,6 @@ class AbstractController
     {
         $path = $this->router->getUrlFromRouteName($routeName);
         header('Location: '.$path);
-        exit;
     }
 
     /**
@@ -80,7 +78,6 @@ class AbstractController
     protected function redirectToPath(string $path)
     {
         header('Location: '.$path);
-        exit;
     }
 
     protected function isLoggedIn(): bool
@@ -124,5 +121,5 @@ class AbstractController
             $this->redirectTo('home');
         }
     }
-
 }
+

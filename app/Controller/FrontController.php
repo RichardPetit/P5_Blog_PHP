@@ -21,8 +21,7 @@ class FrontController extends AbstractController
 {
     public function homeAction()
     {
-        //$articles = Articles::getArticles(10);
-        $articles = [];
+        $articles = Articles::getArticles(10);
         $this->render("front", "home.html.twig", [
             'viewArticle' => $articles,
         ]);

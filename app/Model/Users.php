@@ -8,6 +8,11 @@ use Blog\Model\Connector\PDO;
 
 class Users
 {
+    /**
+     * @param $id
+     * @return User
+     * @throws UserNotFoundException
+     */
     public static function getUser($id) : User
     {
         $pdo = PDO::getInstance();
@@ -21,6 +26,9 @@ class Users
 
     }
 
+    /**
+     * @return array
+     */
     public static function  getAllUsers()
     {
         $pdo = PDO::getInstance();
@@ -36,6 +44,11 @@ class Users
         return $usersEntities;
     }
 
+    /**
+     * @param $email
+     * @return User
+     * @throws UserNotFoundException
+     */
     public static function getUserByEmail($email) : User
     {
         $pdo = PDO::getInstance();
@@ -49,6 +62,10 @@ class Users
         return self::hydrateEntity($userPDO);
     }
 
+    /**
+     * @param User $user
+     * @return User|string
+     */
     public static function add(User $user)
     {
         $pdo = PDO::getInstance();
@@ -82,11 +99,19 @@ class Users
         return $user;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function userProfil($id)
     {
         return $this->getProfil('users', 'User',$id);
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public static function getProfil($id)
     {
         $pdo = PDO::getInstance();
@@ -96,6 +121,10 @@ class Users
         return $data;
     }
 
+    /**
+     * @param int $id
+     * @param bool $active
+     */
      public static function changeUserStatus(int $id, bool $active = true)
      {
          $pdo = PDO::getInstance();
@@ -109,16 +138,26 @@ class Users
          }
      }
 
+    /**
+     * @param int $id
+     */
     public static function changeUserOnActive(int $id)
     {
         self::changeUserStatus($id);
     }
 
+    /**
+     * @param int $id
+     */
     public static function changeUserOnInactive(int $id)
     {
         self::changeUserStatus($id, false);
     }
 
+    /**
+     * @param int $id
+     * @param bool $admin
+     */
     public static function changeUserRole(int $id, bool $admin = true)
     {
         $pdo = PDO::getInstance();
@@ -132,10 +171,17 @@ class Users
         }
     }
 
+    /**
+     * @param int $id
+     */
     public static function changeUserToAdmin(int $id)
     {
         self::changeUserRole($id);
     }
+
+    /**
+     * @param int $id
+     */
     public static function changeAdminToUser(int $id)
     {
         self::changeUserRole($id, false);

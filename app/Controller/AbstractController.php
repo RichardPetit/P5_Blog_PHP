@@ -80,11 +80,18 @@ class AbstractController
         header('Location: '.$path);
     }
 
+    /**
+     * @return bool
+     */
     protected function isLoggedIn(): bool
     {
         return isset($_SESSION['id']);
     }
 
+    /**
+     * @return bool
+     * @throws UserNotFoundException
+     */
     protected function isAdmin(): bool
     {
         if (!$this->isLoggedIn()) {
@@ -94,6 +101,9 @@ class AbstractController
         return $this->getUser()->isAdmin();
     }
 
+    /**
+     * @throws Exception
+     */
     protected function throwExceptionIfNotLoggedIn()
     {
         if (!$this->isLoggedIn()) {
@@ -101,6 +111,9 @@ class AbstractController
         }
     }
 
+    /**
+     * @throws UserNotFoundException
+     */
     protected function throwExceptionIfNotAdmin()
     {
         if (!$this->isAdmin()) {
@@ -108,6 +121,9 @@ class AbstractController
         }
     }
 
+    /**
+     *
+     */
     protected function redirectToHomeIfNotLoggedIn()
     {
         if(!$this->isLoggedIn()) {
@@ -115,6 +131,9 @@ class AbstractController
         }
     }
 
+    /**
+     * @throws UserNotFoundException
+     */
     protected function redirectToHomeIfNotAdmin()
     {
         if(!$this->isAdmin()) {

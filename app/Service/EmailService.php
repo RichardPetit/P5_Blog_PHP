@@ -15,6 +15,9 @@ class EmailService
 
     private PHPMailer $phpMailer;
 
+    /**
+     * EmailService constructor.
+     */
     public function __construct()
     {
         $phpMailer = new PHPMailer(true);
@@ -30,6 +33,10 @@ class EmailService
         $this->phpMailer = $phpMailer;
     }
 
+    /**
+     * @param Contact $contact
+     * @throws \PHPMailer\PHPMailer\Exception
+     */
     public function sendEmail(Contact $contact)
     {
         $phpMailer = $this->phpMailer;

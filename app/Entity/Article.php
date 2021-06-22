@@ -184,6 +184,14 @@ class Article
         return $article;
     }
 
+    /**
+     * @param string $title
+     * @param string $content
+     * @param string $summary
+     * @param User $author
+     * @param Article $article
+     * @return static
+     */
     public static function edit(
         string $title,
         string $content,

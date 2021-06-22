@@ -6,6 +6,9 @@ use function str_replace;
 
 class Router
 {
+    /**
+     * @var array|\string[][]
+     */
     public array $routes = [
         'home' => ['controller' => 'FrontController', 'action' => 'homeAction', 'url' => '/home'],
         'articlesListing' => ['controller' => 'FrontController', 'action' => 'articlesListingAction', 'url' => '/articles'],
@@ -30,6 +33,7 @@ class Router
         'adminToUser' => ['controller' => 'AdminController', 'action' => 'changeAdminToUserAction', 'url' => '/pass-user/:id'],
     ];
 
+
     public function run()
     {
         $route = $this->getRouteFromUri($_SERVER['REQUEST_URI']);
@@ -47,6 +51,10 @@ class Router
         }
     }
 
+    /**
+     * @param string $routeName
+     * @return string|null
+     */
     public function getUrlFromRouteName(string $routeName): ?string
     {
         if (isset($this->routes[$routeName])) {
@@ -55,6 +63,10 @@ class Router
         return null;
     }
 
+    /**
+     * @param string $uri
+     * @return array|null
+     */
     private function getRouteFromUri(string $uri) : ?array
     {
         foreach($this->routes as $route) {
@@ -70,6 +82,10 @@ class Router
         return null;
     }
 
+    /**
+     * @param string $uri
+     * @return string
+     */
     private function getRegex(string $uri): string
     {
         return "#".str_replace(':id','([0-9]+)', $uri)."$#";

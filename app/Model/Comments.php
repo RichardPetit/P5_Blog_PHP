@@ -8,6 +8,13 @@ use Blog\Model\Connector\PDO;
 
 class Comments
 {
+    /**
+     * @param int $id
+     * @return Comment
+     * @throws CommentNotFoundException
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getComment(int $id)
     {
         $pdo = PDO::getInstance();
@@ -24,6 +31,10 @@ class Comments
         return self::hydrateEntity($comment);
     }
 
+    /**
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getAllComments()
     {
         $pdo = PDO::getInstance();
@@ -38,6 +49,13 @@ class Comments
         }
     }
 
+    /**
+     * @param int $id
+     * @param bool $moderateOnly
+     * @return array
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getCommentsForArticle(int $id, bool $moderateOnly = true)
     {
         $pdo = PDO::getInstance();
@@ -61,12 +79,21 @@ class Comments
         return $commentEntities;
     }
 
+    /**
+     * @param int $id
+     * @return array
+     * @throws \Blog\Exception\ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getCommentsForArticleForAdmin(int $id)
     {
         return self::getCommentsForArticle($id, false);
     }
 
-
+    /**
+     * @param int $id
+     * @param bool $validate
+     */
     public static function changeValidationStatusForComment(int $id, bool $validate = true)
     {
         $pdo = PDO::getInstance();
@@ -81,16 +108,26 @@ class Comments
         }
     }
 
+    /**
+     * @param int $id
+     */
     public static function validateComment(int $id)
     {
         self::changeValidationStatusForComment($id);
     }
 
+    /**
+     * @param int $id
+     */
     public static function invalidateComment(int $id)
     {
         self::changeValidationStatusForComment($id, false);
     }
 
+    /**
+     * @param Comment $comment
+     * @return Comment
+     */
     public  static function addComment(Comment $comment)
     {
         $pdo = PDO::getInstance();
@@ -109,6 +146,10 @@ class Comments
         return $comment;
     }
 
+    /**
+     * @param Comment $comment
+     * @return Comment
+     */
     public static function edit(Comment $comment)
     {
         $pdo = PDO::getInstance();
@@ -127,6 +168,9 @@ class Comments
         return $comment;
     }
 
+    /**
+     * @param Comment $comment
+     */
     public static function delete(Comment $comment)
     {
         $pdo = PDO::getInstance();

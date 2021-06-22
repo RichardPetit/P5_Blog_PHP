@@ -11,6 +11,9 @@ class PDO
 
     protected static $instance = null;
 
+    /**
+     * @return \PDO|null
+     */
     public static function getInstance()
     {
         if (is_null(self::$instance)) {
@@ -25,5 +28,4 @@ class PDO
         }
         return self::$instance;
     }
-
 }

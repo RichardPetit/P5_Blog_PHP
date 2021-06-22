@@ -13,12 +13,23 @@ use Blog\Route\Router;
 
 class AdminController extends AbstractController
 {
+    /**
+     * AdminController constructor.
+     * @param Router $router
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public function __construct(Router $router)
     {
         parent::__construct($router);
         $this->redirectToHomeIfNotAdmin();
     }
 
+    /**
+     * @throws \Blog\Exception\UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function createArticleAction()
     {
         $error = false;
@@ -50,6 +61,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function checkFormCreateArticleAction()
     {
         $title = $_POST['title'] ?? '';
@@ -69,7 +83,13 @@ class AdminController extends AbstractController
         return $error;
     }
 
-
+    /**
+     * @param int $id
+     * @throws \Blog\Exception\UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function editArticleAction(int $id)
     {
         $msgError = "";
@@ -101,11 +121,17 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function checkFormEditArticleAction()
     {
         return $this->checkFormCreateArticleAction();
     }
 
+    /**
+     * @param int $id
+     */
     public function deleteArticleAction(int $id)
     {
         try {
@@ -117,8 +143,12 @@ class AdminController extends AbstractController
         }
     }
 
-
-
+    /**
+     * @throws \Blog\Exception\UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function dashboardAction()
     {
         $this->render('admin', 'dashboardAdmin.html.twig', [
@@ -126,6 +156,12 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws \Blog\Exception\UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function usersAdminAction()
     {
         $this->render('admin', 'usersAdmin.html.twig', [
@@ -133,6 +169,14 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @param $id
+     * @throws ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function commentsListingAction($id)
     {
         $this->render("admin", "commentsAdmin.html.twig", [
@@ -141,6 +185,9 @@ class AdminController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int $id
+     */
     public function validateCommentAction(int $id)
     {
         try {
@@ -153,6 +200,9 @@ class AdminController extends AbstractController
         $this->redirectToPath('/comments/'.$articleId);
     }
 
+    /**
+     * @param int $id
+     */
     public function invalidateCommentAction(int $id)
     {
         try {
@@ -165,6 +215,9 @@ class AdminController extends AbstractController
         $this->redirectToPath('/comments/'.$articleId);
     }
 
+    /**
+     * @param int $id
+     */
     public function changeUserStatusActiveAction(int $id)
     {
         try {
@@ -176,6 +229,9 @@ class AdminController extends AbstractController
         $this->redirectToPath('/admin_users');
     }
 
+    /**
+     * @param int $id
+     */
     public function changeUserStatusInactiveAction(int $id)
     {
         try {
@@ -187,6 +243,9 @@ class AdminController extends AbstractController
         $this->redirectToPath('/admin_users');
     }
 
+    /**
+     * @param int $id
+     */
     public function changeUserToAdminAction(int $id)
     {
         try {
@@ -198,6 +257,9 @@ class AdminController extends AbstractController
         $this->redirectToPath('/admin_users');
     }
 
+    /**
+     * @param int $id
+     */
     public function changeAdminToUserAction(int $id)
     {
         try {

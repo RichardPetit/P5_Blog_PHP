@@ -19,6 +19,12 @@ use Blog\Service\EmailService;
 
 class FrontController extends AbstractController
 {
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function homeAction()
     {
         $articles = Articles::getArticles(10);
@@ -27,6 +33,12 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function articlesListingAction()
     {
         $this->render("front", "listing.html.twig", [
@@ -34,6 +46,13 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @param int $id
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function detailArticleAction(int $id)
     {
         try {
@@ -48,6 +67,12 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function createUserAction()
     {
         $error = false;
@@ -102,6 +127,12 @@ class FrontController extends AbstractController
         return $error;
     }
 
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function contactAction()
     {
         $error = false;
@@ -134,6 +165,9 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function checkFormForContactAction()
     {
         $email = $_POST['emailContact'] ?? '';
@@ -152,6 +186,12 @@ class FrontController extends AbstractController
         return $error;
     }
 
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function loginAction()
     {
         $msgError = "";
@@ -181,6 +221,9 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function checkFormConnectAction()
     {
         $email = $_POST['emailConnect'];
@@ -196,6 +239,9 @@ class FrontController extends AbstractController
         return $error;
     }
 
+    /**
+     *
+     */
     public function logoutAction()
     {
         $_SESSION = [];
@@ -203,6 +249,12 @@ class FrontController extends AbstractController
         $this->redirectTo('home');
     }
 
+    /**
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function profileAction()
     {
         $this->redirectToHomeIfNotLoggedIn();
@@ -212,7 +264,14 @@ class FrontController extends AbstractController
         ]);
     }
 
-
+    /**
+     * @param $articleId
+     * @throws ArticleNotFoundException
+     * @throws UserNotFoundException
+     * @throws \Twig\Error\LoaderError
+     * @throws \Twig\Error\RuntimeError
+     * @throws \Twig\Error\SyntaxError
+     */
     public function addCommentAction($articleId)
     {
         $this->redirectToHomeIfNotLoggedIn();
@@ -250,6 +309,9 @@ class FrontController extends AbstractController
         ]);
     }
 
+    /**
+     * @return string
+     */
     private function checkFormCreateCommentAction()
     {
         $title = $_POST['title'] ?? '';

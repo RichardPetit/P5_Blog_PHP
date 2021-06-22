@@ -8,6 +8,11 @@ use Blog\Model\Connector\PDO;
 
 class Articles
 {
+    /**
+     * @param int|null $limit
+     * @return array
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getArticles(?int $limit = null)
     {
         $pdo = PDO::getInstance();
@@ -28,6 +33,12 @@ class Articles
         return $articleEntities;
     }
 
+    /**
+     * @param int $id
+     * @return Article
+     * @throws ArticleNotFoundException
+     * @throws \Blog\Exception\UserNotFoundException
+     */
     public static function getArticle(int $id)
     {
         $pdo = PDO::getInstance();
@@ -45,6 +56,10 @@ class Articles
         return self::hydrateEntity($showArticle);
     }
 
+    /**
+     * @param Article $article
+     * @return Article
+     */
     public static function add(Article $article)
     {
         $pdo = PDO::getInstance();
@@ -63,7 +78,10 @@ class Articles
         return $article;
     }
 
-
+    /**
+     * @param Article $article
+     * @return Article
+     */
     public static function edit(Article $article)
     {
         $pdo = PDO::getInstance();
@@ -83,6 +101,9 @@ class Articles
         return $article;
     }
 
+    /**
+     * @param Article $article
+     */
     public static function delete(Article $article)
     {
         $pdo = PDO::getInstance();

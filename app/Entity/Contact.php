@@ -114,7 +114,13 @@ class Contact
         $this->sendedAt = $sendedAt;
     }
 
-
+    /**
+     * @param string $email
+     * @param string $name
+     * @param string $subject
+     * @param string $message
+     * @return static
+     */
     public static function create(
         string $email,
         string $name,
